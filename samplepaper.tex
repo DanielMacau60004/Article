@@ -2,6 +2,7 @@
 
 \usepackage[T1]{fontenc}
 
+\usepackage{cite}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{float}
@@ -13,6 +14,7 @@
 \setlist[enumerate,2]{label=\textbf{\theenumi.\arabic*.}, ref=\theenumi.\arabic*}
 \setlist[enumerate,3]{label=\textbf{\theenumii.\arabic*.}, ref=\theenumii.\arabic*}
 
+\bibliographystyle{plain}
 \begin{document}
 
 \title{Natural Deduction Proofs for Educational Feedback}
@@ -21,8 +23,7 @@
 \and Ricardo Gonçalves\inst{1}
 \and João Costa Seco\inst{1}}
 
-\institute{NOVA School of Science and Technology, Caparica, Portugal
-\url{https://www.fct.unl.pt/}}
+\institute{NOVA School of Science and Technology, Caparica, Portugal}
 
 \maketitle 
 
@@ -33,11 +34,11 @@ Online tools, where students can practice and have automatic feedback, have show
 \end{abstract}
 
 \section{Introduction}
-Learning logic is a fundamental component of today’s curriculum, as it plays a key role in several important areas, including programming languages, databases, artificial intelligence, and algorithms [Panel: Logic in the Computer Science Curriculum]. Logic courses cover a wide range of topics, and one that stands out is ND, given its importance in helping students develop reasoning skills [Automatically Generating Problems and Solutions for Natural Deduction], which are valuable in real-world contexts where structured thinking and argumentation are required [https://doi.org/10.1017/cbo9781139567862.004].
+Learning logic is a fundamental component of today’s curriculum, as it plays a key role in several important areas, including programming languages, databases, artificial intelligence, and algorithms~\cite{logicincomputer}. Logic courses cover a wide range of topics, and one that stands out is ND, given its importance in helping students develop reasoning skills~\cite{autogeneratingnd}, which are valuable in real-world contexts where structured thinking and argumentation are required~\cite{vonPlato_2014}.
 
 Natural deduction exercises are generally considered among the most challenging for students due to the complex reasoning involved. Since mastering them requires extensive exposure, many students struggle to become familiar with the rules and the formal way of thinking. These exercises involve numerous logical rules, and it is not always clear which one to apply. Additionally, students often need to keep track of multiple steps and assumptions simultaneously, which can be confusing.
 
-Despite the importance of logic education, there remains a lack of online tools that support this type of exercise. The few existing tools typically offer very limited feedback, focusing mainly on syntactic and semantic errors while failing to provide deeper guidance that could help students overcome conceptual difficulties [https://www.arxiv.org/abs/2505.05987]. A major challenge students face when solving ND problems is becoming stuck either because they reach an impasse or feel they are overcomplicating the exercise.
+Despite the importance of logic education, there remains a lack of online tools that support this type of exercise. The few existing tools typically offer very limited feedback, focusing mainly on syntactic and semantic errors while failing to provide deeper guidance that could help students overcome conceptual difficulties~\cite{Perh__2025}. A major challenge students face when solving ND problems is becoming stuck either because they reach an impasse or feel they are overcomplicating the exercise.
 
 This highlights the need for more advanced and effective feedback systems to address these gaps. One approach to producing this type of feedback is through algorithms capable of generating complete proofs. This allows the system to derive hints from the generated proof, ensuring that the guidance leads to a correct solution rather than a dead end. However, most existing algorithms were not developed for this purpose: while they can find a solution or detect contradictions, they often lack flexibility in terms of rule application, depend on the specific ND system used, and cannot dynamically adapt to a user’s reasoning process. Capturing the user’s reasoning enables the feedback to be personalized and aligned with the student’s chosen path.
 
@@ -45,27 +46,28 @@ In this article, we present an algorithm developed during a thesis project with 
 
 \section{Related Work}
 Several algorithms have been developed to verify the validity of logical formulas. One common approach is to use resolution to find contradictions. This method begins by converting formulas into Conjunctive Normal Form, which is easier for automated systems to process. After this transformation, the algorithm applies resolution rules to search for contradictions. If a contradiction is found, the formula is not valid. If no contradiction appears after checking all possible combinations, the formula is considered valid. However, this method often does not produce proofs that are easy for humans to understand.
-To address this, David Robinson [paper] proposed an algorithm that uses a version of resolution compatible with natural deduction. His method works by encoding formulas into special clauses and then using resolution steps to reconstruct a natural deduction proof. The result is a proof that is easier for people to read and understand.
-Another approach is the algorithm developed by Xuehan Maka Hu [paper]. This algorithm works by recursively applying introduction rules to break down the conclusion, and then using elimination rules to handle the assumptions. It generates complete and human-readable natural deduction proofs in Gentzen style for propositional logic. Although it produces understandable proofs, the algorithm is not very flexible. Its strict rule application can sometimes lead to complicated solutions for problems that could be solved more simply.
-Bolotov's[paper] algorithm is another example of a proof-searching method designed for natural deduction in propositional logic. It follows a goal-directed strategy, combining forward and backward rule applications. It updates the goals dynamically and stops when a proof is found or when no further progress is possible, returning a counter-example in the latter case. One limitation of this algorithm is that it does not include a mechanism to remove irrelevant or unnecessary branches during proof search. These extra branches may contain valid but unneeded steps, which can make the proofs longer and harder to follow.
-LOGAX[paper] is an interactive tutoring tool that constructs Hilbert-style axiomatic proofs in propositional logic. It is designed to provide students with step-by-step hints and feedback. LOGAX uses a version of Bolotov's algorithm to generate directed acyclic multigraphs, which allow the system to store and explore multiple proof paths for the same problem. It can adapt the proof it generates to match the student's reasoning, offering both forward and backward hints depending on the student's progress. Despite its strengths, LOGAX has some limitations. It is only designed for propositional logic and can only generate linear Hilbert-style proofs. Since it is based on Bolotov's algorithm, it also inherits some of its weaknesses, including the possibility of generating longer proofs with irrelevant or unnecessary steps.
+To address this, David Robinson~\cite{robinson_using} proposed an algorithm that uses a version of resolution compatible with natural deduction. His method works by encoding formulas into special clauses and then using resolution steps to reconstruct a natural deduction proof. The result is a proof that is easier for people to read and understand.
+Another approach is the algorithm developed by Xuehan Maka Hu~\cite{makahu_automatic}. This algorithm works by recursively applying introduction rules to break down the conclusion, and then using elimination rules to handle the assumptions. It generates complete and human-readable natural deduction proofs in Gentzen style for propositional logic. Although it produces understandable proofs, the algorithm is not very flexible. Its strict rule application can sometimes lead to complicated solutions for problems that could be solved more simply.
+Bolotov's~\cite{bolotov_2005_automated} algorithm is another example of a proof-searching method designed for natural deduction in propositional logic. It follows a goal-directed strategy, combining forward and backward rule applications. It updates the goals dynamically and stops when a proof is found or when no further progress is possible, returning a counter-example in the latter case. One limitation of this algorithm is that it does not include a mechanism to remove irrelevant or unnecessary branches during proof search. These extra branches may contain valid but unneeded steps, which can make the proofs longer and harder to follow.
+LOGAX~\cite{lodder_2020_generation} is an interactive tutoring tool that constructs Hilbert-style axiomatic proofs in propositional logic. It is designed to provide students with step-by-step hints and feedback. LOGAX uses a version of Bolotov's algorithm to generate directed acyclic multigraphs, which allow the system to store and explore multiple proof paths for the same problem. It can adapt the proof it generates to match the student's reasoning, offering both forward and backward hints depending on the student's progress. Despite its strengths, LOGAX has some limitations. It is only designed for propositional logic and can only generate linear Hilbert-style proofs. Since it is based on Bolotov's algorithm, it also inherits some of its weaknesses, including the possibility of generating longer proofs with irrelevant or unnecessary steps.
 
 \section{Natural Deduction}
 
-ND is a logical proof system that reflects mathematical and everyday reasoning under assumptions [Mancosu et al., 2021]. It emerged in 1934 with Gentzen and Jaśkowski's work, gaining widespread acceptance by the 1960s [Pelletier, 1999]. Using ND, an important goal is to verify whether a formula \(\varphi\) is a semantic consequence of a set of formulas \(\Gamma\), written \(\Gamma \vdash \varphi\). This means that whenever all formulas in \(\Gamma\) hold, \(\varphi\) must also hold because it logically follows from \(\Gamma\) [LCGouveiaDionisioProp, LCGouveiaDionisioFOL]. There are many ways to represent these proofs. The two main styles that exist are the Gentzen style, which organizes the proof in a tree-shaped structure, and the Fitch style, which uses a linear structure with deeper indentation levels to represent assumptions or intermediate steps in the proof. Our article focuses on the first one. 
+ND is a logical proof system that reflects mathematical and everyday reasoning under assumptions~\cite{nd-mancosu}. It emerged in 1934 with Gentzen and Jaśkowski's work, gaining widespread acceptance by the 1960s~\cite{Pelletier1999-FRAABH}. Using ND, an important goal is to verify whether a formula \(\varphi\) is a semantic consequence of a set of formulas \(\Gamma\), written \(\Gamma \vdash \varphi\). This means that whenever all formulas in \(\Gamma\) hold, \(\varphi\) must also hold because it logically follows from \(\Gamma\) \cite{gouveia_lgica1, gouveia_lgica2}. There are many ways to represent these proofs. The two main styles that exist are the Gentzen style, which organizes the proof in a tree-shaped structure, and the Fitch style, which uses a linear structure with deeper indentation levels to represent assumptions or intermediate steps in the proof. Our article focuses on the first one. 
 
-Gentzen style uses tree-shaped structures, also known as deduction trees. These structures represent proofs and are built by starting with individual trees, which are formulas, and successively applying rules of inference to generate new and more complex trees. The formula at the root is the conclusion of the proof, and formulas at the leaves are called hypotheses and are generally associated with marks. In this article, we use numbers to denote such marks. Marks are used to identify distinct assumptions and to indicate when they are discharged (closed). A hypothesis is considered discharged if its mark is referenced by a rule. Rules are represented using fractions (a horizontal line), where hypotheses appear above the line and the rule’s conclusion appears below. The rule’s name and the marks for the hypotheses are normally placed on the right-hand side of the fraction. There are two main groups of rules for each logical connective: introduction (\(I\)), which constructs more complex formulas from simpler ones, and elimination (\(E\)), which extracts information from complex formulas. Additionally, a special rule, known as absurdity (\(\bot\)), allows deriving any conclusion from a contradiction. Each rule has its own characteristics,
-and some can only be applied under specific circumstances, called side conditions. For simplicity, we do not discuss these here, but they are included in our algorithm. Figure \ref{fig:nd-rules}, list all the rules considered in our implementation. Greek letters represent generic formulas. The symbols \( \mathcal{D} \) represent subtrees within branches, while \( m \) and \( n \) denote marks. The notation \(\displaystyle \left[ \varphi \right]^a_{\substack{b}}\) indicates the substitution (or mapping) of terms from \( a \) to \( b \), and \(\displaystyle [\varphi]^m\) represents assumptions that can be discharged by the rule.
-\vspace{-1em}
+Gentzen style uses tree-shaped structures, also known as deduction trees. These structures represent proofs and are built by starting with individual trees, which are formulas, and successively applying rules of inference to generate new and more complex trees. The formula at the root is the conclusion of the proof, and formulas at the leaves are called hypotheses and are generally associated with marks. In this article, we use numbers to denote such marks. Marks are used to identify distinct assumptions and to indicate when they are discharged (closed). A hypothesis is considered discharged if its mark is referenced by a rule. Rules are represented using fractions (a horizontal line), where hypotheses appear above the line and the rule’s conclusion appears below. The rule’s name and the marks for the hypotheses are normally placed on the right-hand side of the fraction. There are two main groups of rules for each logical connective: introduction (\(I\)), which constructs more complex formulas from simpler ones, and elimination (\(E\)), which extracts information from complex formulas. Additionally, a special rule, known as absurdity (\(\bot\)), allows deriving any conclusion from a contradiction. Each rule has its own characteristics, and some can only be applied under specific circumstances, called side conditions. For simplicity, we do not discuss these here, but they are included in our algorithm. Figure \ref{fig:nd-rules}, list all the rules considered in our implementation. Greek letters represent generic formulas. The symbols \( \mathcal{D} \) represent subtrees within branches, while \( m \) and \( n \) denote marks. The notation \(\displaystyle \left[ \varphi \right]^a_{\substack{b}}\) indicates the substitution (or mapping) of terms from \( a \) to \( b \), and \(\displaystyle [\varphi]^m\) represents which assumptions can be used in each branch by the rule.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.97\linewidth]{resources/rules.png}
-    \caption{Enter Caption}
+    \includegraphics[width=1\linewidth]{resources/rules.png}
+    \caption{List of rules for both PL and FOL}
     \label{fig:nd-rules}
 \end{figure}
-\vspace{-2em}
+\vspace{-1em}
+
 These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion. Figure \ref{tab:proof-tree} shows an example of a proof, that solves the problem: \( \vdash \neg (\varphi \lor \psi) \to \neg \psi \).
-\vspace{-2em}
+
+\vspace{-1em}
 \begin{figure}[h!]
     \centering
     \[
@@ -77,7 +79,7 @@ These proofs can be constructed either bottom-up, from the conclusion to the hyp
     \caption{Tree proving \( \vdash \neg (\varphi \lor \psi) \to \neg \psi \).}
     \label{tab:proof-tree}
 \end{figure}
-\vspace{-2em}
+
 
 \begin{definition}[Well-Formed Tree Proof]
 A tree proof is well-formed if and only if it is finite and applies the inference rules correctly.
@@ -139,14 +141,20 @@ A \emph{transition} is an element of the set
 \[
 T \subseteq R \times \mathcal{P}(F \times F),
 \]
-where each element consists of a rule \( r \in R \), a hypothesis \( f_1 \in F \), and an optional assumption \( f_2 \in F \).
+where each element consists of a rule \( r \in R \), a hypothesis that can be \( f_1 \in F \), and an optional assumption \( f_2 \in F \).
 \end{definition}
 
 
-A transition is the application of a rule to a formula. Let us show an example. Consider this rule application:
-\[
-\frac{{a \vee b} \quad {{c}} \quad {{c}}}{c} {\scriptstyle(\vee_E,1,2)}
-\]
+A transition is the application of a rule to a formula. Firgure \ref{fig:te-ex} shows an example of the rule being applied \(\vee_E\) and the corresponding edge.
+\vspace{-1em}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{resources/te-example.jpg}
+        \caption{Example of a transition edge.}
+        \label{fig:te-ex}
+    \end{figure}
+\vspace{-2em}
+
 We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a), (c, b)\})\), and our TG will have this edge: \(E_T = E_T \cup (c, \{T_1\})\). Our edges will always point from the conclusion to its hypotheses. If we are working on FOL proofs, we also need to consider the side conditions as part of the transition. The reason why we are using hypergraphs instead of regular graphs is that some rule applications can have more than one hypothesis, like in the example we showed and we want to map them in the graph.
 
 \vspace{1em}
@@ -191,7 +199,7 @@ We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a),
             \vspace{-1em}
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=1\linewidth]{resources/tg-edges.png}
+                \includegraphics[width=1\linewidth]{resources/tg-edges.jpg}
                 \caption{Edges generated for the formula \(a \to b\)}
                 \label{fig:tg-edges}
             \end{figure}
@@ -202,7 +210,7 @@ We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a),
 \vspace{-1em}
     \begin{figure}
         \centering
-        \includegraphics[width=0.5\linewidth]{resources/tg-final.png}
+        \includegraphics[width=0.6\linewidth]{resources/tg-final.png}
         \caption{Final TG generated from \(\vdash a \to a\)}
         \label{fig:tg-final}
     \end{figure}
@@ -310,7 +318,7 @@ Figure \ref{fig:st-ex} shows part of the graph for the problem \(\vdash a \to a\
 \vspace{-1em}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{resources/sg-gen.png}
+    \includegraphics[width=1\linewidth]{resources/sg-gen.jpg}
     \caption{Example of State Graph for \(\vdash a \to a\)}
     \label{fig:st-ex}
 \end{figure}
@@ -370,7 +378,7 @@ Figure~\ref{fig:sg-trim} shows an example of a trimmed SG using the \textbf{Size
 \vspace{-1em}
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{resources/sg-final.png}
+    \includegraphics[width=1\linewidth]{resources/sg-final.jpg}
     \caption{Trimmed State Graph showing valid proof paths.}
     \label{fig:sg-trim}
 \end{figure}
@@ -384,7 +392,7 @@ In this first example, the student does not know how to proceed after applying t
 \vspace{-1em}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{resources/trim-pos-feed.png}
+    \includegraphics[width=1\linewidth]{resources/trim-pos-feed.jpg}
     \caption{Extracting a solution to produce feedback using an existing state}
     \label{fig:extract-solution}
 \end{figure}
@@ -395,7 +403,7 @@ In this second example, a solution cannot be found, as the state assigned to the
 \vspace{-1em}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{resources/trim-neg-feed.png}
+    \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
     \caption{Extracting a solution to produce feedback using a non-existing state.}
     \label{fig:extract-solution2}
 \end{figure}
@@ -412,24 +420,5 @@ Regarding completeness, our algorithm is not complete because it can only find s
 \section{Conclusion}
 Conclusion
 
-\begin{thebibliography}{8}
-\bibitem{ref_article1}
-Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
-
-\bibitem{ref_lncs1}
-Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-Springer, Heidelberg (2016). \doi{10.10007/1234567890}
-
-\bibitem{ref_book1}
-Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-Location (1999)
-
-\bibitem{ref_proc1}
-Author, A.-B.: Contribution title. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
-
-\bibitem{ref_url1}
-LNCS Homepage, \url{http://www.springer.com/lncs}, last accessed 2023/10/25
-\end{thebibliography}
+\bibliography{bibliography}
 \end{document}
