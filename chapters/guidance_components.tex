@@ -1,0 +1,16 @@
+\section{Guidance Components}
+Developing an algorithm to provide advanced feedback on ND exercises begins with clearly defining its key features. Our idea was to design an effective feedback system capable of delivering relevant information to assist students in solving proofs, making the learning process more teaching-like and adapted to each student’s resolution. With this focus, we identified four fundamental aspects of a well-designed feedback system:
+
+\begin{itemize}
+
+\item \textbf {Providing guidance on rule applications:} Some rule applications in ND are not obvious, making it difficult for students to progress. For example, sometimes, no matter how hard students try, the desired proof cannot be obtained. This may be because an indirect proof is needed: a sentence \(\varphi\) is proved by assuming \(\neg \varphi\) and showing that it leads to a contradiction [NDpack]. The system should be able to identify such situations and suggest the appropriate rule applications.
+
+\item \textbf {Breaking proofs into smaller sub-proofs:} To simplify reasoning, the feedback should allow students to focus on smaller proofs. By dividing proofs into smaller steps, it will reduce the cognitive load and encourage incremental learning. 
+
+\item \textbf{Indicating the distance to a solution:} Showing how many steps (rule applications) are needed to complete the proof helps students maintain focus and gain a clear sense of progress.
+
+\item \textbf{Improvements in the proof:} Providing feedback about irrelevant steps taken or possible shortcuts that the student could apply to make the proof clearer. This can also be used to show different ways to tackle the same problem.
+
+\end{itemize}
+
+These components offer several advantages in the learning process. By providing structured and clear information, the system becomes more robust, helping students overcome challenges throughout the proof.

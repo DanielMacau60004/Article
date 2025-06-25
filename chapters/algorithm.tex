@@ -1,0 +1,298 @@
+\section{Algorithm}
+In this chapter, we explain how our algorithm works. It is divided into three sequential steps.
+The first step is to generate a hypergraph based on the initial goal (what the exercise asks us to prove) and the target goal (the part of the student's proof we want to complete), in order to store all possible rule applications for both goals. Then, we use this graph to build a second hypergraph that simulates as many proof constructions as possible by decomposing the target goal into sub-goals. In the last step, we trim this second graph so that it retains only valid and minimal proofs, either in terms of the number of steps required or the height needed to solve the problem. Finally, we use the resulting graph to extract and build readable proofs, which can later be used to generate feedback.
+
+\subsection{Transition Graph}
+The first step is to create the Transition Graph (TG). This graph stores the most important formulas that might be part of the final solution, as well as the rules that can be applied to each formula. In short, the TG sets up the rules of the "game".
+
+To do this, we need both the initial goal and the target goal. In cases where we want a complete proof, we can assume that the target goal is the same as the initial goal. The initial goal is used to generate all the natural proof paths, which are proofs constructed using only formulas derived from decomposing the initial goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. These are proofs that rely on more complex formulas than those directly derived from the initial goal. This only happens when the part of the proof we want to complete shifts away from the initial goal. By considering both goals, the system is capable of generating more personalized and user-guided proofs, which is one of the core elements of our algorithm.
+
+Before we describe the procedure, let us introduce some definitions:
+
+\begin{definition}[Labeled Directed Hypergraph with Labeled Heads]
+A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair
+\[
+H = (V, E),
+\]
+where:
+\begin{itemize}
+  \item \( V \) is a finite set of \emph{nodes}, and
+  \item \( E \subseteq V \times \mathcal{P}(V \times (V \cup \{\varepsilon\})) \times L \) is a finite set of \emph{labeled hyperedges}, where each hyperedge consists of:
+  \begin{itemize}
+    \item a \emph{tail}, which is a single input node from \( V \),
+    \item a \emph{labeled head}, which is a set of pairs \( (v, w) \in V \times (V \cup \{\varepsilon\}) \), where \( v \) is a head node and \( w \) is either a node or the empty symbol \( \varepsilon \), and
+    \item a label \( \ell \in L \).
+  \end{itemize}
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Transition Graph]
+A \emph{Transition Graph (TG)} is a pair
+\[
+T_G = (F, T_E),
+\]
+where:
+\begin{itemize}
+  \item \( F \) is a finite set of \emph{formulas}, and
+  \item \( T_E \subseteq F \times \mathcal{P}(F \times F) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Transition Edge (TE)}, where each edge consists of:
+  \begin{itemize}
+    \item a tail formula \( f \in F \),
+    \item a (possibly empty) set of pairs \( (f_1, f_2) \in F \times F \), called \emph{Transitions (T)}, where \( f_1 \) is the \emph{hypothesis} and \( f_2 \) is the \emph{closed hypothesis}, and
+    \item a rule label \( r \in R \).
+  \end{itemize}
+\end{itemize}
+\end{definition}
+
+
+A TE is the application of a rule to a formula. Figure \ref{fig:te-ex} shows an example of the rule being applied \(\vee_E\) and the corresponding edge.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{resources/te-example.jpg}
+        \caption{Example of a transition edge.}
+        \label{fig:te-ex}
+    \end{figure}
+
+We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a), (c, b)\})\), and our TG will have this edge: \(E_T = E_T \cup (c, \{T_1\})\). Our edges will always point from the conclusion to its hypotheses. If we are working on FOL proofs, we also need to consider the side conditions as part of the transition. The reason why we are using hypergraphs instead of regular graphs is that some rule applications can have more than one hypothesis, like in the example we showed and we want to map them in the graph.
+
+\vspace{1em}
+\textbf{Procedure: }
+
+\begin{enumerate}
+    \item First, we initialize our graph by defining the set of possible formulas \(F\) as the union of all formulas in the problem and the initial state. The set of rules \(R\) are the rules presented in Figure \ref{fig:nd-rules}, and the edges \(E_T\) are initialized as an empty set.
+
+    \item We loop through all formulas in \(F\), and for each formula \(f\):
+
+    \begin{enumerate}
+         \item We add its negation \(\lnot f\) to \(F\), but only if the expression was not already added as the negation of another expression (to avoid infinite loops). We include negations to support indirect proofs using the Absurdity rule.
+         \item If \(f\) is not a literal, we decompose it and add the decomposed formulas to \(F\).
+    \end{enumerate}
+
+    Figure \ref{fig:tg-exps} shows an example of the decomposition of the expression \(a \to ( b \land \lnot c)\) 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{resources/decomposition.jpg}
+        \caption{Decomposition of the expression \(a \to ( b \land \lnot c)\)}
+        \label{fig:tg-exps}
+    \end{figure}
+
+    So, at the end of this iteration, the set of formulas will be: \(
+    F = \{ a \to ( b \land \lnot c), \lnot(a \to ( b \land \lnot c)), a, \lnot a, b \land \lnot c, \lnot(b \land \lnot c), b, \lnot b, \lnot c, \lnot\lnot c \}.
+    \)
+
+    \item After computing the formulas that our proof can contain, we select which rules can be applied to each formula. To do that, we loop again through the formulas \(F\), and for each formula \(f\):
+
+       \begin{enumerate}
+            \item For each rule \(r \in R\):
+
+            \begin{enumerate}
+                \item If the rule is Absurdity, we add a transition edge to the graph, as this rule can be applied to any formula.
+                \item Else if the rule is Elimination of Negation and \(\lnot f \in F\), we add a transition edge with that rule.
+                \item Else if \(f\) is a conjunction and the rule is Elimination of Conjunction, we add a transition edge with all matching formulas in \(F\). The reason for this is that the Elimination of Conjunction rule can be applied to any formula when there is a disjunction, the same applies to the Elimination of Existential rule.
+                \item Else if \(f\) is not a literal and does not match the above rules, we try to match \(f\) with rule \(r\) using its outermost logical symbol. For example, if \(f = a \to b\), it matches the Introduction and Elimination of Implication.
+            \end{enumerate}  
+
+            An example of the edges generated for the formula \(a \to b\) is shown in Figure \ref{fig:tg-edges}.
+    
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\linewidth]{resources/tg-edges.jpg}
+                \caption{Edges generated for the formula \(a \to b\)}
+                \label{fig:tg-edges}
+            \end{figure}
+    \end{enumerate}    
+
+    As the algorithm considers the deviations taken by the formulas derived in the incomplete proof, it will be able to generate solutions that are more aligned with the student’s reasoning process. Figure \ref{fig:tg-final} shows the final TG for the problem \(\vdash a \to a\), considering all possible formulas and transitions for this problem.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{resources/tg-final.png}
+        \caption{Final TG generated from \(\vdash a \to a\)}
+        \label{fig:tg-final}
+    \end{figure}
+\end{enumerate}
+
+
+
+\begin{algorithm}
+\caption{Transition Graph Construction}
+\KwIn{Problem $(\Gamma, \phi)$, Incomplete State $(\Delta, \alpha)$}
+\KwOut{Transition Graph $TG = (F, R, E_T)$}
+
+$F \leftarrow \Gamma \cup \Delta \cup \{\phi, \alpha\}$ \tcp*[r]{Initialize formulas}
+$E_T \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
+$R \leftarrow$ set of inference rules \tcp*[r]{Load rules}
+
+\tcp{Compute formulas}
+\ForEach{$f \in F$}{
+  \If{$f $was not already added as the negation}{
+    $F \leftarrow F \cup \{\lnot f\}$ \tcp*[r]{Add negation for indirect rules}
+  }
+
+  Decompose $f$ into parts $S$\;
+  $F \leftarrow F \cup S$\;
+}
+
+\tcp{Compute transitions}
+\ForEach{$f \in F$}{
+    \ForEach{$r \in R$}{
+      \If{$r$ is the Absurdity rule}{
+        $T_e = (r, \{(\bot, \lnot f)\})$\;
+        $E_T \leftarrow E \cup \{(f, \{T_e\})\}$\;
+      }
+      \ElseIf{$r$ is the Elimination of Negation rule and $\lnot f \in F$}{
+        $T_e = (r, \{(f, \varepsilon), (\lnot f,\varepsilon)\})$\;
+        $E_T \leftarrow E \cup \{(\bot, \{(r, T_e)\})\}$\;
+      }
+      \ElseIf{$r$ is the Introduction of Conjunction rule and $f$ is a conjunction $(\psi \lor \phi)$}{
+        \ForEach{$f_\text{sub} \in F$}{
+            $T_e = (r, \{(f, \varepsilon), (f_\text{sub},\psi), (f_\text{sub}, \phi)\})$\;
+            $E_T \leftarrow E \cup \{(f_\text{sub}, \{(r, T_e)\})\}$\;
+        }
+      }
+      \ElseIf{$f$ is not a literal and none of the rules above}{
+        \If{$r$ matches $f$ based on its main logical symbol}{
+          Compute the transition edge and add it to the edge to the graph\;
+        }
+      }
+    }
+
+}
+\end{algorithm}
+
+
+
+\subsection{State Graph}
+
+The second step is to build the State Graph (SG). To do this, we use the previous TG and the state we want to complete. This could be the original problem or a part of the proof the student did not finish. The SG is similar to the TG, but instead of storing transitions, it stores states. Before we describe the procedure, let us define some key terms:
+
+\begin{definition}[State Graph]
+The SG is defined as a quadruple:
+\[
+SG = (\beta, TG, S_F, E_S),
+\]
+where \( \beta \) is the initial state, \(TG\) is the Transition Graph, \(S_F \subseteq \mathcal{P}(S)\) is the set of discovered states, and \(E_S \subseteq F \times \mathcal{P}(SE)\) maps each formula \( f \in F \) to a (possibly empty) set of state edges.
+\end{definition}
+
+\begin{definition}[State Edge]
+A \emph{state edge} is an element of the set
+\[
+S_E \subseteq R \times \mathcal{P}(S),
+\]
+where \(R\) is the rule applied, and \(\mathcal{P}(S)\) is the set of possible new states after applying that rule.
+\end{definition}
+
+\begin{definition}[Closed state]
+A state \(S = (\alpha, \Delta)\) is \emph{closed} if \(\alpha \in \Delta\).
+\end{definition}
+
+\vspace{1em}
+\textbf{Procedure:}
+
+\begin{enumerate}
+    \item The algorithm starts by setting the initial state \(\beta\). This can be the original problem state or the incomplete part of the student's proof. The TG is the one built before. The set of found states \(S_F\) starts with only \(\beta\), and the set of edges \(E_S\) is empty.
+
+    \item Then, we go through each state \(s = (\alpha, \Delta)\) in \(S_F\):
+
+    \begin{enumerate}
+        \item If the state is closed, we skip it. There is no need to explore it further, because a valid mark can be assigned to it at this point. Other stopping conditions are needed to avoid very long executions, since the graph can grow very fast. For example, we can set a limit on the number of nodes explored.
+
+        \item Then we use the Transition Graph (TG) to find all rule applications for the formula \(\alpha\). This gives us a set of rule applications. For each transition:
+
+        \begin{enumerate}
+            \item We apply the rule to the current state \(s\). If this creates a new state, we add it to \(S_F\). The new state is always constructed based on the current state \(s\), keeping track of the transformations made in previous states.
+        \end{enumerate}
+
+        \item Finally, the algorithm combines the rule and the generated states into a state edge \(S_E\), and adds it to the set \(E_S\).
+    \end{enumerate}
+\end{enumerate}
+
+
+Figure \ref{fig:st-ex} shows part of the graph for the problem \(\vdash a \to a\). Nodes represent states. Solid borders are closed states and dashed borders are unclosed states. In this example, the state $\{\lnot a, \lnot(a \to a)\}$ cannot be closed because $\lnot a \notin \{\lnot(a \to a)\}$, and $\lnot a$ has no outgoing edges in the TG (Figure~\ref{fig:tg-final}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{resources/sg-gen.jpg}
+    \caption{Example of State Graph for \(\vdash a \to a\)}
+    \label{fig:st-ex}
+\end{figure}
+
+\begin{algorithm}
+\caption{State Graph Construction}
+\KwIn{Transition Graph $TG$, Initial State $\beta$}
+\KwOut{State Graph $SG = (\beta, TG, S_F, E_S)$}
+
+$S_F \leftarrow \{\beta\}$ \tcp*[r]{Initialize set of states}
+$E_S \leftarrow \emptyset$ \tcp*[r]{Initialize state edges}
+
+\tcp{Expand states}
+\ForEach{$s = (\alpha, \Delta) \in S_F$}{
+    \If{$s$ is closed or s}{
+        \textbf{continue} \tcp*[r]{Skip closed state}
+    }
+
+    \If{stopping condition is reached}{
+        \textbf{break} \tcp*[r]{Avoid too many expansions}
+    }
+
+    \tcp{Apply rules from TG}
+    Get list of rule applications $T$\;
+
+    \ForEach{$(r, t) \in T$}{
+        Compute new states $S_r$ from $s$ using transitions $t$\;
+    
+        $S_E \leftarrow (r, S_r)$\;
+        $E_S \leftarrow E_S \cup \{(\alpha, \{S_E\})\}$ \tcp*[r]{Add state edge}
+    }
+
+}
+\end{algorithm}
+
+\subsection{Trim Graph}
+
+The final stage of our algorithm is to trim the SG and keep only the valid solutions to the problem. In other words, the final trimmed graph will contain only states that lead to a complete and valid proof. To achieve this, we remove unclosed states and extra edges from the SG.
+
+We define two different strategies to trim the graph. Both use a standard graph traversal technique, breadth-first search, to identify which states and edges should be kept. The difference lies in what each strategy prioritizes: the \textbf{Height Trim Strategy} focuses on finding proofs with the smallest height (fewest layers of rule applications), while the \textbf{Size Trim Strategy} aims to find proofs with the fewest total steps (smallest number of rule applications).
+
+
+\vspace{1em}
+\textbf{Height Trim Strategy Procedure:}  
+This strategy loops through all closed states and tracks the height needed to reach each one. For every descendant of a closed state, the algorithm continues this tracking process. Because it uses breadth-first traversal, the first time a node is reached, it’s guaranteed to be through the shortest possible path (in terms of height). This makes the strategy efficient.
+
+\vspace{0.5em}
+\textbf{Size Trim Strategy Procedure:}  
+This strategy also starts from closed states. It updates the size (number of steps) required to reach each ancestor. For each state, it keeps only the edge that leads to a smaller proof. For every descendant
+of a closed state, the algorithm continues this tracking process. This process ensures that each state keeps at most one optimal incoming edge, leading to the shortest proof found within the SG's search space. Although slower than the height trim strategy, it finds more concise proofs in terms of rule applications.
+
+\vspace{1em}
+Figure~\ref{fig:sg-trim} shows an example of a trimmed SG using the \textbf{Size Trim Strategy}, on the SG shown in Figure~\ref{fig:st-ex}. The states that could not be closed were removed, and the edges coming from higher-level solutions were also trimmed.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{resources/sg-final.jpg}
+    \caption{Trimmed State Graph showing valid proof paths.}
+    \label{fig:sg-trim}
+\end{figure}
+
+To check whether a valid solution was found for the full proof, we simply verify if the initial state appears in the trimmed graph. In the example above, the solution corresponds to tree \textbf{A}, as we want to solve the problem \(\vdash a \to a\). That solution is always the smallest in height/size, respectively. With this trimmed graph, we can now generate feedback by querying which states are still missing in the student’s proof. Figures \ref{fig:extract-solution} and \ref{fig:extract-solution2} illustrate examples of how feedback can be generated from the final graph.
+
+In this first example, the student does not know how to proceed after applying the Absurdity rule. By running the algorithm and querying the final graph with the state that is still unsolved, we get a possible solution. This case represents tree \textbf{B} in Figure~\ref{fig:sg-trim}. Knowing the remaining part of the proof, we can generate feedback. For example, we can tell the student to apply the Elimination of the Negation rule using \(a \to a \) and  \(\lnot(a \to a) \) (\textbf{Providing guidance on rule applications}). In this specific case, we cannot give hints about sub-proofs to solve the problem, as the solution is already small. But in some cases where the solution is bigger, we can do that (\textbf{Breaking proofs into smaller sub-proofs}). We can also specify how far the student is from the final proof. In this case, we can say that they are two rules away from completing the proof (\textbf{Indicating the distance to a solution}). Finally, we can also suggest some improvements in the resolution. In this case, the student shifts their solution by applying the Absurdity rule, making it longer. That information can also be extracted from the graph by comparing the smallest proof (the one with the initial state) with the student’s final proof (\textbf{Improvements in the proof}).
+
+ 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{resources/trim-pos-feed.jpg}
+    \caption{Extracting a solution to produce feedback using an existing state}
+    \label{fig:extract-solution}
+\end{figure}
+
+In this second example, a solution cannot be found, as the state assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
+    \caption{Extracting a solution to produce feedback using a non-existing state.}
+    \label{fig:extract-solution2}
+\end{figure}
+
+These methodologies can also be used to assess exercises. For example, by computing how far the student’s resolution is from a possible solution if the problem remains unsolvable, or how far it is shifted from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
