@@ -28,7 +28,7 @@
 \maketitle 
 
 \begin{abstract}
-Online tools, where students can practice and have automatic feedback, have shown to be useful both for MOOCS or as complementary material for traditional classes. Nevertheless, contrary to the myriad of tools that exist for learning programming languages, in the area of logic, a fundamental subject in any Computer Science programme, there is still a lack of such online tools, and in particular for the challenging exercise of Natural Deduction (ND) proofs. The few existing tools usually do not provide effective feedback, which is in fact challenging since tree-like ND proofs are non-linear and some steps are not immediate, as it is the case of proofs by contradiction. In this paper, we present an algorithm for pedagogical purposes that can generate human-readable ND proofs for a given problem. The algorithm supports both Propositional and First-Order Logic, and is based on directed hypergraphs. This allows obtaining the shortest and most direct proof for a given problem, but it can also adapt to a user’s current unfinished proof, allowing for greater flexibility in the proof construction. The algorithm can be integrated with educational platforms to guide users through the proofs by providing advanced feedback, at the same as it can help teachers grading ND exercises. 
+Online tools, where students can practice and have automatic feedback, have shown to be useful both for MOOCS or as complementary material for traditional classes. Nevertheless, contrary to the myriad of tools that exist for learning programming languages, in the area of logic, a fundamental subject in any Computer Science programme, there is still a lack of such online tools, and in particular for the challenging exercise of Natural Deduction (ND) proofs. The few existing tools usually do not provide effective feedback, which is in fact challenging since tree-like ND proofs are non-linear and some steps are not immediate, as it is the case of proofs by contradiction. In this paper, we present an algorithm for pedagogical purposes that can generate human-readable ND proofs for a given problem. The algorithm supports both Propositional and First-Order Logic, and is based on hypergraphs. This allows obtaining the shortest and most direct proof for a given problem, but it can also adapt to a user’s current unfinished proof, allowing for greater flexibility in the proof construction. The algorithm can be integrated with educational platforms to guide users through the proofs by providing advanced feedback, at the same as it can help teachers grading ND exercises. 
 
 \keywords{Natural Deduction  \and Propositional Logic \and First Order Logic \and Automation \and Algorithm \and Feedback \and Grading}
 \end{abstract}
@@ -44,16 +44,6 @@ This highlights the need for more advanced and effective feedback systems to add
 
 In this article, we present an algorithm developed during a thesis project with a pedagogical focus. It was originally created to support an application that helps students build and verify ND proofs. However, the application itself is not addressed in this article.  The algorithm is capable of automatically generating multiple Gentzen-style proofs for the same problem in a human-readable way, both in PL and FOL. A distinguishing feature of our algorithm is its ability to adapt to a user’s solution, providing step-by-step guidance that aligns with the student’s reasoning process. This is made possible through the use of directed hypergraphs that store information about which rules can be applied at each step, capturing multiple valid proof paths. By leveraging well-known graph search and traversal algorithms, the system not only finds correct solutions but also identifies the shortest proofs, enabling feedback on how a solution could be improved. Additionally, the algorithm can be used to assess exercises by determining how far a student’s resolution is from a valid or optimal solution, thereby offering a measurable assessment of proofs.
 
-\section{Related Work}
-Several algorithms have been developed to verify the validity of logical formulas. One common approach is to use resolution to find contradictions. This method begins by converting formulas into Conjunctive Normal Form, which is easier for automated systems to process. After this transformation, the algorithm applies resolution rules to search for contradictions. If a contradiction is found, the formula is not valid. If no contradiction appears after checking all possible combinations, the formula is considered valid. However, this method often does not produce proofs that are easy for humans to understand.
-To address this, David Robinson~\cite{robinson_using} proposed an algorithm that uses a version of resolution compatible with natural deduction. His method works by encoding formulas into special clauses and then using resolution steps to reconstruct a natural deduction proof. The result is a proof that is easier for people to read and understand.
-Another approach is the algorithm developed by Xuehan Maka Hu~\cite{makahu_automatic}. This algorithm works by recursively applying introduction rules to break down the conclusion, and then using elimination rules to handle the assumptions. It generates complete and human-readable natural deduction proofs in Gentzen style for propositional logic. Although it produces understandable proofs, the algorithm is not very flexible. Its strict rule application can sometimes lead to complicated solutions for problems that could be solved more simply.
-
-Bolotov's~\cite{bolotov_2005_automated} algorithm is another example of a proof-searching method designed for natural deduction in propositional logic. It follows a goal-directed strategy, combining forward and backward rule applications. It updates the goals dynamically and stops when a proof is found or when no further progress is possible, returning a counter-example in the latter case. One limitation of this algorithm is that it does not include a mechanism to remove irrelevant or unnecessary branches during proof search. These extra branches may contain valid but unneeded steps, which can make the proofs longer and harder to follow.
-LOGAX~\cite{lodder_2020_generation} is an interactive tutoring tool that constructs Hilbert-style axiomatic proofs in propositional logic. It is designed to provide students with step-by-step hints and feedback. LOGAX uses a version of Bolotov's algorithm to generate directed acyclic multigraphs, which allow the system to store and explore multiple proof paths for the same problem. It can adapt the proof it generates to match the student's reasoning, offering both forward and backward hints depending on the student's progress. Despite its strengths, LOGAX has some limitations. It is only designed for propositional logic and can only generate linear Hilbert-style proofs. Since it is based on Bolotov's algorithm, it also inherits some of its weaknesses, including the possibility of generating longer proofs with irrelevant or unnecessary steps.
-
-The algorithm proposed by Ahmed, Gulwani, and Karkar~\cite{IJCAI13} uses a very similar approach to our algorithm but is applied to a different set of inference rules and only works for PL. It is based on a hypergraph called the Universal Proof Graph (UPG), where nodes represent possible formulas (they are represented as bitvectors that map each formula to a truth table, reducing the number of formulas in the graph for better performance), and the edges represent possible rule applications that can be applied under each node. From that graph, we can extract abstract proofs (called "abstract" because expressions are still mappings to truth tables and not actual formulas), which are later converted into natural deduction proofs. The algorithm can also be used to generate problems and specify their difficulty, which can be useful for teachers. A big problem the algorithm faces is that it can only solve PL problems, since we cannot map FOL expressions to truth tables. Another issue is related to proof size, as the algorithm cannot guarantee that the solution found is the smallest one within the space explored.
-
 \section{Natural Deduction}
 
 ND is a logical proof system that reflects mathematical and everyday reasoning under assumptions~\cite{nd-mancosu}. It emerged in 1934 with Gentzen and Jaśkowski's work, gaining widespread acceptance by the 1960s~\cite{Pelletier1999-FRAABH}. Using ND, an important goal is to verify whether a formula \(\varphi\) is a semantic consequence of a set of formulas \(\Gamma\), written \(\Gamma \vdash \varphi\). This means that whenever all formulas in \(\Gamma\) hold, \(\varphi\) must also hold because it logically follows from \(\Gamma\) \cite{gouveia_lgica1, gouveia_lgica2}. There are many ways to represent these proofs. The two main styles that exist are the Gentzen style, which organizes the proof in a tree-shaped structure, and the Fitch style, which uses a linear structure with deeper indentation levels to represent assumptions or intermediate steps in the proof. Our article focuses on the first one. 
@@ -67,17 +57,16 @@ Gentzen style uses tree-shaped structures, also known as deduction trees. These 
     \label{fig:nd-rules}
 \end{figure}
 
-These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion. Figure \ref{tab:proof-tree} shows an example of a proof, that solves the problem: \( \vdash \neg (\varphi \lor \psi) \to \neg \psi \).
+These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion. Figure \ref{tab:proof-tree} shows an example of a proof, where the goal is to prove: \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).
 
 \begin{figure}
     \centering
     \[
-    \frac{\displaystyle \frac{\displaystyle \frac{
+    \frac{\displaystyle \frac{
     \displaystyle \neg (\varphi \lor \psi)^1 \quad \displaystyle \frac{\psi^2}{(\varphi \lor \psi) \strut} \quad (\lor_{I_l}) \strut}
-    {\displaystyle \bot \strut} \quad (\displaystyle \neg_E)\strut} {\displaystyle \neg \psi \strut} \quad (\neg_I, 2) \strut}
-    {\neg (\varphi \lor \psi) \to \neg \psi \strut} \quad (\to_I, 1)
+    {\displaystyle \bot \strut} \quad (\displaystyle \neg_E)\strut} {\displaystyle \neg \psi \strut} \quad (\neg_I, 2)
     \]
-    \caption{Tree proving \( \vdash \neg (\varphi \lor \psi) \to \neg \psi \).}
+    \caption{Tree proving \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).}
     \label{tab:proof-tree}
 \end{figure}
 
@@ -94,8 +83,8 @@ Given a tree proof and a problem \(\Gamma \vdash \phi\), we say that the tree so
 \end{enumerate}
 \end{definition}
 
-\section{Algorithm}
-Developing an algorithm to provide advanced feedback on ND exercises begins with clearly defining its key features. Our goal was to design an effective feedback system capable of delivering relevant information to assist students in solving proofs, making the learning process more teaching-like and adapted to each student’s resolution. With this focus, we identified four fundamental aspects of a well-designed feedback system:
+\section{Guidance Components}
+Developing an algorithm to provide advanced feedback on ND exercises begins with clearly defining its key features. Our idea was to design an effective feedback system capable of delivering relevant information to assist students in solving proofs, making the learning process more teaching-like and adapted to each student’s resolution. With this focus, we identified four fundamental aspects of a well-designed feedback system:
 
 \begin{itemize}
 
@@ -111,31 +100,49 @@ Developing an algorithm to provide advanced feedback on ND exercises begins with
 
 These components offer several advantages in the learning process. By providing structured and clear information, the system becomes more robust, helping students overcome challenges throughout the proof.
 
-\section{Procedure}
-In this chapter, we explain how our algorithm was built. The algorithm is divided into three sequential steps. 
-The main idea of our algorithm is to first generate a hypergraph based on the input problem and the part of the proof we want to complete. This graph stores all the possible rule applications for that problem. Then, we use this graph to build a second hypergraph that tries to simulate as many proof constructions as possible. In the last step, we trim this second graph so that it keeps only the proofs that solve the problem. Then, we can use the resulting graph to extract and build proofs, which can later be used to generate feedback. For the sake of simplicity, we only cover the PL implementation, but the same procedure can be applied to FOL with some adjustments.
+\section{Algorithm}
+In this chapter, we explain how our algorithm works. It is divided into three sequential steps.
+The first step is to generate a hypergraph based on the initial goal (what the exercise asks us to prove) and the target goal (the part of the student's proof we want to complete), in order to store all possible rule applications for both goals. Then, we use this graph to build a second hypergraph that simulates as many proof constructions as possible by decomposing the target goal into sub-goals. In the last step, we trim this second graph so that it retains only valid and minimal proofs, either in terms of the number of steps required or the height needed to solve the problem. Finally, we use the resulting graph to extract and build readable proofs, which can later be used to generate feedback.
 
 \subsection{Transition Graph}
-The first step is to build the Transition Graph (TG). For that, we need the problem we want to solve and, in the cases where we want to complete a proof and provide a personalized solution, the initial state from which we want to start generating the solution. In other words, it represents the part of the proof that needs to be completed. The state is extremely important in this stage because it is where the algorithm considers the differences between the student's incomplete solution and the actual solution of the problem. Before we describe the procedure, let us introduce some definitions:
+The first step is to create the Transition Graph (TG). This graph stores the most important formulas that might be part of the final solution, as well as the rules that can be applied to each formula. In short, the TG sets up the rules of the "game."
 
-\begin{definition}[State]
-A state is defined as a pair:
+To do this, we need both the initial goal and the target goal. In cases where we want a complete proof, we can assume that the target goal is the same as the initial goal. The initial goal is used to generate all the natural proof paths, which are proofs constructed using only formulas derived from decomposing the initial goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. These are proofs that rely on more complex formulas than those directly derived from the initial goal. This only happens when the part of the proof we want to complete shifts away from the initial goal. By considering both goals, the system is capable of generating more personalized and user-guided proofs, which is one of the core elements of our algorithm.
+
+Before we describe the procedure, let us introduce some definitions:
+
+\begin{definition}[Labeled Directed Hypergraph]
+A \emph{Labeled Directed Hypergraph (LDH)} is a pair
 \[
-S = (\alpha, \Delta)
+H = (V, E),
 \]
-where \(\alpha\) is the formula, and \(\Delta\) is the set of hypotheses, including both premises and any assumptions made up to that point in the proof.
+where:
+\begin{itemize}
+  \item \( V \) is a finite set of \emph{nodes}, and
+  \item \( E \subseteq \mathcal{P}(V) \times \mathcal{P}(V) \times L \) is a finite set of \emph{labeled hyperedges}, where each hyperedge consists of a \emph{tail} (a set of input nodes), a \emph{head} (a set of output nodes), and a label \( \ell \in L \).
+\end{itemize}
 \end{definition}
 
-For example, the problem itself can be seen as a state \(S = (\varphi, \Gamma)\). In Figure \ref{tab:proof-tree}, the root has the state \(S_{\text{root}} = \big(\neg (\varphi \lor \psi) \to \neg \psi, \emptyset \big),\) and the leaves have the states 
-\( S_{\text{left}} = \big(\neg (\varphi \lor \psi), \{\neg (\varphi \lor \psi), \psi\}\big)\) and \(S_{\text{right}} = \big(\psi, \{\neg (\varphi \lor \psi), \psi\}\big)\). For FOL proofs, we also need to consider the side conditions up to that state.
+Our algorithm uses a more specific type of LDH, called a Labeled Directed Hypergraph with Labeled Heads (LDHLH). In this model, each hyperedge has a single tail node instead of a set, and each head is represented as a pair consisting of a node and its label.
 
 \begin{definition}[Transition Graph]
-The TG is defined as a triple:
+A \emph{Transition Graph (TG)} is a pair
 \[
-TG = (F, R, E_T),
+T_G = (F, T_E),
 \]
-where \( F \) is a finite set of possible logical formulas that our solutions can have, \( R \) is a set of inference rules, and \(E_T \subseteq F \times \mathcal{P}(T)\) maps each formula \( f \in F \) to a (possibly empty) set of rule applications.
+where:
+\begin{itemize}
+  \item \( F \) is a finite set of \emph{formulas}, and
+  \item \( T_E \subseteq F \times \mathcal{P}(F \times F) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Transition Edge (TE)}, where each edge consists of:
+  \begin{itemize}
+    \item a tail formula \( f \in F \),
+    \item a (possibly empty) set of pairs \( (f_1, f_2) \in F \times F \), called \emph{Transitions (T)}, where \( f_1 \) is the \emph{hypothesis} and \( f_2 \) is the \emph{closed hypothesis}, and
+    \item a rule label \( r \in R \).
+  \end{itemize}
+\end{itemize}
 \end{definition}
+
+
 
 \begin{definition}[Transition Edge]
 A \emph{transition} is an element of the set
@@ -144,7 +151,6 @@ T \subseteq R \times \mathcal{P}(F \times F),
 \]
 where each element consists of a rule \( r \in R \), a hypothesis that can be \( f_1 \in F \), and an optional assumption \( f_2 \in F \).
 \end{definition}
-
 
 A transition is the application of a rule to a formula. Firgure \ref{fig:te-ex} shows an example of the rule being applied \(\vee_E\) and the corresponding edge.
 
@@ -404,6 +410,15 @@ The algorithm was developed for pedagogical purposes, so efficiency in proof gen
 
 Regarding completeness, our algorithm is not complete because it can only find solutions up to a certain depth. Some proofs generate infinite graphs, so a solution may not be found. In most cases, this is not a problem, as we aim to find direct proofs. If a student’s proof deviates too much from the solution, it is not useful to provide feedback on that solution because the student is overcomplicating the problem. For example, if a teacher sees that a student is still working on a problem that can be solved in 10 steps, but the student’s current resolution already has 50 steps, even if a solution exists following the student’s approach, is it helpful to give feedback on it? Will the student really learn from that? 
 
+\section{Background}
+Several algorithms have been developed to verify the validity of logical formulas. One common approach is to use resolution to find contradictions. This method begins by converting formulas into Conjunctive Normal Form, which is easier for automated systems to process. After this transformation, the algorithm applies resolution rules to search for contradictions. If a contradiction is found, the formula is not valid. If no contradiction appears after checking all possible combinations, the formula is considered valid. However, this method often does not produce proofs that are easy for humans to understand.
+To address this, David Robinson~\cite{robinson_using} proposed an algorithm that uses a version of resolution compatible with natural deduction. His method works by encoding formulas into special clauses and then using resolution steps to reconstruct a natural deduction proof. The result is a proof that is easier for people to read and understand.
+Another approach is the algorithm developed by Xuehan Maka Hu~\cite{makahu_automatic}. This algorithm works by recursively applying introduction rules to break down the conclusion, and then using elimination rules to handle the assumptions. It generates complete and human-readable natural deduction proofs in Gentzen style for propositional logic. Although it produces understandable proofs, the algorithm is not very flexible. Its strict rule application can sometimes lead to complicated solutions for problems that could be solved more simply.
+
+Bolotov's~\cite{bolotov_2005_automated} algorithm is another example of a proof-searching method designed for natural deduction in propositional logic. It follows a goal-directed strategy, combining forward and backward rule applications. It updates the goals dynamically and stops when a proof is found or when no further progress is possible, returning a counter-example in the latter case. One limitation of this algorithm is that it does not include a mechanism to remove irrelevant or unnecessary branches during proof search. These extra branches may contain valid but unneeded steps, which can make the proofs longer and harder to follow.
+LOGAX~\cite{lodder_2020_generation} is an interactive tutoring tool that constructs Hilbert-style axiomatic proofs in propositional logic. It is designed to provide students with step-by-step hints and feedback. LOGAX uses a version of Bolotov's algorithm to generate directed acyclic multigraphs, which allow the system to store and explore multiple proof paths for the same problem. It can adapt the proof it generates to match the student's reasoning, offering both forward and backward hints depending on the student's progress. Despite its strengths, LOGAX has some limitations. It is only designed for propositional logic and can only generate linear Hilbert-style proofs. Since it is based on Bolotov's algorithm, it also inherits some of its weaknesses, including the possibility of generating longer proofs with irrelevant or unnecessary steps.
+
+The algorithm proposed by Ahmed, Gulwani, and Karkar~\cite{IJCAI13} uses a very similar approach to our algorithm but is applied to a different set of inference rules and only works for PL. It is based on a hypergraph called the Universal Proof Graph (UPG), where nodes represent possible formulas (they are represented as bitvectors that map each formula to a truth table, reducing the number of formulas in the graph for better performance), and the edges represent possible rule applications that can be applied under each node. From that graph, we can extract abstract proofs (called "abstract" because expressions are still mappings to truth tables and not actual formulas), which are later converted into natural deduction proofs. The algorithm can also be used to generate problems and specify their difficulty, which can be useful for teachers. A big problem the algorithm faces is that it can only solve PL problems, since we cannot map FOL expressions to truth tables. Another issue is related to proof size, as the algorithm cannot guarantee that the solution found is the smallest one within the space explored.
 
 \section{Conclusion}
 Conclusion
