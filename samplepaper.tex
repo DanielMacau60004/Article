@@ -48,8 +48,11 @@ In this article, we present an algorithm developed during a thesis project with 
 Several algorithms have been developed to verify the validity of logical formulas. One common approach is to use resolution to find contradictions. This method begins by converting formulas into Conjunctive Normal Form, which is easier for automated systems to process. After this transformation, the algorithm applies resolution rules to search for contradictions. If a contradiction is found, the formula is not valid. If no contradiction appears after checking all possible combinations, the formula is considered valid. However, this method often does not produce proofs that are easy for humans to understand.
 To address this, David Robinson~\cite{robinson_using} proposed an algorithm that uses a version of resolution compatible with natural deduction. His method works by encoding formulas into special clauses and then using resolution steps to reconstruct a natural deduction proof. The result is a proof that is easier for people to read and understand.
 Another approach is the algorithm developed by Xuehan Maka Hu~\cite{makahu_automatic}. This algorithm works by recursively applying introduction rules to break down the conclusion, and then using elimination rules to handle the assumptions. It generates complete and human-readable natural deduction proofs in Gentzen style for propositional logic. Although it produces understandable proofs, the algorithm is not very flexible. Its strict rule application can sometimes lead to complicated solutions for problems that could be solved more simply.
+
 Bolotov's~\cite{bolotov_2005_automated} algorithm is another example of a proof-searching method designed for natural deduction in propositional logic. It follows a goal-directed strategy, combining forward and backward rule applications. It updates the goals dynamically and stops when a proof is found or when no further progress is possible, returning a counter-example in the latter case. One limitation of this algorithm is that it does not include a mechanism to remove irrelevant or unnecessary branches during proof search. These extra branches may contain valid but unneeded steps, which can make the proofs longer and harder to follow.
 LOGAX~\cite{lodder_2020_generation} is an interactive tutoring tool that constructs Hilbert-style axiomatic proofs in propositional logic. It is designed to provide students with step-by-step hints and feedback. LOGAX uses a version of Bolotov's algorithm to generate directed acyclic multigraphs, which allow the system to store and explore multiple proof paths for the same problem. It can adapt the proof it generates to match the student's reasoning, offering both forward and backward hints depending on the student's progress. Despite its strengths, LOGAX has some limitations. It is only designed for propositional logic and can only generate linear Hilbert-style proofs. Since it is based on Bolotov's algorithm, it also inherits some of its weaknesses, including the possibility of generating longer proofs with irrelevant or unnecessary steps.
+
+The algorithm proposed by Ahmed, Gulwani, and Karkar~\cite{IJCAI13} uses a very similar approach to our algorithm but is applied to a different set of inference rules and only works for PL. It is based on a hypergraph called the Universal Proof Graph (UPG), where nodes represent possible formulas (they are represented as bitvectors that map each formula to a truth table, reducing the number of formulas in the graph for better performance), and the edges represent possible rule applications that can be applied under each node. From that graph, we can extract abstract proofs (called "abstract" because expressions are still mappings to truth tables and not actual formulas), which are later converted into natural deduction proofs. The algorithm can also be used to generate problems and specify their difficulty, which can be useful for teachers. A big problem the algorithm faces is that it can only solve PL problems, since we cannot map FOL expressions to truth tables. Another issue is related to proof size, as the algorithm cannot guarantee that the solution found is the smallest one within the space explored.
 
 \section{Natural Deduction}
 
@@ -57,18 +60,16 @@ ND is a logical proof system that reflects mathematical and everyday reasoning u
 
 Gentzen style uses tree-shaped structures, also known as deduction trees. These structures represent proofs and are built by starting with individual trees, which are formulas, and successively applying rules of inference to generate new and more complex trees. The formula at the root is the conclusion of the proof, and formulas at the leaves are called hypotheses and are generally associated with marks. In this article, we use numbers to denote such marks. Marks are used to identify distinct assumptions and to indicate when they are discharged (closed). A hypothesis is considered discharged if its mark is referenced by a rule. Rules are represented using fractions (a horizontal line), where hypotheses appear above the line and the rule’s conclusion appears below. The rule’s name and the marks for the hypotheses are normally placed on the right-hand side of the fraction. There are two main groups of rules for each logical connective: introduction (\(I\)), which constructs more complex formulas from simpler ones, and elimination (\(E\)), which extracts information from complex formulas. Additionally, a special rule, known as absurdity (\(\bot\)), allows deriving any conclusion from a contradiction. Each rule has its own characteristics, and some can only be applied under specific circumstances, called side conditions. For simplicity, we do not discuss these here, but they are included in our algorithm. Figure \ref{fig:nd-rules}, list all the rules considered in our implementation. Greek letters represent generic formulas. The symbols \( \mathcal{D} \) represent subtrees within branches, while \( m \) and \( n \) denote marks. The notation \(\displaystyle \left[ \varphi \right]^a_{\substack{b}}\) indicates the substitution (or mapping) of terms from \( a \) to \( b \), and \(\displaystyle [\varphi]^m\) represents which assumptions can be used in each branch by the rule.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/rules.png}
     \caption{List of rules for both PL and FOL}
     \label{fig:nd-rules}
 \end{figure}
-\vspace{-1em}
 
 These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion. Figure \ref{tab:proof-tree} shows an example of a proof, that solves the problem: \( \vdash \neg (\varphi \lor \psi) \to \neg \psi \).
 
-\vspace{-1em}
-\begin{figure}[h!]
+\begin{figure}
     \centering
     \[
     \frac{\displaystyle \frac{\displaystyle \frac{
@@ -146,14 +147,13 @@ where each element consists of a rule \( r \in R \), a hypothesis that can be \(
 
 
 A transition is the application of a rule to a formula. Firgure \ref{fig:te-ex} shows an example of the rule being applied \(\vee_E\) and the corresponding edge.
-\vspace{-1em}
-    \begin{figure}[H]
+
+    \begin{figure}
         \centering
         \includegraphics[width=0.8\linewidth]{resources/te-example.jpg}
         \caption{Example of a transition edge.}
         \label{fig:te-ex}
     \end{figure}
-\vspace{-2em}
 
 We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a), (c, b)\})\), and our TG will have this edge: \(E_T = E_T \cup (c, \{T_1\})\). Our edges will always point from the conclusion to its hypotheses. If we are working on FOL proofs, we also need to consider the side conditions as part of the transition. The reason why we are using hypergraphs instead of regular graphs is that some rule applications can have more than one hypothesis, like in the example we showed and we want to map them in the graph.
 
@@ -171,14 +171,13 @@ We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a),
     \end{enumerate}
 
     Figure \ref{fig:tg-exps} shows an example of the decomposition of the expression \(a \to ( b \land \lnot c)\) 
-\vspace{-1em}
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \includegraphics[width=0.6\linewidth]{resources/decomposition.jpg}
         \caption{Decomposition of the expression \(a \to ( b \land \lnot c)\)}
         \label{fig:tg-exps}
     \end{figure}
-\vspace{-2em}
+
     So, at the end of this iteration, the set of formulas will be: \(
     F = \{ a \to ( b \land \lnot c), \lnot(a \to ( b \land \lnot c)), a, \lnot a, b \land \lnot c, \lnot(b \land \lnot c), b, \lnot b, \lnot c, \lnot\lnot c \}.
     \)
@@ -196,30 +195,28 @@ We will have the transition: \(T_1 = (\vee_E, \{(a \vee b, \varepsilon), (c, a),
             \end{enumerate}  
 
             An example of the edges generated for the formula \(a \to b\) is shown in Figure \ref{fig:tg-edges}.
-            \vspace{-1em}
-            \begin{figure}[H]
+    
+            \begin{figure}
                 \centering
                 \includegraphics[width=1\linewidth]{resources/tg-edges.jpg}
                 \caption{Edges generated for the formula \(a \to b\)}
                 \label{fig:tg-edges}
             \end{figure}
- \vspace{-2em}
     \end{enumerate}    
 
     As the algorithm considers the deviations taken by the formulas derived in the incomplete proof, it will be able to generate solutions that are more aligned with the student’s reasoning process. Figure \ref{fig:tg-final} shows the final TG for the problem \(\vdash a \to a\), considering all possible formulas and transitions for this problem.
-\vspace{-1em}
+
     \begin{figure}
         \centering
         \includegraphics[width=0.6\linewidth]{resources/tg-final.png}
         \caption{Final TG generated from \(\vdash a \to a\)}
         \label{fig:tg-final}
     \end{figure}
-     \vspace{-2em}
 \end{enumerate}
 
 
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \caption{Transition Graph Construction}
 \KwIn{Problem $(\Gamma, \phi)$, Incomplete State $(\Delta, \alpha)$}
 \KwOut{Transition Graph $TG = (F, R, E_T)$}
@@ -315,16 +312,14 @@ A state \(S = (\alpha, \Delta)\) is \emph{closed} if \(\alpha \in \Delta\).
 
 Figure \ref{fig:st-ex} shows part of the graph for the problem \(\vdash a \to a\). Nodes represent states. Solid borders are closed states and dashed borders are unclosed states. In this example, the state $\{\lnot a, \lnot(a \to a)\}$ cannot be closed because $\lnot a \notin \{\lnot(a \to a)\}$, and $\lnot a$ has no outgoing edges in the TG (Figure~\ref{fig:tg-final}).
 
-\vspace{-1em}
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/sg-gen.jpg}
     \caption{Example of State Graph for \(\vdash a \to a\)}
     \label{fig:st-ex}
 \end{figure}
-\vspace{-2em}
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \caption{State Graph Construction}
 \KwIn{Transition Graph $TG$, Initial State $\beta$}
 \KwOut{State Graph $SG = (\beta, TG, S_F, E_S)$}
@@ -374,40 +369,33 @@ of a closed state, the algorithm continues this tracking process. This process e
 \vspace{1em}
 Figure~\ref{fig:sg-trim} shows an example of a trimmed SG using the \textbf{Size Trim Strategy}, on the SG shown in Figure~\ref{fig:st-ex}. The states that could not be closed were removed, and the edges coming from higher-level solutions were also trimmed.
 
-
-\vspace{-1em}
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/sg-final.jpg}
     \caption{Trimmed State Graph showing valid proof paths.}
     \label{fig:sg-trim}
 \end{figure}
-\vspace{-2em}
 
 To check whether a valid solution was found for the full proof, we simply verify if the initial state appears in the trimmed graph. In the example above, the solution corresponds to tree \textbf{A}, as we want to solve the problem \(\vdash a \to a\). That solution is always the smallest in height/size, respectively. With this trimmed graph, we can now generate feedback by querying which states are still missing in the student’s proof. Figures \ref{fig:extract-solution} and \ref{fig:extract-solution2} illustrate examples of how feedback can be generated from the final graph.
 
 In this first example, the student does not know how to proceed after applying the Absurdity rule. By running the algorithm and querying the final graph with the state that is still unsolved, we get a possible solution. This case represents tree \textbf{B} in Figure~\ref{fig:sg-trim}. Knowing the remaining part of the proof, we can generate feedback. For example, we can tell the student to apply the Elimination of the Negation rule using \(a \to a \) and  \(\lnot(a \to a) \) (\textbf{Providing guidance on rule applications}). In this specific case, we cannot give hints about sub-proofs to solve the problem, as the solution is already small. But in some cases where the solution is bigger, we can do that (\textbf{Breaking proofs into smaller sub-proofs}). We can also specify how far the student is from the final proof. In this case, we can say that they are two rules away from completing the proof (\textbf{Indicating the distance to a solution}). Finally, we can also suggest some improvements in the resolution. In this case, the student shifts their solution by applying the Absurdity rule, making it longer. That information can also be extracted from the graph by comparing the smallest proof (the one with the initial state) with the student’s final proof (\textbf{Improvements in the proof}).
 
  
-\vspace{-1em}
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/trim-pos-feed.jpg}
     \caption{Extracting a solution to produce feedback using an existing state}
     \label{fig:extract-solution}
 \end{figure}
-\vspace{-2em}
 
 In this second example, a solution cannot be found, as the state assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
 
-\vspace{-1em}
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
     \caption{Extracting a solution to produce feedback using a non-existing state.}
     \label{fig:extract-solution2}
 \end{figure}
-\vspace{-2em}
 
 These methodologies can also be used to assess exercises. For example, by computing how far the student’s resolution is from a possible solution if the problem remains unsolvable, or how far it is shifted from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 

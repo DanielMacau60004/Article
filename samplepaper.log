@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  23 JUN 2025 15:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  25 JUN 2025 10:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -352,90 +352,89 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
 [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [3]
-<resources/rules.png, id=21, 955.31906pt x 673.76718pt>
+<resources/rules.png, id=19, 955.31906pt x 673.76718pt>
 File: resources/rules.png Graphic file (type png)
 <use resources/rules.png>
-Package pdftex.def Info: resources/rules.png  used on input line 62.
+Package pdftex.def Info: resources/rules.png  used on input line 65.
 (pdftex.def)             Requested size: 347.12354pt x 244.81778pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+[4]
 
-
-
-[4 <./resources/rules.png>]
-
-[5]
+[5 <./resources/rules.png>]
 
 [6]
-<resources/te-example.jpg, id=46, 510.489pt x 144.759pt>
+<resources/te-example.jpg, id=44, 510.489pt x 144.759pt>
 File: resources/te-example.jpg Graphic file (type jpg)
 <use resources/te-example.jpg>
-Package pdftex.def Info: resources/te-example.jpg  used on input line 152.
+Package pdftex.def Info: resources/te-example.jpg  used on input line 153.
 (pdftex.def)             Requested size: 277.69987pt x 78.7496pt.
-<resources/decomposition.jpg, id=47, 717.882pt x 259.953pt>
+
+
+[7]
+<resources/decomposition.jpg, id=51, 717.882pt x 259.953pt>
 File: resources/decomposition.jpg Graphic file (type jpg)
 <use resources/decomposition.jpg>
-Package pdftex.def Info: resources/decomposition.jpg  used on input line 177.
+Package pdftex.def Info: resources/decomposition.jpg  used on input line 176.
 (pdftex.def)             Requested size: 208.27623pt x 75.41617pt.
 
-Underfull \vbox (badness 1072) has occurred while \output is active []
 
-
-
-[7 <./resources/te-example.jpg>]
-<resources/tg-edges.jpg, id=52, 679.995pt x 136.437pt>
+[8 <./resources/te-example.jpg> <./resources/decomposition.jpg>]
+<resources/tg-edges.jpg, id=55, 679.995pt x 136.437pt>
 File: resources/tg-edges.jpg Graphic file (type jpg)
 <use resources/tg-edges.jpg>
-Package pdftex.def Info: resources/tg-edges.jpg  used on input line 202.
+Package pdftex.def Info: resources/tg-edges.jpg  used on input line 201.
 (pdftex.def)             Requested size: 347.12354pt x 69.65063pt.
-<resources/tg-final.png, id=53, 300.468pt x 139.722pt>
+<resources/tg-final.png, id=56, 300.468pt x 139.722pt>
 File: resources/tg-final.png Graphic file (type png)
 <use resources/tg-final.png>
-Package pdftex.def Info: resources/tg-final.png  used on input line 213.
+Package pdftex.def Info: resources/tg-final.png  used on input line 211.
 (pdftex.def)             Requested size: 208.27623pt x 96.85599pt.
 
 
-[8 <./resources/decomposition.jpg> <./resources/tg-edges.jpg>]
+[9 <./resources/tg-edges.jpg> <./resources/tg-final.png>]
 
-[9 <./resources/tg-final.png>]
-<resources/sg-gen.jpg, id=64, 553.194pt x 210.459pt>
+[10]
+<resources/sg-gen.jpg, id=69, 553.194pt x 210.459pt>
 File: resources/sg-gen.jpg Graphic file (type jpg)
 <use resources/sg-gen.jpg>
-Package pdftex.def Info: resources/sg-gen.jpg  used on input line 321.
+Package pdftex.def Info: resources/sg-gen.jpg  used on input line 317.
 (pdftex.def)             Requested size: 347.12354pt x 132.06pt.
 
 
-[10]
+[11]
 
-[11 <./resources/sg-gen.jpg>]
-<resources/sg-final.jpg, id=71, 604.221pt x 264.771pt>
+[12 <./resources/sg-gen.jpg>]
+<resources/sg-final.jpg, id=76, 604.221pt x 264.771pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
-Package pdftex.def Info: resources/sg-final.jpg  used on input line 381.
+Package pdftex.def Info: resources/sg-final.jpg  used on input line 374.
 (pdftex.def)             Requested size: 347.12354pt x 152.10881pt.
 
 
-[12 <./resources/sg-final.jpg>]
-<resources/trim-pos-feed.jpg, id=75, 643.203pt x 129.429pt>
+[13]
+<resources/trim-pos-feed.jpg, id=81, 643.203pt x 129.429pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
-Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 395.
+Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 386.
 (pdftex.def)             Requested size: 347.12354pt x 69.8511pt.
-<resources/trim-neg-feed.jpg, id=76, 597.651pt x 128.991pt>
+<resources/trim-neg-feed.jpg, id=82, 597.651pt x 128.991pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
-Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 406.
+Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 395.
 (pdftex.def)             Requested size: 347.12354pt x 74.92111pt.
 
 
-[13 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>] (./samplepaper.bbl
+[14 <./resources/sg-final.jpg> <./resources/trim-pos-feed.jpg>] (./samplepaper.bbl
 
-[14])
+[15 <./resources/trim-neg-feed.jpg>])
 
-[15] (./samplepaper.aux)
+[16] (./samplepaper.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -443,17 +442,17 @@ L3 programming layer <2024-11-02>
  ) 
 Here is how much of TeX's memory you used:
  4421 strings out of 473362
- 67515 string characters out of 5725050
- 482387 words of memory out of 5000000
- 27487 multiletter control sequences out of 15000+600000
- 573373 words of font info for 64 fonts, out of 8000000 for 9000
+ 67463 string characters out of 5725050
+ 482391 words of memory out of 5000000
+ 27486 multiletter control sequences out of 15000+600000
+ 574139 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,22n,65p,1980b,562s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on samplepaper.pdf (15 pages, 1491376 bytes).
+ 57i,22n,65p,1980b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on samplepaper.pdf (16 pages, 1506028 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
+ 204 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
