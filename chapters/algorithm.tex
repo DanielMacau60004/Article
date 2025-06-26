@@ -1,5 +1,5 @@
 \section{Algorithm}
-The algorithm is structured in three sequential steps, which we will discuss in more detail in the following subsections.
+The algorithm is structured in three sequential steps, which we will discuss in more detail in the following subsections. In the last subsection, we present how the algorithm can be integrated to generate feedback.
 
 %The first step is to generate a hypergraph based on the main goal (what the exercise asks us to prove) and the target goal (the part of the student's proof we want to complete), in order to store all possible rule applications for both goals. Then, we use this graph to build a second hypergraph that simulates as many proof constructions as possible by decomposing the target goal into sub-goals. In the last step, we trim this second graph so that it retains only valid and minimal proofs, either in terms of the number of steps required or the height needed to solve the problem. Finally, we use the resulting graph to extract and build readable proofs, which can later be used to generate feedback.
 
@@ -123,7 +123,7 @@ To illustrate the construction process in detail, we now present a full example 
 \end{figure}
 
 \subsection{Proof Graph}
-The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal.
+The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal. In short, the PG aims to find the maximum number of different "game" combinations.
 
 To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
 
@@ -209,58 +209,68 @@ Figure~\ref{fig:st-ex} shows the PG generated using the TG from Figure~\ref{fig:
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{resources/sg-gen.jpg}
+    \includegraphics[width=0.8\linewidth]{resources/sg-gen.jpg}
     \caption{Example of Proof Graph using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\)}
     \label{fig:st-ex}
 \end{figure}
 
+\subsection{Proof Graph Trimming}
 
+The final stage of our algorithm consists of trimming the PG to keep only the valid solutions to the problem. The resulting trimmed graph includes only proved goals and the edges that lead to the shortest proofs.
 
-\subsection{Trim Graph}
+There are two different ways to define what constitutes a short proof: one based on height (Height Trim Strategy), and the other based on the number of formulas involved (Size Trim Strategy). Both strategies rely on a standard graph traversal technique, namely \emph{breadth-first search}, to determine which goals and edges should be preserved.\\
 
-The final stage of our algorithm is to trim the SG and keep only the valid solutions to the problem. In other words, the final trimmed graph will contain only states that lead to a complete and valid proof. To achieve this, we remove unclosed states and extra edges from the SG.
-
-We define two different strategies to trim the graph. Both use a standard graph traversal technique, breadth-first search, to identify which states and edges should be kept. The difference lies in what each strategy prioritizes: the \textbf{Height Trim Strategy} focuses on finding proofs with the smallest height (fewest layers of rule applications), while the \textbf{Size Trim Strategy} aims to find proofs with the fewest total steps (smallest number of rule applications).
-
-
+The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one of the following trimming strategies is applied:
 \vspace{1em}
-\textbf{Height Trim Strategy Procedure:}  
-This strategy loops through all closed states and tracks the height needed to reach each one. For every descendant of a closed state, the algorithm continues this tracking process. Because it uses breadth-first traversal, the first time a node is reached, it’s guaranteed to be through the shortest possible path (in terms of height). This makes the strategy efficient.
 
-\vspace{0.5em}
-\textbf{Size Trim Strategy Procedure:}  
-This strategy also starts from closed states. It updates the size (number of steps) required to reach each ancestor. For each state, it keeps only the edge that leads to a smaller proof. For every descendant
-of a closed state, the algorithm continues this tracking process. This process ensures that each state keeps at most one optimal incoming edge, leading to the shortest proof found within the SG's search space. Although slower than the height trim strategy, it finds more concise proofs in terms of rule applications.
-
-\vspace{1em}
-Figure~\ref{fig:sg-trim} shows an example of a trimmed SG using the \textbf{Size Trim Strategy}, on the SG shown in Figure~\ref{fig:st-ex}. The states that could not be closed were removed, and the edges coming from higher-level solutions were also trimmed.
+\textbf{Height Trim Strategy (HTS):} This algorithm traverses the PG in reverse order: it starts from the leaves and visits nodes using breadth-first search. Since this traversal guarantees that each node is first reached through the shortest possible path in terms of height, the algorithm retains only the first PE that reaches each goal. All other incoming edges to the same goal are discarded, even if other solutions exist with the same height.
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{resources/sg-final.jpg}
-    \caption{Trimmed State Graph showing valid proof paths.}
+    \includegraphics[width=0.6\linewidth]{resources/trim-height.jpg}
+    \caption{Example of a full proof generated by the algorithm for \(\vdash a \vee \lnot a\), using HTS.}
+    \label{fig:sg-trim-height}
+\end{figure}
+
+\textbf{Size Trim Strategy (STS):} This strategy is similar to HTS, but it tracks the size of each proof, defined as the number of formulas involved. Instead of retaining the first edge to reach a goal, it must explore all incoming edges to identify the one that yields the smallest proof. Consequently, a goal may be visited multiple times, making this strategy more computationally expensive. However, it often results in more concise proofs in terms of rule applications.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{resources/trim-size.jpg}
+    \caption{Example of a full proof generated by the algorithm for \(\vdash a \vee \lnot a\), using STS.}
+    \label{fig:sg-trim-size}
+\end{figure}
+
+Another key feature that distinguishes us from other algorithms is that we do not store just a single solution, but rather a set of possible solutions. This is important to avoid recomputing the entire algorithm when generating feedback for the same problem. However, it comes at a cost in terms of space, as it stores thousands of goals. The algorithm can be queried to generate a new feedback step if all formulas in the new target goal are contained within the set of formulas in the TG used to generate the final trimmed PG. Figure~\ref{fig:sg-trim} shows the TG from Figure~\ref{fig:st-ex} after being trimmed using STS. The algorithm found a solution \textbf{A} for the target problem and also found solutions for each of the subgoals presented in the graph.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{resources/sg-final.jpg}
+    \caption{Trimmed TG using STS.}
     \label{fig:sg-trim}
 \end{figure}
 
-To check whether a valid solution was found for the full proof, we simply verify if the initial state appears in the trimmed graph. In the example above, the solution corresponds to tree \textbf{A}, as we want to solve the problem \(\vdash a \to a\). That solution is always the smallest in height/size, respectively. With this trimmed graph, we can now generate feedback by querying which states are still missing in the student’s proof. Figures \ref{fig:extract-solution} and \ref{fig:extract-solution2} illustrate examples of how feedback can be generated from the final graph.
+\subsection{Feedback Generation}
+With the final graph, we can now generate feedback by querying which goals remain unproved in the student's proof. Figures \ref{fig:extract-solution} and \ref{fig:extract-solution2} illustrate examples of how feedback can be generated from the final graph.
 
-In this first example, the student does not know how to proceed after applying the Absurdity rule. By running the algorithm and querying the final graph with the state that is still unsolved, we get a possible solution. This case represents tree \textbf{B} in Figure~\ref{fig:sg-trim}. Knowing the remaining part of the proof, we can generate feedback. For example, we can tell the student to apply the Elimination of the Negation rule using \(a \to a \) and  \(\lnot(a \to a) \) (\textbf{Providing guidance on rule applications}). In this specific case, we cannot give hints about sub-proofs to solve the problem, as the solution is already small. But in some cases where the solution is bigger, we can do that (\textbf{Breaking proofs into smaller sub-proofs}). We can also specify how far the student is from the final proof. In this case, we can say that they are two rules away from completing the proof (\textbf{Indicating the distance to a solution}). Finally, we can also suggest some improvements in the resolution. In this case, the student shifts their solution by applying the Absurdity rule, making it longer. That information can also be extracted from the graph by comparing the smallest proof (the one with the initial state) with the student’s final proof (\textbf{Improvements in the proof}).
+In this first example, the student does not know how to proceed after applying the Absurdity rule. By querying the  graph with the goal that is still unproved, we get the solution \textbf{B} in Figure~\ref{fig:sg-trim}. Knowing the remaining part of the proof, we can generate feedback. For example, we can tell the student to apply the Elimination of the Negation rule using \(a \to a \) and  \(\lnot(a \to a) \) (\textbf{Providing guidance on rule applications}). In this specific case, we cannot give hints about sub-proofs to solve the problem, as the solution is already small. But in some cases where the solution is bigger, we can do that (\textbf{Breaking proofs into smaller sub-proofs}). We can also specify how far the student is from the final proof. In this case, we can say that they are two rules away from completing the proof (\textbf{Indicating the distance to a solution}). Finally, we can also suggest some improvements in the resolution. In this case, the student shifts their solution by applying the Absurdity rule, making it longer. That information can also be extracted from the graph (\textbf{Improvements in the proof}).
 
- 
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/trim-pos-feed.jpg}
-    \caption{Extracting a solution to produce feedback using an existing state}
+    \caption{Extracting a solution to produce feedback from a proved goal}
     \label{fig:extract-solution}
 \end{figure}
 
-In this second example, a solution cannot be found, as the state assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
+In this second example, a solution cannot be found, as the goal assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. For example, the final graph was only constructed considering the first 9 nodes. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
-    \caption{Extracting a solution to produce feedback using a non-existing state.}
+    \caption{Extracting a solution to produce feedback from an unproved goal.}
     \label{fig:extract-solution2}
 \end{figure}
 
 These methodologies can also be used to assess exercises. For example, by computing how far the student’s resolution is from a possible solution if the problem remains unsolvable, or how far it is shifted from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
+
+Our algorithm is already implemented and has been tested. It is currently being integrated into an online tool focused on ND proofs. Some of the figures shown were actually taken from this tool, which allows students to practice solving this type of problem.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  26 JUN 2025 17:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  27 JUN 2025 00:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -526,46 +526,81 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Cskip=\skip78
 )
 \c@@todonotes@numberoftodonotes=\count345
+) (c:/texlive/2024/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen290
+\WF@size=\dimen291
+\c@WF@wrappedlines=\count346
+\WF@box=\box124
+\WF@everypar=\toks44
+Package: wrapfig 2003/01/31  v 3.6
+) (c:/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (c:/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen292
+\captionmargin=\dimen293
+\caption@leftmargin=\dimen294
+\caption@rightmargin=\dimen295
+\caption@width=\dimen296
+\caption@indent=\dimen297
+\caption@parindent=\dimen298
+\caption@hangindent=\dimen299
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\small \vskip \abovecaptionskip \sbox \@tempboxa {{\bfseries #1.} #2}\ifdim \wd \@tempboxa >\hsize {\bfseries #1.} #2\par \else \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }\fi \vskip \belowcaptionskip  on input line 1175.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count347
+\c@continuedfloat=\count348
+Package caption Info: float package is loaded.
+Package caption Info: wrapfig package is loaded.
 ) (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count346
-\l__pdf_internal_box=\box124
+\l__color_backend_stack_int=\count349
+\l__pdf_internal_box=\box125
 ) (./samplepaper.aux)
 \openout1 = `samplepaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
  (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count347
-\scratchdimen=\dimen290
-\scratchbox=\box125
-\nofMPsegments=\count348
-\nofMParguments=\count349
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count350
-\MPscratchDim=\dimen291
-\MPnumerator=\count351
-\makeMPintoPDFobject=\count352
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count350
+\scratchdimen=\dimen300
+\scratchbox=\box126
+\nofMPsegments=\count351
+\nofMParguments=\count352
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count353
+\MPscratchDim=\dimen301
+\MPnumerator=\count354
+\makeMPintoPDFobject=\count355
+\everyMPtoPDFconversion=\toks46
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (./chapters/introduction.tex
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+ (./chapters/introduction.tex
 
 [1
 
@@ -600,6 +635,9 @@ File: resources/tg-final.png Graphic file (type png)
 Package pdftex.def Info: resources/tg-final.png  used on input line 120.
 (pdftex.def)             Requested size: 347.12354pt x 281.01921pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [8 <./resources/tg-final.png>]
 <resources/pe-example.jpg, id=61, 625.683pt x 146.949pt>
@@ -616,35 +654,57 @@ Package pdftex.def Info: resources/pe-example.jpg  used on input line 159.
 File: resources/sg-gen.jpg Graphic file (type jpg)
 <use resources/sg-gen.jpg>
 Package pdftex.def Info: resources/sg-gen.jpg  used on input line 212.
-(pdftex.def)             Requested size: 347.12354pt x 142.6606pt.
+(pdftex.def)             Requested size: 277.69987pt x 114.12784pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+<resources/trim-height.jpg, id=70, 485.742pt x 215.715pt>
+File: resources/trim-height.jpg Graphic file (type jpg)
+<use resources/trim-height.jpg>
+Package pdftex.def Info: resources/trim-height.jpg  used on input line 230.
+(pdftex.def)             Requested size: 208.27623pt x 92.4923pt.
 
 
 [11 <./resources/sg-gen.jpg>]
-<resources/sg-final.jpg, id=73, 604.221pt x 264.771pt>
+<resources/trim-size.jpg, id=74, 411.72pt x 264.552pt>
+File: resources/trim-size.jpg Graphic file (type jpg)
+<use resources/trim-size.jpg>
+Package pdftex.def Info: resources/trim-size.jpg  used on input line 239.
+(pdftex.def)             Requested size: 208.27623pt x 133.82578pt.
+<resources/sg-final.jpg, id=75, 523.41pt x 235.644pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
-Package pdftex.def Info: resources/sg-final.jpg  used on input line 240.
-(pdftex.def)             Requested size: 347.12354pt x 152.10881pt.
+Package pdftex.def Info: resources/sg-final.jpg  used on input line 248.
+(pdftex.def)             Requested size: 277.69987pt x 125.02016pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-[12 <./resources/sg-final.jpg>]
-<resources/trim-pos-feed.jpg, id=77, 643.203pt x 129.429pt>
+
+[12 <./resources/trim-height.jpg> <./resources/trim-size.jpg>]
+<resources/trim-pos-feed.jpg, id=79, 692.04pt x 155.271pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
-Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 252.
-(pdftex.def)             Requested size: 347.12354pt x 69.8511pt.
-<resources/trim-neg-feed.jpg, id=78, 597.651pt x 128.991pt>
+Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 260.
+(pdftex.def)             Requested size: 347.12354pt x 77.8817pt.
+
+
+[13 <./resources/sg-final.jpg> <./resources/trim-pos-feed.jpg>]
+<resources/trim-neg-feed.jpg, id=84, 662.694pt x 152.424pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
-Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 261.
-(pdftex.def)             Requested size: 347.12354pt x 74.92111pt.
-) (./chapters/limitations.tex
+Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 269.
+(pdftex.def)             Requested size: 347.12354pt x 79.84004pt.
+) (./chapters/limitations.tex) (./chapters/relatedwork.tex
+Underfull \vbox (badness 1701) has occurred while \output is active []
 
-[13 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>]) (./chapters/relatedwork.tex
 
-[14]) (./chapters/conclusion.tex) (./samplepaper.bbl
 
-[15])
+[14 <./resources/trim-neg-feed.jpg>]) (./chapters/conclusion.tex
+
+[15]) (./samplepaper.bbl)
 
 [16] (./samplepaper.aux)
  ***********
@@ -653,18 +713,18 @@ L3 programming layer <2024-11-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15558 strings out of 473362
- 307113 string characters out of 5725050
- 700575 words of memory out of 5000000
- 38373 multiletter control sequences out of 15000+600000
+ 16989 strings out of 473362
+ 334621 string characters out of 5725050
+ 726167 words of memory out of 5000000
+ 39794 multiletter control sequences out of 15000+600000
  571997 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,101p,1424b,856s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,19n,117p,1603b,856s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on samplepaper.pdf (16 pages, 1432799 bytes).
+Output written on samplepaper.pdf (16 pages, 1741564 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
+ 198 PDF objects out of 1000 (max. 8388607)
  117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
