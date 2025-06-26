@@ -13,45 +13,45 @@ Database file #1: bibliography.bib
 Warning--empty booktitle in autogeneratingnd
 Warning--empty booktitle in IJCAI13
 Warning--empty booktitle in logicincomputer
-You've used 13 entries,
+You've used 11 entries,
             2118 wiz_defined-function locations,
-            578 strings with 6222 characters,
-and the built_in function-call counts, 4774 in all, are:
-= -- 456
-> -- 214
+            573 strings with 6040 characters,
+and the built_in function-call counts, 4316 in all, are:
+= -- 418
+> -- 188
 < -- 6
-+ -- 85
-- -- 71
-* -- 293
-:= -- 735
-add.period$ -- 37
-call.type$ -- 13
-change.case$ -- 73
++ -- 75
+- -- 63
+* -- 275
+:= -- 661
+add.period$ -- 33
+call.type$ -- 11
+change.case$ -- 63
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 199
-empty$ -- 394
-format.name$ -- 71
-if$ -- 1050
+cite$ -- 14
+duplicate$ -- 185
+empty$ -- 350
+format.name$ -- 63
+if$ -- 952
 int.to.chr$ -- 0
-int.to.str$ -- 13
+int.to.str$ -- 11
 missing$ -- 10
-newline$ -- 64
-num.names$ -- 28
-pop$ -- 107
+newline$ -- 56
+num.names$ -- 24
+pop$ -- 89
 preamble$ -- 1
-purify$ -- 61
+purify$ -- 53
 quote$ -- 0
-skip$ -- 182
+skip$ -- 160
 stack$ -- 0
-substring$ -- 279
-swap$ -- 72
+substring$ -- 269
+swap$ -- 70
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
+type$ -- 42
 warning$ -- 3
-while$ -- 42
-width$ -- 15
-write$ -- 128
+while$ -- 38
+width$ -- 13
+write$ -- 114
 (There were 3 warnings)
