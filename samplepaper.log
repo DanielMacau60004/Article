@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  25 JUN 2025 20:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  26 JUN 2025 10:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -388,74 +388,63 @@ Package pdftex.def Info: resources/rules.png  used on input line 9.
 \openout2 = `chapters/algorithm.aux'.
 
  (./chapters/algorithm.tex
+<resources/te-example.jpg, id=44, 452.673pt x 132.714pt>
+File: resources/te-example.jpg Graphic file (type jpg)
+<use resources/te-example.jpg>
+Package pdftex.def Info: resources/te-example.jpg  used on input line 50.
+(pdftex.def)             Requested size: 277.69987pt x 81.41713pt.
+
 
 [7
 
 
 
 ]
-<resources/te-example.jpg, id=48, 510.489pt x 144.759pt>
-File: resources/te-example.jpg Graphic file (type jpg)
-<use resources/te-example.jpg>
-Package pdftex.def Info: resources/te-example.jpg  used on input line 51.
-(pdftex.def)             Requested size: 277.69987pt x 78.7496pt.
-<resources/decomposition.jpg, id=49, 717.882pt x 259.953pt>
-File: resources/decomposition.jpg Graphic file (type jpg)
-<use resources/decomposition.jpg>
-Package pdftex.def Info: resources/decomposition.jpg  used on input line 74.
-(pdftex.def)             Requested size: 208.27623pt x 75.41617pt.
+<resources/tg-final.png, id=49, 573.78pt x 464.499pt>
+File: resources/tg-final.png Graphic file (type png)
+<use resources/tg-final.png>
+Package pdftex.def Info: resources/tg-final.png  used on input line 120.
+(pdftex.def)             Requested size: 347.12354pt x 281.01921pt.
 
 
 [8 <./resources/te-example.jpg>]
-<resources/tg-edges.jpg, id=53, 679.995pt x 136.437pt>
-File: resources/tg-edges.jpg Graphic file (type jpg)
-<use resources/tg-edges.jpg>
-Package pdftex.def Info: resources/tg-edges.jpg  used on input line 99.
-(pdftex.def)             Requested size: 347.12354pt x 69.65063pt.
 
-
-[9 <./resources/decomposition.jpg> <./resources/tg-edges.jpg>]
-<resources/tg-final.png, id=57, 300.468pt x 139.722pt>
-File: resources/tg-final.png Graphic file (type png)
-<use resources/tg-final.png>
-Package pdftex.def Info: resources/tg-final.png  used on input line 109.
-(pdftex.def)             Requested size: 208.27623pt x 96.85599pt.
-
+[9]
 
 [10 <./resources/tg-final.png>]
-
-[11]
-<resources/sg-gen.jpg, id=70, 553.194pt x 210.459pt>
+<resources/sg-gen.jpg, id=64, 553.194pt x 210.459pt>
 File: resources/sg-gen.jpg Graphic file (type jpg)
 <use resources/sg-gen.jpg>
-Package pdftex.def Info: resources/sg-gen.jpg  used on input line 215.
+Package pdftex.def Info: resources/sg-gen.jpg  used on input line 179.
 (pdftex.def)             Requested size: 347.12354pt x 132.06pt.
 
 
+[11]
+
 [12 <./resources/sg-gen.jpg>]
-<resources/sg-final.jpg, id=74, 604.221pt x 264.771pt>
+<resources/sg-final.jpg, id=71, 604.221pt x 264.771pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
-Package pdftex.def Info: resources/sg-final.jpg  used on input line 272.
+Package pdftex.def Info: resources/sg-final.jpg  used on input line 236.
 (pdftex.def)             Requested size: 347.12354pt x 152.10881pt.
 
 
 [13]
-<resources/trim-pos-feed.jpg, id=79, 643.203pt x 129.429pt>
+<resources/trim-pos-feed.jpg, id=76, 643.203pt x 129.429pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
-Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 284.
+Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 248.
 (pdftex.def)             Requested size: 347.12354pt x 69.8511pt.
-<resources/trim-neg-feed.jpg, id=80, 597.651pt x 128.991pt>
+<resources/trim-neg-feed.jpg, id=77, 597.651pt x 128.991pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
-Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 293.
+Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 257.
 (pdftex.def)             Requested size: 347.12354pt x 74.92111pt.
+)
 
+[14 <./resources/sg-final.jpg> <./resources/trim-pos-feed.jpg>]
 
-[14 <./resources/sg-final.jpg>])
-
-[15 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>]
+[15 <./resources/trim-neg-feed.jpg>]
 \openout2 = `chapters/limitations.aux'.
 
  (./chapters/limitations.tex)
@@ -496,18 +485,18 @@ L3 programming layer <2024-11-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4594 strings out of 473362
- 73609 string characters out of 5725050
- 485611 words of memory out of 5000000
- 27611 multiletter control sequences out of 15000+600000
- 573371 words of font info for 64 fonts, out of 8000000 for 9000
+ 4571 strings out of 473362
+ 73082 string characters out of 5725050
+ 488583 words of memory out of 5000000
+ 27592 multiletter control sequences out of 15000+600000
+ 570465 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,22n,65p,2010b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on samplepaper.pdf (20 pages, 1466079 bytes).
+ 57i,18n,65p,2010b,545s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on samplepaper.pdf (20 pages, 1240732 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
+ 200 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
