@@ -37,7 +37,7 @@ where:
   \item \( T_E \subseteq F \times \mathcal{P}(F \times (F \cup \{\varepsilon\})) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Transition Edge (TE)}, where each edge consists of:
   \begin{itemize}
     \item a tail formula \( f \in F \),
-    \item a set of pairs \( (f_1, f_2) \in F \times (F \cup \{\varepsilon\}) \), called \emph{Transitions (T)}, where \( f_1 \) is a \emph{hypothesis} and \( f_2 \) is a \emph{closed hypothesis}, and
+    \item a set of pairs \( (f_1, f_2) \in F \times (F \cup \{\varepsilon\}) \), where \( f_1 \) is a \emph{hypothesis} and \( f_2 \) is a \emph{closed hypothesis}, and
     \item a rule \( r \in R \).
   \end{itemize}
 \end{itemize}
@@ -113,104 +113,108 @@ $T_E \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
 
 The computing of formulas and transitions can be done in one step to avoid unnecessary loops, but for simplicity, we kept them separate. The decomposing step is an important part to know in advance which formulas we will have in the graph and also to match with formulas that require that information, since they can be applied to every formula, such as the Elimination of Disjunction rule. The decomposition is done by splitting the formula at the outermost logical operators (if it is not an atomic formula). For example, $a \to \lnot b$ can be split into $a$ and $\lnot b$, but $a$ cannot be decomposed since it is atomic. However, we can decompose $\lnot b$ into just $b$.
 
-To illustrate the construction process in detail, we now present a full example in Figure~\ref{fig:tg-final}, based on the specific main goal \(\vdash a \to a\) and target goal \(\{\lnot(a \to a)\} \vdash a \to a\).
+To illustrate the construction process in detail, we now present a full example in Figure~\ref{fig:tg-final}, based on the specific main goal and target goal \(\vdash a \to a\) (so we want a full proof for the problem).
 
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/tg-final.png}
-    \caption{Final TG generated from main goal: \(\vdash a \to a\) and target goal: \(\{\lnot(a \to a)\} \vdash a \to a\)}
+    \caption{Final TG generated from main goal and target goal \(\vdash a \to a\)}
     \label{fig:tg-final}
 \end{figure}
 
+\subsection{Proof Graph}
+The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal.
 
+To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
 
-
-
-\subsection{State Graph}
-
-The second step is to build the State Graph (SG). To do this, we use the previous TG and the state we want to complete. This could be the original problem or a part of the proof the student did not finish. The SG is similar to the TG, but instead of storing transitions, it stores states. Before we describe the procedure, let us define some key terms:
-
-\begin{definition}[State Graph]
-The SG is defined as a quadruple:
+\begin{definition}[Proof Graph]
+A \emph{Proof Graph (PG)} is a pair
 \[
-SG = (\beta, TG, S_F, E_S),
+P_G = (G, P_E),
 \]
-where \( \beta \) is the initial state, \(TG\) is the Transition Graph, \(S_F \subseteq \mathcal{P}(S)\) is the set of discovered states, and \(E_S \subseteq F \times \mathcal{P}(SE)\) maps each formula \( f \in F \) to a (possibly empty) set of state edges.
+where:
+\begin{itemize}
+  \item \( FG \) is a finite set of \emph{goals}, and
+  \item \( P_E \subseteq G \times \mathcal{P}(G \times (F \cup \{\varepsilon\})) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Proof Edge (PE)}, where each edge consists of:
+  \begin{itemize}
+    \item a tail goal \( g \in G \),
+    \item a set of pairs \( (g_1, f_1) \in G \times (F \cup \{\varepsilon\}) \), where \( g_1 \) is a goal and \( f_1 \) is a \emph{closed hypothesis}, and
+    \item a rule \( r \in R \).
+  \end{itemize}
+\end{itemize}
 \end{definition}
 
-\begin{definition}[State Edge]
-A \emph{state edge} is an element of the set
-\[
-S_E \subseteq R \times \mathcal{P}(S),
-\]
-where \(R\) is the rule applied, and \(\mathcal{P}(S)\) is the set of possible new states after applying that rule.
+\begin{definition}[Proved Goal]
+A goal \( \Delta \vdash \delta \) is \emph{proved} if either:
+\begin{itemize}
+  \item \( \delta \in \Delta \), or
+  \item there exists a Proof Edge \( (g, T, r) \in P_E \) in the Proof Graph \( P_G = (G, P_E) \), such that \( g = \Delta \vdash \delta \), and for every pair \( (g_1, f_1) \in T \), the goal \( g_1 \) is proved.
+\end{itemize}
 \end{definition}
 
-\begin{definition}[Closed state]
-A state \(S = (\alpha, \Delta)\) is \emph{closed} if \(\alpha \in \Delta\).
-\end{definition}
+The definition of proved goal is extremely important because it is used as a stopping condition to avoid the algorithm looping through unnecessary goals and to guarantee that the proof is valid. This is only possible due to the type of graph chosen, as it allows us to capture the relation between the hypotheses and the conclusion of each rule application. Figure~\ref{fig:pe-ex} shows an example of a PE and how these relations can be captured. In the figure, we want to prove \(\{a \vee b\} \vdash a\). By applying the Elimination of Disjunction rule, we notice that one of the hypotheses cannot be closed using only this rule, even if the other two hypotheses are closed. So, what we actually prove with this rule is \(\{a \vee b, a\} \vdash a\), which is different from our goal. To accurately track which goals are proved and ensure the proof only contains valid proved goals, this information must be stored in a hypergraph structure. This is why hypergraphs are necessary.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{resources/pe-example.jpg}
+    \caption{Prove \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}
+    \label{fig:pe-ex}
+\end{figure}
 
 \vspace{1em}
-\textbf{Procedure:}
+With all the necessary definitions in place, we now present the procedure to generate the PG, as shown in Algorithm~\ref{alg:pg-construction}.
 
-\begin{enumerate}
-    \item The algorithm starts by setting the initial state \(\beta\). This can be the original problem state or the incomplete part of the student's proof. The TG is the one built before. The set of found states \(S_F\) starts with only \(\beta\), and the set of edges \(E_S\) is empty.
+\begin{algorithm}
+\caption{Proof Graph Construction}
+\label{alg:pg-construction}
+\KwIn{Transition Graph $T_G = (F, T_E)$, Target goal $t_g$}
+\KwOut{Proof Graph $P_G = (G, P_E)$}
 
-    \item Then, we go through each state \(s = (\alpha, \Delta)\) in \(S_F\):
+$G \leftarrow \{t_g\}$ \tcp*[r]{Initialize set of goals}
+$P_E \leftarrow \emptyset$ \tcp*[r]{Initialize set of proof edges}
 
-    \begin{enumerate}
-        \item If the state is closed, we skip it. There is no need to explore it further, because a valid mark can be assigned to it at this point. Other stopping conditions are needed to avoid very long executions, since the graph can grow very fast. For example, we can set a limit on the number of nodes explored.
+\tcp{Compute sub-goals}
+\ForEach{$g = \Sigma \vdash \theta \in G$}{
 
-        \item Then we use the Transition Graph (TG) to find all rule applications for the formula \(\alpha\). This gives us a set of rule applications. For each transition:
+    \If{$g$ is proved}{
+        \textbf{continue} \tcp*[r]{Skip proved goal}
+    }
 
-        \begin{enumerate}
-            \item We apply the rule to the current state \(s\). If this creates a new state, we add it to \(S_F\). The new state is always constructed based on the current state \(s\), keeping track of the transformations made in previous states.
-        \end{enumerate}
+    \If{stopping condition is reached}{
+        \textbf{break} \tcp*[r]{Avoid excessive expansion}
+    }
 
-        \item Finally, the algorithm combines the rule and the generated states into a state edge \(S_E\), and adds it to the set \(E_S\).
-    \end{enumerate}
-\end{enumerate}
+    \tcp{Get transition edges for formula $\theta$}
+    $TE_\theta \leftarrow \{ (f, H, r) \in T_E \mid f = \theta \}$\;
 
+    \ForEach{$(f, H, r) \in TE_\theta$}{
+        $T \leftarrow \emptyset$  \tcp*[r]{Store transitions to each hypothesis}
+        
+        \ForEach{$(f_1, f_2) \in H$}{
+            \tcp{Create sub-goal by extending the current premises with the closed hypothesis}
+            $g_\text{new} \leftarrow (\Sigma \cup \{f_2\}) \vdash f_1$\;
 
-Figure \ref{fig:st-ex} shows part of the graph for the problem \(\vdash a \to a\). Nodes represent states. Solid borders are closed states and dashed borders are unclosed states. In this example, the state $\{\lnot a, \lnot(a \to a)\}$ cannot be closed because $\lnot a \notin \{\lnot(a \to a)\}$, and $\lnot a$ has no outgoing edges in the TG (Figure~\ref{fig:tg-final}).
+            $T \leftarrow T \cup \{(g_\text{new}, f_2)\}$\;
+            $G \leftarrow G \cup \{g_\text{new}\}$ \tcp*[r]{Add sub-goal}
+        }
+
+        $P_E \leftarrow P_E \cup \{(g, T, r)\}$ \tcp*[r]{Add proof edge}
+    }
+}
+\end{algorithm}
+
+This part of the algorithm can generate very large graphs, potentially exponential in size, with millions of distinct goals depending on the complexity of the problem. In most cases, we do not want to explore the entire goal space, as many goals are extremely complex and do not provide useful feedback. Therefore, stopping conditions are required. These may include: limiting the total number of goals explored, setting a maximum number of hypotheses allowed per goal, or enforcing a timeout.
+
+Figure~\ref{fig:st-ex} shows the PG generated using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\), with a limit of 9 goals explored. Nodes with solid borders represent proved goals, while nodes with dashed borders represent unproved goals. Since our target goal is proved, we know that at least one solution was found.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{resources/sg-gen.jpg}
-    \caption{Example of State Graph for \(\vdash a \to a\)}
+    \caption{Example of Proof Graph using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\)}
     \label{fig:st-ex}
 \end{figure}
 
-\begin{algorithm}
-\caption{State Graph Construction}
-\KwIn{Transition Graph $TG$, Initial State $\beta$}
-\KwOut{State Graph $SG = (\beta, TG, S_F, E_S)$}
 
-$S_F \leftarrow \{\beta\}$ \tcp*[r]{Initialize set of states}
-$E_S \leftarrow \emptyset$ \tcp*[r]{Initialize state edges}
-
-\tcp{Expand states}
-\ForEach{$s = (\alpha, \Delta) \in S_F$}{
-    \If{$s$ is closed or s}{
-        \textbf{continue} \tcp*[r]{Skip closed state}
-    }
-
-    \If{stopping condition is reached}{
-        \textbf{break} \tcp*[r]{Avoid too many expansions}
-    }
-
-    \tcp{Apply rules from TG}
-    Get list of rule applications $T$\;
-
-    \ForEach{$(r, t) \in T$}{
-        Compute new states $S_r$ from $s$ using transitions $t$\;
-    
-        $S_E \leftarrow (r, S_r)$\;
-        $E_S \leftarrow E_S \cup \{(\alpha, \{S_E\})\}$ \tcp*[r]{Add state edge}
-    }
-
-}
-\end{algorithm}
 
 \subsection{Trim Graph}
 

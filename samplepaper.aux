@@ -1,22 +1,60 @@
 \relax 
 \bibstyle{plain}
+\citation{logicincomputer}
+\citation{autogeneratingnd}
+\citation{vonPlato_2014}
+\citation{Perh__2025}
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {title}{Natural Deduction Proofs for Educational Feedback}{1}{}\protected@file@percent }
 \@writefile{toc}{\authcount {3}}
 \@writefile{toc}{\contentsline {author}{Daniel Macau \and Ricardo Gonçalves \and João Costa Seco}{1}{}\protected@file@percent }
-\@input{chapters/introduction.aux}
-\@input{chapters/background.aux}
-\pgfsyspdfmark {pgfid1}{20223213}{33226494}
-\pgfsyspdfmark {pgfid2}{20223213}{43516403}
-\@input{chapters/guidance_components.aux}
-\@input{chapters/algorithm.aux}
-\@input{chapters/limitations.aux}
-\@input{chapters/relatedwork.aux}
-\@input{chapters/conclusion.aux}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{nd-mancosu}
+\citation{Pelletier1999-FRAABH}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{O documento Gouveia e Dionisio nao deve ser citado por ser apenas um draft. Já agora, podemos usar este comando para deixar comentários ao longo do texto. Depois é fácil desativar todos de uma só vez.}{2}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid1}{20223213}{43161407}
+\@writefile{tdo}{\contentsline {todo}{RG: Acho que a notação está vaga porque usámos a mesma notação "[ ]" para coisas diferentes (o que nunca é boa ideia).}{3}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid2}{20223213}{17844747}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces List of rules for both PL and FOL}}{4}{}\protected@file@percent }
+\newlabel{fig:nd-rules}{{1}{4}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Tree proving \( \{\neg (\varphi \lor \psi )\} \vdash \neg \psi \).}}{4}{}\protected@file@percent }
+\newlabel{tab:proof-tree}{{2}{4}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Guidance Components}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithm}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Transition Graph}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example of a transition edge.}}{7}{}\protected@file@percent }
+\newlabel{fig:te-ex}{{3}{7}{}{figure.3}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Transition Graph Construction}}{7}{}\protected@file@percent }
+\newlabel{alg:tg-construction}{{1}{7}{}{algocf.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Final TG generated from main goal and target goal \(\vdash a \to a\)}}{8}{}\protected@file@percent }
+\newlabel{fig:tg-final}{{4}{8}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Proof Graph}{9}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Prove \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}}{10}{}\protected@file@percent }
+\newlabel{fig:pe-ex}{{5}{10}{}{figure.5}{}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Proof Graph Construction}}{10}{}\protected@file@percent }
+\newlabel{alg:pg-construction}{{2}{10}{}{algocf.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Example of Proof Graph using the TG from Figure~\ref {fig:tg-final} and target goal \(\vdash a \to a\)}}{11}{}\protected@file@percent }
+\newlabel{fig:st-ex}{{6}{11}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Trim Graph}{11}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Trimmed State Graph showing valid proof paths.}}{12}{}\protected@file@percent }
+\newlabel{fig:sg-trim}{{7}{12}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Extracting a solution to produce feedback using an existing state}}{13}{}\protected@file@percent }
+\newlabel{fig:extract-solution}{{8}{13}{}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Extracting a solution to produce feedback using a non-existing state.}}{13}{}\protected@file@percent }
+\newlabel{fig:extract-solution2}{{9}{13}{}{figure.9}{}}
+\citation{robinson_using}
+\citation{makahu_automatic}
+\citation{bolotov_2005_automated}
+\citation{lodder_2020_generation}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Limitations}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{14}{}\protected@file@percent }
+\citation{IJCAI13}
 \bibdata{bibliography}
 \bibcite{autogeneratingnd}{1}
 \bibcite{IJCAI13}{2}
 \bibcite{bolotov_2005_automated}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{15}{}\protected@file@percent }
 \bibcite{logicincomputer}{4}
 \bibcite{lodder_2020_generation}{5}
 \bibcite{makahu_automatic}{6}
@@ -25,4 +63,4 @@
 \bibcite{Perh__2025}{9}
 \bibcite{robinson_using}{10}
 \bibcite{vonPlato_2014}{11}
-\gdef \@abspage@last{21}
+\gdef \@abspage@last{16}
