@@ -8,6 +8,11 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{todonotes}
+%\usepackage[disable]{todonotes}
+\newcommand{\cmt}[1]{\todo[inline,color=green!40]{#1}}
+%\newcommand{\assignment}[1]{}
+
 
 \setlistdepth{3}
 \setlist[enumerate,1]{label=\textbf{\arabic*.}, ref=\arabic*}
