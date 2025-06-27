@@ -1,49 +1,52 @@
+%!TEX root =  ../samplepaper.tex
 \section{Algorithm}
-The algorithm is structured in three sequential steps, which we will discuss in more detail in the following subsections. In the last subsection, we present how the algorithm can be integrated to generate feedback.
+In this section we present our proposal of an algorithm to allow advanced feedback for ND exercises.
+Our algorithm is structured in three sequential steps, which we will discuss in more detail in the following subsections.
 
 %The first step is to generate a hypergraph based on the main goal (what the exercise asks us to prove) and the target goal (the part of the student's proof we want to complete), in order to store all possible rule applications for both goals. Then, we use this graph to build a second hypergraph that simulates as many proof constructions as possible by decomposing the target goal into sub-goals. In the last step, we trim this second graph so that it retains only valid and minimal proofs, either in terms of the number of steps required or the height needed to solve the problem. Finally, we use the resulting graph to extract and build readable proofs, which can later be used to generate feedback.
 
 \subsection{Transition Graph}
-The first step is to create the Transition Graph (TG). This graph stores the formulas that might be part of the final proof, as well as the rules that can be applied to each formula. In short, the TG sets up the rules of the "game".
+\cmt{RG: Estes dois parágrafos inicias precisavam de alguma revisão (em termos de apresentação das ideias), mas não consegui fazer. Posso voltar a isto depois.}
+The first step is to create the so-called Transition Graph (TG). This graph stores the formulas that might be part of the final proof, as well as the rules that can be applied to each formula. In short, the TG sets up the rules of the "game".
 
-To generate the graph, we need to specify the main goal of the exercise \(\Gamma \vdash \varphi\), what the exercise wants us to prove, and the target goal \(\Sigma \vdash \theta\), which is the part of the proof that needs to be completed. The main goal is used to generate all the natural proof paths, which are proofs built using only formulas derived from decomposing the main goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. By this, we mean proofs that include more complex formulas than those directly derived from the main goal. By considering both goals, the system is able to generate more personalized and user-guided proofs, as it also takes into account the deviations made by the user, which is one of the core elements of our algorithm.
+To generate the graph, we need to specify the main goal of the exercise \(\Gamma \vdash \varphi\), what the exercise wants us to prove, and the target goal \(\Sigma \vdash \theta\), which is the part of the proof that needs to be completed. The main goal is used to generate all the natural proof paths, which are proofs built using only formulas derived from decomposing the main goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. By this, we mean proofs that include more complex formulas than those directly derived from the main goal. By considering both goals, the system is able to generate more personalised and user-guided proofs, as it also takes into account the deviations made by the user, which is one of the core elements of our algorithm. For the type of information we want to store, we will make use of a special type of graph.
 
-Before we describe the procedure, let us introduce some definitions:
 \begin{definition}[Labeled Directed Hypergraph with Labeled Heads]
-A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair
-\[
-H = (V, E),
-\]
-where:
+A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair $H = (V, E)$, where:
 \begin{itemize}
-  \item \( V \) is a finite set of \emph{nodes}, and
-  \item \( E \subseteq V \times \mathcal{P}(V \times (V \cup \{\varepsilon\})) \times L \) is a finite set of \emph{labeled hyperedges}, where each hyperedge consists of:
+  \item \( V \) is a finite set of nodes, and
+  \item \( E \subseteq V \times \mathcal{P}(V \times (V \cup \{\varepsilon\})) \times L \) is a finite set of labeled hyperedges, over a finite set of labels $L$, where each hyperedge $(t,\{(h_i,\ell_i): i\in I\}, \ell)$ consists of:
   \begin{itemize}
-    \item a \emph{tail}, which is a single input node from \( V \),
-    \item a \emph{labeled head}, which is a set of pairs \( (v, w) \in V \times (V \cup \{\varepsilon\}) \), where \( v \) is a head node and \( w \) is either a node or the empty symbol \( \varepsilon \), and
-    \item a label \( \ell \in L \).
+    \item a tail $t$, representing a single input node from \( V \),
+    \item a set of labeled heads, which is a set of pairs \( (h_i, \ell_i) \in V \times (V \cup \{\varepsilon\}) \), where \( h_i \) indicates one of the output nodes and \( \ell_i \) is its label, which is either a node or the empty symbol \( \varepsilon \), and
+    \item the global label $\ell$ of the hyperedge, which is an element of \( L \).
   \end{itemize}
 \end{itemize}
 \end{definition}
 
-\begin{definition}[Transition Graph]
-A \emph{Transition Graph (TG)} is a pair
-\[
-T_G = (F, T_E),
-\]
-where:
-\begin{itemize}
-  \item \( F \) is a finite set of \emph{formulas}, and
-  \item \( T_E \subseteq F \times \mathcal{P}(F \times (F \cup \{\varepsilon\})) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Transition Edge (TE)}, where each edge consists of:
-  \begin{itemize}
-    \item a tail formula \( f \in F \),
-    \item a set of pairs \( (f_1, f_2) \in F \times (F \cup \{\varepsilon\}) \), where \( f_1 \) is a \emph{hypothesis} and \( f_2 \) is a \emph{closed hypothesis}, and
-    \item a rule \( r \in R \).
-  \end{itemize}
-\end{itemize}
-\end{definition}
+The Transition Graph (TG) we will construct is a hypergraph as defined above, where vertices are formulas and each hyperedge represents the application of an inference rule, which, as we have seen, may have mode than one premisse. 
 
-A TE is the application of a rule to a formula. Figure \ref{fig:te-ex} shows an example of the rule being applied \(\vee_E\) and the corresponding edge.
+
+%\begin{definition}[Transition Graph]
+%A \emph{Transition Graph (TG)} is a pair
+%\[
+%T_G = (F, T_E),
+%\]
+%where:
+%\begin{itemize}
+%  \item \( F \) is a finite set of \emph{formulas}, and
+%  \item \( T_E \subseteq F \times \mathcal{P}(F \times (F \cup \{\varepsilon\})) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Transition Edge (TE)}, where each edge consists of:
+%  \begin{itemize}
+%    \item a tail formula \( f \in F \),
+%    \item a set of pairs \( (f_1, f_2) \in F \times (F \cup \{\varepsilon\}) \), where \( f_1 \) is a \emph{hypothesis} and \( f_2 \) is a \emph{closed hypothesis}, and
+%    \item a rule \( r \in R \).
+%  \end{itemize}
+%\end{itemize}
+%\end{definition}
+
+To give some intuition on the formal construction of TG, we now present an example, in Figure \ref{fig:te-ex}, that shows how the applications of rule \(\vee_E\) can be represented using hypergraphs.
+
+
 
     \begin{figure}
         \centering
@@ -52,12 +55,15 @@ A TE is the application of a rule to a formula. Figure \ref{fig:te-ex} shows an 
         \label{fig:te-ex}
     \end{figure}
 
-We will have \(T_E = T_E \cup \{(c, \{(a \vee b, \varepsilon), (c, a), (c, b)\}, \vee_E)\}\). Our edges always point from the conclusion to its hypotheses. If we were working with FOL proofs, we would also need to consider side conditions as part of T. The reason for using this type of graph is that it allows us to map rule applications directly into a data structure. In the final step, we will explain why it is necessary to store edges in this way. At this point, there is no need to keep track of the marks, since they can be easily added in the final steps when reconstructing the full proof.
+Formally, the above hyperedge is represented as $(c, \{(a \vee b, \varepsilon), (c, a), (c, b)\}, \vee_E)$. Edges always go from the unique conclusion of the rule to its hypotheses. The labels of the heads of the hyperedge represent the possible additional hypothesis that can be used in that branch. In the particular case of the above rule $\vee_E$, each side of the disjunction can be used as an additional hypothesis in the second and third branch of the rule, representing the reasoning by cases encoded by the rule. 
+If we were working with FOL proofs, we would also need to consider side conditions as part of TG. 
+%The reason for using this type of graph is that it allows us to map rule applications directly into a data structure. 
+%In the final step, we will explain why it is necessary to store edges in this way. 
+Also, at this point of the construction, there is no need to keep track of the marks. We will see later that we can easily deal with these in the final step of the construction.
 
-\vspace{1em}
-With all the necessary definitions in place, we now present the procedure to generate the TG, as shown in Algorithm~\ref{alg:tg-construction}.
-
-\begin{algorithm}
+%\vspace{1em}
+We now present, in Algorithm~\ref{alg:tg-construction}, the concrete procedure to generate the TG.
+\begin{algorithm}[h]
 \caption{Transition Graph Construction}
 \label{alg:tg-construction}
 \KwIn{Main goal $\Gamma \vdash \varphi$, Target goal $\Sigma \vdash \theta$}
@@ -110,12 +116,15 @@ $T_E \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
 }
 
 \end{algorithm}
+As we said, we have as input the consequence we aim to prove \(\Gamma \vdash \varphi\) and a consequence \(\Sigma \vdash \theta\) representing a partial proof of an user. The computation of the relevant formulas and transitions between these can be done in just one loop, but, for the sake of simplicity of presentation, we kept these separated. For the formulas we just consider the set of all subformulas of the formulas contained in the consequence we want to prove and in the partial consequence, together with the negation of these formulas. This way, all formulas that could appear in ND proof of the main consequence are vertices of TG.
+The hyperedges of TG correspond to the possible rule applications between these considered formulas.
 
-The computing of formulas and transitions can be done in one step to avoid unnecessary loops, but for simplicity, we kept them separate. The decomposing step is an important part to know in advance which formulas we will have in the graph and also to match with formulas that require that information, since they can be applied to every formula, such as the Elimination of Disjunction rule. The decomposition is done by splitting the formula at the outermost logical operators (if it is not an atomic formula). For example, $a \to \lnot b$ can be split into $a$ and $\lnot b$, but $a$ cannot be decomposed since it is atomic. However, we can decompose $\lnot b$ into just $b$.
+%The decomposition step is an important part to know in advance which formulas we will have in the graph and also to match with formulas that require that information, since they can be applied to every formula, such as the Elimination of Disjunction rule. The decomposition is done by splitting the formula at the outermost logical operators (if it is not an atomic formula). For example, $a \to \lnot b$ can be split into $a$ and $\lnot b$, but $a$ cannot be decomposed since it is atomic. However, we can decompose $\lnot b$ into just $b$.
 
-To illustrate the construction process in detail, we now present a full example in Figure~\ref{fig:tg-final}, based on the specific main goal and target goal \(\vdash a \to a\) (so we want a full proof for the problem).
+To illustrate the construction process, we now present a full example in Figure~\ref{fig:tg-final}. The input in this case is the main consequence ?? and partial consequence \(\vdash a \to a\)??.
+\cmt{RG: Não percebo qual é o input neste caso: qual a main consequence e a partial consequence?}
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{resources/tg-final.png}
     \caption{Final TG generated from main goal and target goal \(\vdash a \to a\)}
