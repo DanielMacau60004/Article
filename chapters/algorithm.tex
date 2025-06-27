@@ -123,10 +123,11 @@ The hyperedges of TG correspond to the possible rule applications between these 
 
 To illustrate the construction process, we now present a full example in Figure~\ref{fig:tg-final}. The input in this case is the main consequence ?? and partial consequence \(\vdash a \to a\)??.
 \cmt{RG: Não percebo qual é o input neste caso: qual a main consequence e a partial consequence?}
+\cmt{DM: Neste caso são o mesmo, por outras palavras, estamos a computar uma solução completa para o problema e não necessariamente a gerar feedback para um passo incompleto de uma prova, por isso main e partial = \(\vdash a \to a\). A minha ideia era ter feito um exemplo em que, de facto, se completasse uma prova mas o numero de nos e arestas cresce demasiado e nao consigo representar o grafo mesmo sendo um pequeno desvio ex: \(\{\lnot (a \to a)\} \vdash a \to \bot\) já ficamos com 6 nos e 12 edges}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{resources/tg-final.png}
+    \includegraphics[width=0.8\linewidth]{resources/tg-final.png}
     \caption{Final TG generated from main goal and target goal \(\vdash a \to a\)}
     \label{fig:tg-final}
 \end{figure}

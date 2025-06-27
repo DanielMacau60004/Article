@@ -21,6 +21,9 @@ With \(\displaystyle \left[ \varphi \right]^x_{\substack{t}}\) we represent the 
 
 %These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion.  --- talvez não valha a pena dizer isto aqui.
 
+A ND proof is said to be well-formed if and only if it is finite and the inference rules are applied correctly. Moreover, we say that a ND proof proves the consequence \(\Gamma \vdash \phi\) if and only if it is well-formed, the root of the tree is \(\phi\), and every open hypothesis in the tree is contained in \(\Gamma\).
+In Fig.~\ref{tab:proof-tree} we have an example of a well-formed ND proof of \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).
+
 \begin{figure}[h]
     \centering
     \[
@@ -31,9 +34,6 @@ With \(\displaystyle \left[ \varphi \right]^x_{\substack{t}}\) we represent the 
     \caption{ND tree proving \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).}
     \label{tab:proof-tree}
 \end{figure}
-
-A ND proof is said to be well-formed if and only if it is finite and the inference rules are applied correctly. Moreover, we say that a ND proof proves the consequence \(\Gamma \vdash \phi\) if and only if it is well-formed, the root of the tree is \(\phi\), and every open hypothesis in the tree is contained in \(\Gamma\).
-In Fig.~\ref{tab:proof-tree} we have an example of a well-formed ND proof of \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).
 
 
 %\begin{definition}[Well-Formed Tree Proof]
