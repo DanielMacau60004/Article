@@ -3,48 +3,48 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: samplepaper.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Warning--empty booktitle in autogeneratingnd
+Warning--I didn't find a database entry for "autogeneratingnd"
 Warning--empty booktitle in IJCAI13
 Warning--empty booktitle in logicincomputer
-You've used 10 entries,
+You've used 9 entries,
             2118 wiz_defined-function locations,
             563 strings with 5795 characters,
-and the built_in function-call counts, 4123 in all, are:
-= -- 402
-> -- 181
-< -- 6
-+ -- 72
-- -- 61
-* -- 270
-:= -- 630
-add.period$ -- 31
-call.type$ -- 10
-change.case$ -- 59
+and the built_in function-call counts, 3617 in all, are:
+= -- 352
+> -- 163
+< -- 5
++ -- 65
+- -- 55
+* -- 239
+:= -- 560
+add.period$ -- 28
+call.type$ -- 9
+change.case$ -- 53
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 178
-empty$ -- 328
-format.name$ -- 61
-if$ -- 910
+cite$ -- 11
+duplicate$ -- 154
+empty$ -- 286
+format.name$ -- 55
+if$ -- 792
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 10
-newline$ -- 52
-num.names$ -- 22
-pop$ -- 81
+int.to.str$ -- 9
+missing$ -- 9
+newline$ -- 47
+num.names$ -- 20
+pop$ -- 71
 preamble$ -- 1
-purify$ -- 50
+purify$ -- 45
 quote$ -- 0
-skip$ -- 150
+skip$ -- 128
 stack$ -- 0
-substring$ -- 264
-swap$ -- 69
-text.length$ -- 6
+substring$ -- 223
+swap$ -- 57
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 38
-warning$ -- 3
-while$ -- 36
-width$ -- 12
-write$ -- 107
+type$ -- 34
+warning$ -- 2
+while$ -- 32
+width$ -- 10
+write$ -- 97
 (There were 3 warnings)

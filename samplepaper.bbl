@@ -1,19 +1,18 @@
-\begin{thebibliography}{10}
-
-\bibitem{autogeneratingnd}
-Umair Ahmed, Sumit Gulwani, and Amey Karkare.
-\newblock Automatically generating problems and solutions for natural deduction.
-\newblock pages 1968--1975, 08 2013.
+\begin{thebibliography}{1}
 
 \bibitem{IJCAI13}
 Umair Ahmed, Sumit Gulwani, and Amey Karkare.
-\newblock Automatically generating problems and solutions for natural deduction.
+\newblock Automatically generating problems and solutions for natural
+  deduction.
 \newblock pages 1968--1975, 08 2013.
 
 \bibitem{bolotov_2005_automated}
-Alexander Bolotov, Vyacheslav Bocharov, Alexander Gorchakov, and Vasilyi Shangin.
+Alexander Bolotov, Vyacheslav Bocharov, Alexander Gorchakov, and Vasilyi
+  Shangin.
 \newblock Automated first order natural deduction.
-\newblock In Bhanu Prasad, editor, {\em Proceedings of the 2nd Indian International Conference on Artificial Intelligence, Pune, India, December 20-22, 2005}, pages 1292--1311. {IICAI}, 2005.
+\newblock In Bhanu Prasad, editor, {\em Proceedings of the 2nd Indian
+  International Conference on Artificial Intelligence, Pune, India, December
+  20-22, 2005}, pages 1292--1311. {IICAI}, 2005.
 
 \bibitem{logicincomputer}
 Phokion Kolaitis, Daniel Leivant, and Moshe Vardi.
@@ -22,7 +21,8 @@ Phokion Kolaitis, Daniel Leivant, and Moshe Vardi.
 
 \bibitem{lodder_2020_generation}
 Josje Lodder, Bastiaan Heeren, Johan Jeuring, and Wendy Neijenhuis.
-\newblock Generation and use of hints and feedback in a hilbert-style axiomatic proof tutor.
+\newblock Generation and use of hints and feedback in a hilbert-style axiomatic
+  proof tutor.
 \newblock {\em Int. J. Artif. Intell. Educ.}, 31(1):99--133, 2021.
 
 \bibitem{makahu_automatic}
@@ -32,7 +32,8 @@ Xuehan Maka~Hu.
 \bibitem{nd-mancosu}
 Paolo Mancosu, Sergio Galvan, and Richard Zach.
 \newblock 65natural deduction.
-\newblock In {\em An Introduction to Proof Theory: Normalization, Cut-Elimination, and Consistency Proofs}. Oxford University Press, 08 2021.
+\newblock In {\em An Introduction to Proof Theory: Normalization,
+  Cut-Elimination, and Consistency Proofs}. Oxford University Press, 08 2021.
 
 \bibitem{Pelletier1999-FRAABH}
 Francis~Jeffry Pelletier.
@@ -40,9 +41,12 @@ Francis~Jeffry Pelletier.
 \newblock {\em History and Philosophy of Logic}, 20(1):1--31, 1999.
 
 \bibitem{Perh__2025}
-Ján Perháč, Samuel Novotný, Sergej Chodarev, Joachim~Tilsted Kristensen, Lars Tveito, Oleks Shturmov, and Michael~Kirkedal Thomsen.
-\newblock Onlineprover: Experience with a visualisation tool for teaching formal proofs.
-\newblock {\em Electronic Proceedings in Theoretical Computer Science}, 419:55–74, May 2025.
+Ján Perháč, Samuel Novotný, Sergej Chodarev, Joachim~Tilsted Kristensen,
+  Lars Tveito, Oleks Shturmov, and Michael~Kirkedal Thomsen.
+\newblock Onlineprover: Experience with a visualisation tool for teaching
+  formal proofs.
+\newblock {\em Electronic Proceedings in Theoretical Computer Science},
+  419:55–74, May 2025.
 
 \bibitem{vonPlato_2014}
 Jan von Plato.

@@ -8,12 +8,12 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-\usepackage{todonotes}
+%\usepackage{todonotes}
 \usepackage{wrapfig}
 \usepackage[font=small,skip=4pt]{caption}
-%\usepackage[disable]{todonotes}
+\usepackage[disable]{todonotes}
 \newcommand{\cmt}[1]{\todo[inline,color=green!40]{#1}}
-%\newcommand{\assignment}[1]{}
+%\newcommand{\cmt}[1]{}
 
 \setlength{\intextsep}{6pt}
 \setlength{\textfloatsep}{6pt}
@@ -39,14 +39,14 @@
 \maketitle 
 
 \begin{abstract}
-Online tools, where students can practice and have automatic feedback, have shown to be useful both for MOOCS or as complementary material for traditional classes. Nevertheless, contrary to the myriad of tools that exist for learning programming languages, in the area of logic, a fundamental subject in any Computer Science programme, there is still a lack of such online tools, and in particular for the challenging exercise of Natural Deduction (ND) proofs. The few existing tools usually do not provide effective feedback, which is in fact challenging since tree-like ND proofs are non-linear and some steps are not immediate, as it is the case of proofs by contradiction. In this paper, we present an algorithm for pedagogical purposes that can generate human-readable ND proofs for a given problem. The algorithm supports both Propositional and First-Order Logic, and is based on hypergraphs. This allows obtaining the shortest and most direct proof for a given problem, but it can also adapt to a user’s current unfinished proof, allowing for greater flexibility in the proof construction. The algorithm can be integrated with educational platforms to guide users through the proofs by providing advanced feedback, at the same as it can help teachers grading ND exercises. 
+Online tools, where students can practice and have automatic feedback, have shown to be useful both for MOOCS or as complementary material for traditional classes. Nevertheless, contrary to the myriad of tools that exist for learning programming languages, in the area of logic, a fundamental subject in any Computer Science programme, there is still a lack of such online tools, and in particular for the challenging exercise of Natural Deduction (ND) proofs. The few existing tools usually do not provide effective feedback, which is in fact challenging since tree-like ND proofs are non-linear and some steps are not immediate, as it is the case of proofs by contradiction. In this paper, we present an algorithm for pedagogical purposes that can generate human-readable ND proofs for a given problem. The algorithm supports both Propositional and First-Order Logic, and is based on hypergraphs. This allows obtaining the shortest and most direct proof for a given problem, but it can also adapt to a user’s current unfinished proof, allowing for greater flexibility in the proof construction. The algorithm can be integrated with educational platforms to guide users by providing advanced feedback, at the same as it can help teachers grading ND exercises. 
 
 \keywords{Natural Deduction  \and Propositional Logic \and First Order Logic \and Automation \and Algorithm \and Feedback \and Grading}
 \end{abstract}
 
 \input{chapters/introduction}
 \input{chapters/background}
-\input{chapters/guidance_components}
+\input{chapters/requirements}
 \input{chapters/algorithm}
 \input{chapters/limitations}
 \input{chapters/relatedwork}

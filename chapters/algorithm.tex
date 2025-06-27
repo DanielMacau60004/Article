@@ -48,7 +48,7 @@ To give some intuition on the formal construction of TG, we now present an examp
 
 
 
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=0.8\linewidth]{resources/te-example.jpg}
         \caption{Example of a transition edge.}
@@ -121,10 +121,9 @@ The hyperedges of TG correspond to the possible rule applications between these 
 
 %The decomposition step is an important part to know in advance which formulas we will have in the graph and also to match with formulas that require that information, since they can be applied to every formula, such as the Elimination of Disjunction rule. The decomposition is done by splitting the formula at the outermost logical operators (if it is not an atomic formula). For example, $a \to \lnot b$ can be split into $a$ and $\lnot b$, but $a$ cannot be decomposed since it is atomic. However, we can decompose $\lnot b$ into just $b$.
 
-To illustrate the construction process, we now present a full example in Figure~\ref{fig:tg-final}. The input in this case is the main consequence ?? and partial consequence \(\vdash a \to a\)??.
+To illustrate the construction process, we present a full example in Figure~\ref{fig:tg-final}. The main consequence and the partial consequence are both \(\vdash a \to a\).
 \cmt{RG: Não percebo qual é o input neste caso: qual a main consequence e a partial consequence?}
 \cmt{DM: Neste caso são o mesmo, por outras palavras, estamos a computar uma solução completa para o problema e não necessariamente a gerar feedback para um passo incompleto de uma prova, por isso main e partial = \(\vdash a \to a\). A minha ideia era ter feito um exemplo em que, de facto, se completasse uma prova mas o numero de nos e arestas cresce demasiado e nao consigo representar o grafo mesmo sendo um pequeno desvio ex: \(\{\lnot (a \to a)\} \vdash a \to \bot\) já ficamos com 6 nos e 12 edges}
-
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{resources/tg-final.png}
@@ -138,13 +137,9 @@ The second step is to build the Proof Graph (PG). The structure of this graph is
 To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
 
 \begin{definition}[Proof Graph]
-A \emph{Proof Graph (PG)} is a pair
-\[
-P_G = (G, P_E),
-\]
-where:
+A \emph{Proof Graph (PG)} is a pair $P_G = (G, P_E)$:
 \begin{itemize}
-  \item \( FG \) is a finite set of \emph{goals}, and
+  \item \( G \) is a finite set of \emph{goals}, and
   \item \( P_E \subseteq G \times \mathcal{P}(G \times (F \cup \{\varepsilon\})) \times R \) is a finite set of \emph{labeled hyperedges} called \emph{Proof Edge (PE)}, where each edge consists of:
   \begin{itemize}
     \item a tail goal \( g \in G \),
@@ -164,7 +159,7 @@ A goal \( \Delta \vdash \delta \) is \emph{proved} if either:
 
 The definition of proved goal is extremely important because it is used as a stopping condition to avoid the algorithm looping through unnecessary goals and to guarantee that the proof is valid. This is only possible due to the type of graph chosen, as it allows us to capture the relation between the hypotheses and the conclusion of each rule application. Figure~\ref{fig:pe-ex} shows an example of a PE and how these relations can be captured. In the figure, we want to prove \(\{a \vee b\} \vdash a\). By applying the Elimination of Disjunction rule, we notice that one of the hypotheses cannot be closed using only this rule, even if the other two hypotheses are closed. So, what we actually prove with this rule is \(\{a \vee b, a\} \vdash a\), which is different from our goal. To accurately track which goals are proved and ensure the proof only contains valid proved goals, this information must be stored in a hypergraph structure. This is why hypergraphs are necessary.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{resources/pe-example.jpg}
     \caption{Prove \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}
@@ -217,7 +212,7 @@ This part of the algorithm can generate very large graphs, potentially exponenti
 
 Figure~\ref{fig:st-ex} shows the PG generated using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\), with a limit of 9 goals explored. Nodes with solid borders represent proved goals, while nodes with dashed borders represent unproved goals. Since our target goal is proved, we know that at least one solution was found.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{resources/sg-gen.jpg}
     \caption{Example of Proof Graph using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\)}
@@ -230,7 +225,7 @@ The final stage of our algorithm consists of trimming the PG to keep only the va
 
 There are two different ways to define what constitutes a short proof: one based on height (Height Trim Strategy), and the other based on the number of formulas involved (Size Trim Strategy). Both strategies rely on a standard graph traversal technique, namely \emph{breadth-first search}, to determine which goals and edges should be preserved.\\
 
-The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one of the following trimming strategies is applied:
+The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one trimming strategies is applied:
 \vspace{1em}
 
 \textbf{Height Trim Strategy (HTS):} This algorithm traverses the PG in reverse order: it starts from the leaves and visits nodes using breadth-first search. Since this traversal guarantees that each node is first reached through the shortest possible path in terms of height, the algorithm retains only the first PE that reaches each goal. All other incoming edges to the same goal are discarded, even if other solutions exist with the same height.
@@ -251,7 +246,7 @@ The trimming process begins by iterating through all goals and discarding those 
     \label{fig:sg-trim-size}
 \end{figure}
 
-Another key feature that distinguishes us from other algorithms is that we do not store just a single solution, but rather a set of possible solutions. This is important to avoid recomputing the entire algorithm when generating feedback for the same problem. However, it comes at a cost in terms of space, as it stores thousands of goals. The algorithm can be queried to generate a new feedback step if all formulas in the new target goal are contained within the set of formulas in the TG used to generate the final trimmed PG. Figure~\ref{fig:sg-trim} shows the TG from Figure~\ref{fig:st-ex} after being trimmed using STS. The algorithm found a solution \textbf{A} for the target problem and also found solutions for each of the subgoals presented in the graph.
+Another key feature that distinguishes us from other algorithms is that we do not store just a single solution, but rather a set of possible solutions. This is important to avoid recomputing the entire algorithm when generating feedback for the same problem. However, it comes at a cost in terms of space, as it stores thousands of goals. The algorithm can be queried to generate a new feedback step if all formulas in the new target goal are contained in the set of formulas in the TG used to generate the final trimmed PG. Fig.~\ref{fig:sg-trim} shows the TG from Fig.~\ref{fig:st-ex} after being trimmed using STS. The algorithm found a solution \textbf{A} for the target problem and also solutions for each of the subgoals presented in the graph.
 
 \begin{figure}
     \centering
@@ -283,4 +278,4 @@ In this second example, a solution cannot be found, as the goal assigned to the 
 
 These methodologies can also be used to assess exercises. For example, by computing how far the student’s resolution is from a possible solution if the problem remains unsolvable, or how far it is shifted from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 
-Our algorithm is already implemented and has been tested. It is currently being integrated into an online tool focused on ND proofs. Some of the figures shown were actually taken from this tool, which allows students to practice solving this type of problem.
+Our algorithm is already implemented and has been tested. It is already integrated in a visual online tool focused on ND proofs. Some of the figures shown are from this tool, which allows students to practice ND proofs.
