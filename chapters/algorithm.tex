@@ -131,7 +131,7 @@ To illustrate the construction process, we present a full example in \autoref{fi
 \end{figure}
 
 \subsection{Proof Graph}
-The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal. In short, the PG aims to find the maximum number of different "game" combinations. To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
+The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal. In short, the PG aims to find the maximum number of different ``game'' combinations. To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
 
 \begin{definition}[Proof Graph]
 A \emph{Proof Graph (PG)} is a pair $P_G = (G, P_E)$:
@@ -159,7 +159,7 @@ The definition of proved goal is extremely important because it is used as a sto
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{resources/pe-example.jpg}
-    \caption{Prove \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}
+    \caption{Proof of \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}
     \label{fig:pe-ex}
 \end{figure}
 
@@ -212,7 +212,7 @@ This part of the algorithm can generate very large graphs, with millions of dist
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{resources/sg-gen.jpg}
-    \caption{Example of Proof Graph using the TG from \autoref{fig:tg-final} and target goal \(\vdash a \to a\)}
+    \caption{Example of a Proof Graph using the TG from \autoref{fig:tg-final} and target goal \(\vdash a \to a\)}
     \label{fig:st-ex}
 \end{figure}
 
