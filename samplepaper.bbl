@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{IJCAI13}
 Umair Ahmed, Sumit Gulwani, and Amey Karkare.
@@ -10,6 +10,11 @@ Alexander Bolotov, Vyacheslav Bocharov, Alexander Gorchakov, and Vasilyi Shangin
 \newblock Automated first order natural deduction.
 \newblock In Bhanu Prasad, editor, {\em Proceedings of the 2nd Indian International Conference on Artificial Intelligence, Pune, India, December 20-22, 2005}, pages 1292--1311. {IICAI}, 2005.
 
+\bibitem{makahu_automatic}
+Uehan~Maka Hu.
+\newblock Automatic generation of human\-readable proofs.
+\newblock M.sc. thesis, Brock University, St. Catharines, ON, Canada, 2023.
+
 \bibitem{logicincomputer}
 Phokion Kolaitis, Daniel Leivant, and Moshe Vardi.
 \newblock Panel: logic in the computer science curriculum.
@@ -20,14 +25,15 @@ Josje Lodder, Bastiaan Heeren, Johan Jeuring, and Wendy Neijenhuis.
 \newblock Generation and use of hints and feedback in a hilbert-style axiomatic proof tutor.
 \newblock {\em Int. J. Artif. Intell. Educ.}, 31(1):99--133, 2021.
 
-\bibitem{makahu_automatic}
-Xuehan Maka~Hu.
-\newblock Automatic generation of human readable proofs.
-
 \bibitem{nd-mancosu}
 Paolo Mancosu, Sergio Galvan, and Richard Zach.
 \newblock 65natural deduction.
 \newblock In {\em An Introduction to Proof Theory: Normalization, Cut-Elimination, and Consistency Proofs}. Oxford University Press, 08 2021.
+
+\bibitem{DBLP:journals/corr/abs-2002-05014}
+Xavier Ouvrard.
+\newblock Hypergraphs: an introduction and review.
+\newblock {\em CoRR}, abs/2002.05014, 2020.
 
 \bibitem{Pelletier1999-FRAABH}
 Francis~Jeffry Pelletier.

@@ -5,45 +5,45 @@ The style file: plain.bst
 Database file #1: bibliography.bib
 Warning--empty booktitle in IJCAI13
 Warning--empty booktitle in logicincomputer
-You've used 9 entries,
+You've used 10 entries,
             2118 wiz_defined-function locations,
-            562 strings with 5779 characters,
-and the built_in function-call counts, 3617 in all, are:
-= -- 352
-> -- 163
+            573 strings with 5978 characters,
+and the built_in function-call counts, 3834 in all, are:
+= -- 379
+> -- 170
 < -- 5
-+ -- 65
-- -- 55
-* -- 239
-:= -- 560
-add.period$ -- 28
-call.type$ -- 9
-change.case$ -- 53
++ -- 68
+- -- 57
+* -- 251
+:= -- 612
+add.period$ -- 32
+call.type$ -- 10
+change.case$ -- 58
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 154
-empty$ -- 286
-format.name$ -- 55
-if$ -- 792
+cite$ -- 12
+duplicate$ -- 165
+empty$ -- 296
+format.name$ -- 57
+if$ -- 832
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 9
-newline$ -- 47
-num.names$ -- 20
-pop$ -- 71
+int.to.str$ -- 10
+missing$ -- 10
+newline$ -- 53
+num.names$ -- 22
+pop$ -- 67
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 48
 quote$ -- 0
-skip$ -- 128
+skip$ -- 130
 stack$ -- 0
-substring$ -- 223
+substring$ -- 228
 swap$ -- 57
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 34
+type$ -- 38
 warning$ -- 2
-while$ -- 32
-width$ -- 10
-write$ -- 97
+while$ -- 34
+width$ -- 12
+write$ -- 113
 (There were 2 warnings)
