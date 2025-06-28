@@ -7,9 +7,8 @@ Our algorithm is structured in three sequential steps, which we will discuss in 
 
 \subsection{Transition Graph}
 \cmt{RG: Estes dois parágrafos inicias precisavam de alguma revisão (em termos de apresentação das ideias), mas não consegui fazer. Posso voltar a isto depois.}
-The first step is to create the so-called Transition Graph (TG). This graph stores the formulas that might be part of the final proof, as well as the rules that can be applied to each formula. In short, the TG sets up the rules of the "game".
-
-To generate the graph, we need to specify the main goal of the exercise \(\Gamma \vdash \varphi\), what the exercise wants us to prove, and the target goal \(\Sigma \vdash \theta\), which is the part of the proof that needs to be completed. The main goal is used to generate all the natural proof paths, which are proofs built using only formulas derived from decomposing the main goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. By this, we mean proofs that include more complex formulas than those directly derived from the main goal. By considering both goals, the system is able to generate more personalised and user-guided proofs, as it also takes into account the deviations made by the user, which is one of the core elements of our algorithm. For the type of information we want to store, we will make use of a special type of graph.
+The first step is to create the so-called Transition Graph (TG). This graph stores the formulas that might be part of the final proof, as well as the rules that can be applied to each formula. 
+To generate the graph, we need to specify what the consequence we want to prove \(\Gamma \vdash \varphi\), and the target goal \(\Sigma \vdash \theta\), which is the part of a student's proof that needs to be completed. The main goal is used to generate all the natural proof paths, which are proofs built using only formulas derived from decomposing the main goal. The target goal, on the other hand, can sometimes be used to generate non-natural proof paths. By this, we mean proofs that include more complex formulas than those directly derived from the main goal. By considering both goals, the system is able to generate more personalised and user-guided proofs, as it also takes into account the deviations made by the user, which is one of the core elements of our algorithm. For the type of information we want to store, we will make use of a special type of graph.
 
 \begin{definition}[Labeled Directed Hypergraph with Labeled Heads]
 A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair $H = (V, E)$, where:
@@ -44,7 +43,7 @@ The Transition Graph (TG) we will construct is a hypergraph as defined above, wh
 %\end{itemize}
 %\end{definition}
 
-To give some intuition on the formal construction of TG, we now present an example, in Figure \ref{fig:te-ex}, that shows how the applications of rule \(\vee_E\) can be represented using hypergraphs.
+To give some intuition on the formal construction of TG, in Figure \ref{fig:te-ex} we can see  how the applications of rule \(\vee_E\) can be represented using hypergraphs.
 
 
 
@@ -55,11 +54,11 @@ To give some intuition on the formal construction of TG, we now present an examp
         \label{fig:te-ex}
     \end{figure}
 
-Formally, the above hyperedge is represented as $(c, \{(a \vee b, \varepsilon), (c, a), (c, b)\}, \vee_E)$. Edges always go from the unique conclusion of the rule to its hypotheses. The labels of the heads of the hyperedge represent the possible additional hypothesis that can be used in that branch. In the particular case of the above rule $\vee_E$, each side of the disjunction can be used as an additional hypothesis in the second and third branch of the rule, representing the reasoning by cases encoded by the rule. 
+Formally, the above hyperedge is represented as $(c, \{(a \vee b, \varepsilon), (c, a), (c, b)\}, \vee_E)$. Edges go from the unique conclusion of the rule to its hypotheses. The labels of the heads of the hyperedge represent the possible additional hypothesis that can be used in that branch. In the above rule $\vee_E$, each side of the disjunction can be used as an additional hypothesis in the second and third branches of the rule, encoding the reasoning by cases. 
 If we were working with FOL proofs, we would also need to consider side conditions as part of TG. 
 %The reason for using this type of graph is that it allows us to map rule applications directly into a data structure. 
 %In the final step, we will explain why it is necessary to store edges in this way. 
-Also, at this point of the construction, there is no need to keep track of the marks. We will see later that we can easily deal with these in the final step of the construction.
+%Also, at this point of the construction, there is no need to keep track of the marks. We will see later that we can easily deal with these in the final step of the construction.
 
 %\vspace{1em}
 We now present, in Algorithm~\ref{alg:tg-construction}, the concrete procedure to generate the TG.
@@ -132,9 +131,7 @@ To illustrate the construction process, we present a full example in Figure~\ref
 \end{figure}
 
 \subsection{Proof Graph}
-The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal. In short, the PG aims to find the maximum number of different "game" combinations.
-
-To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
+The second step is to build the Proof Graph (PG). The structure of this graph is very similar to the TG, but it stores different objects. It stores the possible sub-goals derived from the target goal. In this graph, the nodes are goals, and the edges are adaptations of transition edges (TE) that now store goals. The purpose of this graph is to decompose the target goal into smaller goals that are easier to prove, until we reach goals that can be directly proved. In the end, after generating all sub-goals, the graph may contain multiple proof paths. Some of these paths may not lead to a solution, while others may succeed in proving the target goal. In short, the PG aims to find the maximum number of different "game" combinations. To generate the PG, we use the TG, previously generated, and the target goal. Note that the target goal can also be the initial goal, in case we want to generate a full proof for the problem. Before we describe the procedure, we define some key terms:
 
 \begin{definition}[Proof Graph]
 A \emph{Proof Graph (PG)} is a pair $P_G = (G, P_E)$:
@@ -208,7 +205,7 @@ $P_E \leftarrow \emptyset$ \tcp*[r]{Initialize set of proof edges}
 }
 \end{algorithm}
 
-This part of the algorithm can generate very large graphs, potentially exponential in size, with millions of distinct goals depending on the complexity of the problem. In most cases, we do not want to explore the entire goal space, as many goals are extremely complex and do not provide useful feedback. Therefore, stopping conditions are required. These may include: limiting the total number of goals explored, setting a maximum number of hypotheses allowed per goal, or enforcing a timeout.
+This part of the algorithm can generate very large graphs, with millions of distinct goals depending on the complexity of the problem. In most cases, we do not want to explore the entire goal space, as many goals are extremely complex and do not provide useful feedback. Therefore, stopping conditions are required. These may include: limiting the total number of goals explored, setting a maximum number of hypotheses allowed per goal, or enforcing a timeout.
 
 Figure~\ref{fig:st-ex} shows the PG generated using the TG from Figure~\ref{fig:tg-final} and target goal \(\vdash a \to a\), with a limit of 9 goals explored. Nodes with solid borders represent proved goals, while nodes with dashed borders represent unproved goals. Since our target goal is proved, we know that at least one solution was found.
 
@@ -221,16 +218,12 @@ Figure~\ref{fig:st-ex} shows the PG generated using the TG from Figure~\ref{fig:
 
 \subsection{Proof Graph Trimming}
 
-The final stage of our algorithm consists of trimming the PG to keep only the valid solutions to the problem. The resulting trimmed graph includes only proved goals and the edges that lead to the shortest proofs.
-
-There are two different ways to define what constitutes a short proof: one based on height (Height Trim Strategy), and the other based on the number of formulas involved (Size Trim Strategy). Both strategies rely on a standard graph traversal technique, namely \emph{breadth-first search}, to determine which goals and edges should be preserved.\\
-
-The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one trimming strategies is applied:
+The final stage of our algorithm consists of trimming the PG to keep only the valid solutions of the problem. The resulting trimmed graph includes only proved goals and the edges that lead to the shortest proofs, where short proofs can be defined in two different ways: one based on height (Height Trim Strategy), and the other based on the number of formulas involved (Size Trim Strategy). Both strategies rely on a standard graph traversal technique, namely \emph{breadth-first search}, to determine which goals and edges should be preserved. The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one of the following trimming strategies is applied:
 \vspace{1em}
 
 \textbf{Height Trim Strategy (HTS):} This algorithm traverses the PG in reverse order: it starts from the leaves and visits nodes using breadth-first search. Since this traversal guarantees that each node is first reached through the shortest possible path in terms of height, the algorithm retains only the first PE that reaches each goal. All other incoming edges to the same goal are discarded, even if other solutions exist with the same height.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.6\linewidth]{resources/trim-height.jpg}
     \caption{Example of a full proof generated by the algorithm for \(\vdash a \vee \lnot a\), using HTS.}
@@ -239,7 +232,7 @@ The trimming process begins by iterating through all goals and discarding those 
 
 \textbf{Size Trim Strategy (STS):} This strategy is similar to HTS, but it tracks the size of each proof, defined as the number of formulas involved. Instead of retaining the first edge to reach a goal, it must explore all incoming edges to identify the one that yields the smallest proof. Consequently, a goal may be visited multiple times, making this strategy more computationally expensive. However, it often results in more concise proofs in terms of rule applications.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.6\linewidth]{resources/trim-size.jpg}
     \caption{Example of a full proof generated by the algorithm for \(\vdash a \vee \lnot a\), using STS.}
@@ -247,14 +240,12 @@ The trimming process begins by iterating through all goals and discarding those 
 \end{figure}
 
 Another key feature that distinguishes us from other algorithms is that we do not store just a single solution, but rather a set of possible solutions. This is important to avoid recomputing the entire algorithm when generating feedback for the same problem. However, it comes at a cost in terms of space, as it stores thousands of goals. The algorithm can be queried to generate a new feedback step if all formulas in the new target goal are contained in the set of formulas in the TG used to generate the final trimmed PG. Fig.~\ref{fig:sg-trim} shows the TG from Fig.~\ref{fig:st-ex} after being trimmed using STS. The algorithm found a solution \textbf{A} for the target problem and also solutions for each of the subgoals presented in the graph.
-
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{resources/sg-final.jpg}
     \caption{Trimmed TG using STS.}
     \label{fig:sg-trim}
 \end{figure}
-
 \subsection{Feedback Generation}
 With the final graph, we can now generate feedback by querying which goals remain unproved in the student's proof. Figures \ref{fig:extract-solution} and \ref{fig:extract-solution2} illustrate examples of how feedback can be generated from the final graph.
 
@@ -268,14 +259,12 @@ In this first example, the student does not know how to proceed after applying t
 \end{figure}
 
 In this second example, a solution cannot be found, as the goal assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. For example, the final graph was only constructed considering the first 9 nodes. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
-
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
     \caption{Extracting a solution to produce feedback from an unproved goal.}
     \label{fig:extract-solution2}
 \end{figure}
-
-These methodologies can also be used to assess exercises. For example, by computing how far the student’s resolution is from a possible solution if the problem remains unsolvable, or how far it is shifted from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
+These methodologies can also be used to assess exercises. For example, we could compute how far a student’s resolution is from a possible solution, or how far it is from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 
 Our algorithm is already implemented and has been tested. It is already integrated in a visual online tool focused on ND proofs. Some of the figures shown are from this tool, which allows students to practice ND proofs.

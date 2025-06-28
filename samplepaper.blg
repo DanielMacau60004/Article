@@ -3,12 +3,11 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: samplepaper.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "autogeneratingnd"
 Warning--empty booktitle in IJCAI13
 Warning--empty booktitle in logicincomputer
 You've used 9 entries,
             2118 wiz_defined-function locations,
-            563 strings with 5795 characters,
+            562 strings with 5779 characters,
 and the built_in function-call counts, 3617 in all, are:
 = -- 352
 > -- 163
@@ -47,4 +46,4 @@ warning$ -- 2
 while$ -- 32
 width$ -- 10
 write$ -- 97
-(There were 3 warnings)
+(There were 2 warnings)

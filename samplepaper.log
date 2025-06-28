@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.24)  27 JUN 2025 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.24)  28 JUN 2025 01:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -747,22 +747,25 @@ Package caption Info: End \AtBeginDocument code.
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 /texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]) (./chapte
-rs/background.tex [2]
-<resources/rules.png, id=22, 955.31906pt x 673.76718pt>
+rs/background.tex
+<resources/rules.png, id=16, 955.31906pt x 673.76718pt>
 File: resources/rules.png Graphic file (type png)
 <use resources/rules.png>
 Package pdftex.def Info: resources/rules.png  used on input line 17.
 (pdftex.def)             Requested size: 347.12354pt x 244.81778pt.
-)
-(./chapters/requirements.tex [3 <./resources/rules.png>])
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2]) (./chapters/requirements.tex [3 <./resources/rules.png>])
 (./chapters/algorithm.tex [4]
-<resources/te-example.jpg, id=39, 452.673pt x 132.714pt>
+<resources/te-example.jpg, id=40, 452.673pt x 132.714pt>
 File: resources/te-example.jpg Graphic file (type jpg)
 <use resources/te-example.jpg>
-Package pdftex.def Info: resources/te-example.jpg  used on input line 53.
+Package pdftex.def Info: resources/te-example.jpg  used on input line 52.
 (pdftex.def)             Requested size: 277.69987pt x 81.41713pt.
 
-Overfull \hbox (4.57668pt too wide) in paragraph at lines 58--63
+Overfull \hbox (4.57668pt too wide) in paragraph at lines 57--62
 []\T1/cmr/m/n/10 Formally, the above hy-per-edge is rep-re-sented as $\OT1/cmr/
 m/n/10 (\OML/cmm/m/it/10 c; \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  a \OMS/cmsy/m/n/10 _ \OML/cmm/m/it/10 b; "\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; 
@@ -772,94 +775,109 @@ it/10 ; \OMS/cmsy/m/n/10 _[]\OT1/cmr/m/n/10 )$\T1/cmr/m/n/10 .
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 7
-2.
+1.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<resources/tg-final.png, id=40, 573.78pt x 464.499pt>
+<resources/tg-final.png, id=41, 573.78pt x 464.499pt>
 File: resources/tg-final.png Graphic file (type png)
 <use resources/tg-final.png>
-Package pdftex.def Info: resources/tg-final.png  used on input line 129.
+Package pdftex.def Info: resources/tg-final.png  used on input line 128.
 (pdftex.def)             Requested size: 277.69987pt x 224.81395pt.
-[5 <./resources/te-example.jpg>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6] [7 <./resources/tg-final.png>]
-<resources/pe-example.jpg, id=57, 625.683pt x 146.949pt>
+[5 <./resources/te-example.jpg>] [6]
+<resources/pe-example.jpg, id=52, 625.683pt x 146.949pt>
 File: resources/pe-example.jpg Graphic file (type jpg)
 <use resources/pe-example.jpg>
-Package pdftex.def Info: resources/pe-example.jpg  used on input line 164.
+Package pdftex.def Info: resources/pe-example.jpg  used on input line 161.
 (pdftex.def)             Requested size: 347.12354pt x 81.5285pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7 <./resources/tg-final.png>]
+<resources/sg-gen.jpg, id=58, 503.043pt x 206.736pt>
+File: resources/sg-gen.jpg Graphic file (type jpg)
+<use resources/sg-gen.jpg>
+Package pdftex.def Info: resources/sg-gen.jpg  used on input line 214.
+(pdftex.def)             Requested size: 277.69987pt x 114.12784pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./resources/pe-example.jpg>]
-<resources/sg-gen.jpg, id=62, 503.043pt x 206.736pt>
-File: resources/sg-gen.jpg Graphic file (type jpg)
-<use resources/sg-gen.jpg>
-Package pdftex.def Info: resources/sg-gen.jpg  used on input line 217.
-(pdftex.def)             Requested size: 277.69987pt x 114.12784pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
-
- []
-
 <resources/trim-height.jpg, id=63, 485.742pt x 215.715pt>
 File: resources/trim-height.jpg Graphic file (type jpg)
 <use resources/trim-height.jpg>
-Package pdftex.def Info: resources/trim-height.jpg  used on input line 235.
+Package pdftex.def Info: resources/trim-height.jpg  used on input line 228.
 (pdftex.def)             Requested size: 208.27623pt x 92.4923pt.
 <resources/trim-size.jpg, id=64, 411.72pt x 264.552pt>
 File: resources/trim-size.jpg Graphic file (type jpg)
 <use resources/trim-size.jpg>
-Package pdftex.def Info: resources/trim-size.jpg  used on input line 244.
+Package pdftex.def Info: resources/trim-size.jpg  used on input line 237.
 (pdftex.def)             Requested size: 208.27623pt x 133.82578pt.
-[9 <./resources/sg-gen.jpg>]
-<resources/sg-final.jpg, id=68, 507.861pt x 235.644pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<resources/sg-final.jpg, id=65, 507.861pt x 235.644pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
-Package pdftex.def Info: resources/sg-final.jpg  used on input line 253.
+Package pdftex.def Info: resources/sg-final.jpg  used on input line 245.
 (pdftex.def)             Requested size: 277.69987pt x 128.8531pt.
- [10 <./resources/trim-height.jpg> <./resources/trim-size.jpg>]
+
+Underfull \vbox (badness 1412) has occurred while \output is active []
+
+ [9 <./resources/sg-gen.jpg> <./resources/trim-height.jpg>] [10 <./resources/tr
+im-size.jpg> <./resources/sg-final.jpg>]
 <resources/trim-pos-feed.jpg, id=72, 692.04pt x 155.271pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
-Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 265.
+Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 256.
 (pdftex.def)             Requested size: 347.12354pt x 77.8817pt.
 <resources/trim-neg-feed.jpg, id=73, 662.694pt x 152.424pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
-Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 274.
+Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 264.
 (pdftex.def)             Requested size: 347.12354pt x 79.84004pt.
-) (./chapters/limitations.tex
+) (./chapters/relatedwork.tex
+Overfull \hbox (10.58078pt too wide) in paragraph at lines 3--4
+\T1/cmr/m/n/10 In [5] an al-go-rithm is in-tro-duced that gen-er-ates com-plete
+, human-readable Gentzen-
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11 <./resources/sg-final.jpg> <./resources/trim-pos-feed.jpg>])
-(./chapters/relatedwork.tex [12 <./resources/trim-neg-feed.jpg>])
-(./chapters/conclusion.tex) (./samplepaper.bbl [13]
+ [11 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>])
+(./chapters/conclusion.tex) (./samplepaper.bbl [12]
 Underfull \hbox (badness 1297) in paragraph at lines 10--16
 []\T1/cmr/m/n/9 Alexander Bolo-tov, Vy-ach-eslav Bocharov, Alexan-der Gor-chako
 v, and Vasi-lyi
  []
 
-) [14] (./samplepaper.aux)
+) [13] (./samplepaper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 16864 strings out of 474116
- 334082 string characters out of 5743682
+ 16856 strings out of 474116
+ 333859 string characters out of 5743682
  1944187 words of memory out of 5000000
- 38920 multiletter control sequences out of 15000+600000
+ 38915 multiletter control sequences out of 15000+600000
  571296 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,101p,1564b,637s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,19n,101p,1299b,637s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><
 /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
@@ -883,10 +901,10 @@ onts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fon
 ts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts
 /type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/t
 ype1/public/cm-super/sftt0900.pfb>
-Output written on samplepaper.pdf (14 pages, 1719395 bytes).
+Output written on samplepaper.pdf (13 pages, 1716234 bytes).
 PDF statistics:
- 187 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 184 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
