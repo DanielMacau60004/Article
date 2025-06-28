@@ -23,7 +23,7 @@ A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair $H = (V, E)$, 
 \end{itemize}
 \end{definition}
 
-The Transition Graph (TG) we will construct is a hypergraph as defined above, where vertices are formulas and each hyperedge represents the application of an inference rule, which, as we have seen, may have mode than one premise. 
+The Transition Graph (TG) we will construct is a hypergraph as defined above, where vertices are formulas and each hyperedge represents the application of an inference rule, which, as we have seen, may have more than one premise. 
 %
 %
 %\begin{definition}[Transition Graph]
@@ -68,13 +68,13 @@ We present, in \autoref{alg:tg-construction}, the concrete procedure to generate
 \KwIn{Main goal $\Gamma \vdash \varphi$, Target goal $\Sigma \vdash \theta$}
 \KwOut{Transition Graph $T_G = (F, T_E)$}
 
-$F \leftarrow \Gamma \cup \Sigma \cup \{\varphi, \theta\}$ \tcp*[r]{Initialize formulas}
-$T_E \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
+$F \leftarrow \Gamma \cup \Sigma \cup \{\varphi, \theta\}$\tcp*[r]{Initialize formulas}
+$T_E \leftarrow \emptyset$\tcp*[r]{Initialize edges}
 
 \tcp{Compute formulas}
 \ForEach{$f \in F$}{
   \If{$f $was not already added as a negation}{
-    $F \leftarrow F \cup \{\lnot f\}$ \tcp*[r]{Add negation for indirect rules}
+    $F \leftarrow F \cup \{\lnot f\}$\tcp*[r]{Add negation for indirect rules}
   }
 
   Decompose $f$ into parts $S$\;
@@ -93,7 +93,7 @@ $T_E \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
         $T_E = T_E \cup \{(\bot, \{(\alpha, \varepsilon), (\lnot \alpha,\varepsilon)\}, \lnot_E)\}$\;
     }
 
-    \If{$f = \alpha \lor \beta$ for some $\alpha, \beta$}{
+    \ElseIf{$f = \alpha \lor \beta$ for some $\alpha, \beta$}{
         $T_E = T_E \cup \{(f, \{(\alpha, \varepsilon)\}, \vee_{I_R})\}$\;
         $T_E = T_E \cup \{(f, \{(\beta, \varepsilon)\}, \vee_{I_L})\}$\;
         \ForEach{$f' \in F$}{
@@ -101,13 +101,13 @@ $T_E \leftarrow \emptyset$ \tcp*[r]{Initialize edges}
         }
     }
 
-    \If{$f = \alpha \land \beta$ for some $\alpha, \beta$}{
+    \ElseIf{$f = \alpha \land \beta$ for some $\alpha, \beta$}{
         $T_E = T_E \cup \{(\alpha \land \beta, \{(\alpha, \varepsilon), (\lnot \beta,\varepsilon)\}, \land_{I})\}$\;
         $T_E = T_E \cup \{(\alpha, \{(\alpha \land \beta, \varepsilon)\}, \land_{E_R})\}$\;
         $T_E = T_E \cup \{(\beta, \{(\alpha \land \beta, \varepsilon)\}, \land_{E_L})\}$\;
     }
 
-    \If{$f = \alpha \to \beta$ for some $\alpha, \beta$}{
+    \ElseIf{$f = \alpha \to \beta$ for some $\alpha, \beta$}{
         $T_E = T_E \cup \{(\alpha \to \beta, \{(\beta, \alpha)\}, \to_{I})\}$\;
         $T_E = T_E \cup \{(\beta, \{(\alpha, \varepsilon), (\alpha \to \beta, \varepsilon)\}, \to_{E})\}$\;
     }
@@ -176,35 +176,35 @@ With all the necessary definitions in place, we now present the procedure to gen
 \KwIn{Transition Graph $T_G = (F, T_E)$, Target goal $t_g$}
 \KwOut{Proof Graph $P_G = (G, P_E)$}
 
-$G \leftarrow \{t_g\}$ \tcp*[r]{Initialize set of goals}
-$P_E \leftarrow \emptyset$ \tcp*[r]{Initialize set of proof edges}
+$G \leftarrow \{t_g\}$\tcp*[r]{Initialize set of goals}
+$P_E \leftarrow \emptyset$\tcp*[r]{Initialize set of proof edges}
 
 \tcp{Compute sub-goals}
 \ForEach{$g = \Sigma \vdash \theta \in G$}{
 
     \If{$g$ is proved}{
-        \textbf{continue} \tcp*[r]{Skip proved goal}
+        \textbf{continue}\tcp*[r]{Skip proved goal}
     }
 
     \If{stopping condition is reached}{
-        \textbf{break} \tcp*[r]{Avoid excessive expansion}
+        \textbf{break}\tcp*[r]{Avoid excessive expansion}
     }
 
     \tcp{Get transition edges for formula $\theta$}
     $TE_\theta \leftarrow \{ (f, H, r) \in T_E \mid f = \theta \}$\;
 
     \ForEach{$(f, H, r) \in TE_\theta$}{
-        $T \leftarrow \emptyset$  \tcp*[r]{Store transitions to each hypothesis}
+        $T \leftarrow \emptyset$\tcp*[r]{Store transitions to each hypothesis}
         
         \ForEach{$(f_1, f_2) \in H$}{
             \tcp{Create sub-goal by extending the current premises with the closed hypothesis}
             $g_\text{new} \leftarrow (\Sigma \cup \{f_2\}) \vdash f_1$\;
 
             $T \leftarrow T \cup \{(g_\text{new}, f_2)\}$\;
-            $G \leftarrow G \cup \{g_\text{new}\}$ \tcp*[r]{Add sub-goal}
+            $G \leftarrow G \cup \{g_\text{new}\}$\tcp*[r]{Add sub-goal}
         }
 
-        $P_E \leftarrow P_E \cup \{(g, T, r)\}$ \tcp*[r]{Add proof edge}
+        $P_E \leftarrow P_E \cup \{(g, T, r)\}$\tcp*[r]{Add proof edge}
     }
 }
 \end{algorithm}
@@ -271,4 +271,4 @@ In this second example, a solution cannot be found, as the goal assigned to the 
 \end{figure}
 These methodologies can also be used to assess exercises. For example, we could compute how far a student’s resolution is from a possible solution, or how far it is from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 
-Our algorithm is implemented in a publicly available prototype\footnote{\url{HERE}} and has been functionally tested. It is also integrated in a visual online tool focused on ND proofs but still lacks user testing for a proper validation. The figures that include user interaction are captured from the tool that allows students to practice ND proofs.
+Our algorithm is implemented in a publicly available prototype\footnote{\url{https://github.com/DanielMacau60004/NDAlgorithm}} and has been functionally tested. It is also integrated in a visual online tool focused on ND proofs but still lacks user testing for a proper validation. The figures that include user interaction are captured from the tool that allows students to practice ND proofs.
