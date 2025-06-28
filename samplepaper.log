@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.29)  28 JUN 2025 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.29)  28 JUN 2025 13:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -673,24 +673,24 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 ) (./samplepaper.aux)
 \openout1 = `samplepaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
  (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count354
@@ -713,7 +713,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 32.
+Package hyperref Info: Link coloring OFF on input line 33.
  (./samplepaper.out) (./samplepaper.out)
 \@outlinefile=\write4
 \openout4 = `samplepaper.out'.
@@ -756,22 +756,18 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <resources/pe-example.jpg, id=123, 625.683pt x 146.949pt>
 File: resources/pe-example.jpg Graphic file (type jpg)
 <use resources/pe-example.jpg>
-Package pdftex.def Info: resources/pe-example.jpg  used on input line 161.
+Package pdftex.def Info: resources/pe-example.jpg  used on input line 165.
 (pdftex.def)             Requested size: 347.12354pt x 81.5285pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [7 <./resources/tg-final.png>]
-<resources/sg-gen.jpg, id=135, 503.043pt x 206.736pt>
+<resources/sg-gen.jpg, id=137, 503.043pt x 206.736pt>
 File: resources/sg-gen.jpg Graphic file (type jpg)
 <use resources/sg-gen.jpg>
-Package pdftex.def Info: resources/sg-gen.jpg  used on input line 214.
+Package pdftex.def Info: resources/sg-gen.jpg  used on input line 218.
 (pdftex.def)             Requested size: 277.69987pt x 114.12784pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -779,45 +775,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <resources/trim-height.jpg, id=163, 485.742pt x 215.715pt>
 File: resources/trim-height.jpg Graphic file (type jpg)
 <use resources/trim-height.jpg>
-Package pdftex.def Info: resources/trim-height.jpg  used on input line 228.
+Package pdftex.def Info: resources/trim-height.jpg  used on input line 232.
 (pdftex.def)             Requested size: 208.27623pt x 92.4923pt.
 <resources/trim-size.jpg, id=164, 411.72pt x 264.552pt>
 File: resources/trim-size.jpg Graphic file (type jpg)
 <use resources/trim-size.jpg>
-Package pdftex.def Info: resources/trim-size.jpg  used on input line 237.
+Package pdftex.def Info: resources/trim-size.jpg  used on input line 241.
 (pdftex.def)             Requested size: 208.27623pt x 133.82578pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <resources/sg-final.jpg, id=167, 507.861pt x 235.644pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
-Package pdftex.def Info: resources/sg-final.jpg  used on input line 245.
+Package pdftex.def Info: resources/sg-final.jpg  used on input line 249.
 (pdftex.def)             Requested size: 277.69987pt x 128.8531pt.
-
-Underfull \vbox (badness 1412) has occurred while \output is active []
-
  [9 <./resources/sg-gen.jpg> <./resources/trim-height.jpg>] [10 <./resources/trim-size.jpg> <./resources/sg-final.jpg>]
-<resources/trim-pos-feed.jpg, id=186, 692.04pt x 155.271pt>
+<resources/trim-pos-feed.jpg, id=187, 692.04pt x 155.271pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
-Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 256.
+Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 260.
 (pdftex.def)             Requested size: 347.12354pt x 77.8817pt.
-<resources/trim-neg-feed.jpg, id=187, 662.694pt x 152.424pt>
+<resources/trim-neg-feed.jpg, id=188, 662.694pt x 152.424pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
-Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 264.
+Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 268.
 (pdftex.def)             Requested size: 347.12354pt x 79.84004pt.
-) (./chapters/relatedwork.tex
-Overfull \hbox (10.58078pt too wide) in paragraph at lines 3--4
-\T1/cmr/m/n/10 In [[]5[]] an al-go-rithm is in-tro-duced that gen-er-ates com-plete, human-readable Gentzen-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>]) (./chapters/conclusion.tex) (./samplepaper.bbl [12]
+) (./chapters/relatedwork.tex [11 <./resources/trim-pos-feed.jpg> <./resources/trim-neg-feed.jpg>]) (./chapters/conclusion.tex) (./samplepaper.bbl [12]
 Underfull \hbox (badness 1297) in paragraph at lines 9--12
 []\T1/cmr/m/n/9 Alexander Bolo-tov, Vy-ach-eslav Bocharov, Alexan-der Gor-chakov, and Vasi-lyi
  []
@@ -831,18 +812,18 @@ Package rerunfilecheck Info: File `samplepaper.out' has not changed.
 (rerunfilecheck)             Checksum: 83902FC6756D6717E7CDEC5D4D20B0D6;303.
  ) 
 Here is how much of TeX's memory you used:
- 23848 strings out of 474116
- 442118 string characters out of 5743682
+ 23852 strings out of 474116
+ 442167 string characters out of 5743682
  1945187 words of memory out of 5000000
- 45708 multiletter control sequences out of 15000+600000
- 571296 words of font info for 61 fonts, out of 8000000 for 9000
+ 45710 multiletter control sequences out of 15000+600000
+ 572064 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,101p,1341b,714s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on samplepaper.pdf (13 pages, 1721029 bytes).
+ 99i,19n,101p,1346b,714s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on samplepaper.pdf (13 pages, 1726087 bytes).
 PDF statistics:
- 333 PDF objects out of 1000 (max. 8388607)
- 255 compressed objects within 3 object streams
- 96 named destinations out of 1000 (max. 500000)
+ 343 PDF objects out of 1000 (max. 8388607)
+ 263 compressed objects within 3 object streams
+ 97 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
