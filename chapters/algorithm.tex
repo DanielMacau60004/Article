@@ -23,7 +23,7 @@ A \emph{Labeled Directed Hypergraph with Labeled Heads} is a pair $H = (V, E)$, 
 \end{itemize}
 \end{definition}
 
-The Transition Graph (TG) we will construct is a hypergraph as defined above, where vertices are formulas and each hyperedge represents the application of an inference rule, which, as we have seen, may have more than one premise. 
+The Transition Graph (TG) we will construct is a directed hypergraph as defined above, where vertices are formulas and each hyperedge represents the application of an inference rule, which, as we have seen, may have more than one premise.
 %
 %
 %\begin{definition}[Transition Graph]
@@ -43,19 +43,19 @@ The Transition Graph (TG) we will construct is a hypergraph as defined above, wh
 %\end{itemize}
 %\end{definition}
 %
-To give some intuition on the formal construction of TG, in \autoref{fig:te-ex} we can see  how the applications of rule \(\vee_E\) can be represented using hypergraphs.
+To give some intuition on the formal construction of TG, in \autoref{fig:te-ex} we can see  how the applications of rule \(\vee_E\) can be represented using hypergraphs. Thin edges link head labels, the thick edge links the tail, connected via the dot.
 
 
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.8\linewidth]{resources/te-example.jpg}
-        \caption{Example of a transition edge.}
+        \includegraphics[width=0.7\linewidth]{resources/te-example.jpg}
+        \caption{Example of a transition edge. Marks are ignored as irrelevant at this stage. The rule yields only two hypotheses, hence~$\varepsilon$ is needed.}
         \label{fig:te-ex}
     \end{figure}
 
 Formally, the above hyperedge is represented as $(c, \{(a \vee b, \varepsilon), (c, a), (c, b)\}, \vee_E)$. Edges go from the unique conclusion of the rule to its hypotheses. The labels of the heads of the hyperedge represent the possible additional hypothesis that can be used in that branch. In the above rule $\vee_E$, each side of the disjunction can be used as an additional hypothesis in the second and third branches of the rule, encoding the reasoning by cases. 
-If we were working with FOL proofs, we would also need to consider side conditions as part of TG. 
+%If we were working with FOL proofs, we would also need to consider side conditions as part of TG. 
 %The reason for using this type of graph is that it allows us to map rule applications directly into a data structure. 
 %In the final step, we will explain why it is necessary to store edges in this way. 
 %Also, at this point of the construction, there is no need to keep track of the marks. We will see later that we can easily deal with these in the final step of the construction.
@@ -77,7 +77,7 @@ $T_E \leftarrow \emptyset$\tcp*[r]{Initialize edges}
     $F \leftarrow F \cup \{\lnot f\}$\tcp*[r]{Add negation for indirect rules}
   }
 
-  Decompose $f$ into parts $S$\;
+  Decompose $f$ into parts $S$\tcp*[r]{The set of sub-formulae of f}
   $F \leftarrow F \cup S$\;
 }
 
@@ -102,7 +102,7 @@ $T_E \leftarrow \emptyset$\tcp*[r]{Initialize edges}
     }
 
     \ElseIf{$f = \alpha \land \beta$ for some $\alpha, \beta$}{
-        $T_E = T_E \cup \{(\alpha \land \beta, \{(\alpha, \varepsilon), (\lnot \beta,\varepsilon)\}, \land_{I})\}$\;
+        $T_E = T_E \cup \{(\alpha \land \beta, \{(\alpha, \varepsilon), (\beta,\varepsilon)\}, \land_{I})\}$\;
         $T_E = T_E \cup \{(\alpha, \{(\alpha \land \beta, \varepsilon)\}, \land_{E_R})\}$\;
         $T_E = T_E \cup \{(\beta, \{(\alpha \land \beta, \varepsilon)\}, \land_{E_L})\}$\;
     }
@@ -163,7 +163,7 @@ The definition of proved goal is extremely important because it is used as a sto
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{resources/pe-example.jpg}
-    \caption{Proof of \(\{a \vee b\} \vdash a\) using the Elimination of Disjunction rule}
+    \caption{Proof attempt of $\{a \lor b\} \vdash a$, no valid proof found.}
     \label{fig:pe-ex}
 \end{figure}
 
@@ -173,10 +173,10 @@ With all the necessary definitions in place, we now present the procedure to gen
 \begin{algorithm}
 \caption{Proof Graph Construction}
 \label{alg:pg-construction}
-\KwIn{Transition Graph $T_G = (F, T_E)$, Target goal $t_g$}
+\KwIn{Transition Graph $T_G = (F, T_E)$, Target goal $t_\text{goal}$}
 \KwOut{Proof Graph $P_G = (G, P_E)$}
 
-$G \leftarrow \{t_g\}$\tcp*[r]{Initialize set of goals}
+$G \leftarrow \{t_\text{goal}\}$\tcp*[r]{Initialize set of goals}
 $P_E \leftarrow \emptyset$\tcp*[r]{Initialize set of proof edges}
 
 \tcp{Compute sub-goals}
@@ -209,7 +209,7 @@ $P_E \leftarrow \emptyset$\tcp*[r]{Initialize set of proof edges}
 }
 \end{algorithm}
 
-This algorithm generates very large graphs, with millions of distinct goals depending on the complexity of the problem. It is not feasible to explore the entire goal space, as many goals are extremely complex and do not provide useful feedback. Therefore, stopping conditions are required. These may include: limiting the total number of goals explored, setting a maximum number of hypotheses allowed per goal, or enforcing a timeout. In practice, the solving of simpler goals is sufficient and more useful in such a pedagogical scenario.
+This algorithm generates very large graphs, with numerous distinct goals depending on the complexity of the problem, especially when dealing with FOL, as it is undecidable. In a pedagogical context, since the size of the proofs we are considering is small, it is not necessary to explore the entire goal space, as many goals are extremely complex and do not provide useful feedback. Therefore, stopping conditions are required, and these depend on the complexity of the specific exercise. These may include limiting the total number of goals explored, setting a maximum number of hypotheses allowed per goal, or enforcing a timeout. The algorithm will find a solution if there is one and no limits are set, but it might take a lot of time and memory.
 
 \autoref{fig:st-ex} shows the PG generated using the TG from \autoref{fig:tg-final} and target goal \(\vdash a \to a\), with a limit of 9 goals explored. Nodes with solid borders represent proved goals, while nodes with dashed borders represent unproved goals. Since our target goal is proved, we know that at least one solution was found.
 
@@ -225,7 +225,7 @@ This algorithm generates very large graphs, with millions of distinct goals depe
 The final stage of our algorithm consists of trimming the PG to keep only the valid solutions of the problem. The resulting trimmed graph includes only proved goals and the edges that lead to the shortest proofs, where short proofs can be defined in two different ways: one based on height (Height Trim Strategy), and the other based on the number of formulas involved (Size Trim Strategy). Both strategies rely on a standard graph traversal technique, namely \emph{breadth-first search}, to determine which goals and edges should be preserved. The trimming process begins by iterating through all goals and discarding those that cannot be proved. Then, one of the trimming strategies, described below, is applied:
 \vspace{1em}
 
-\textbf{Height Trim Strategy (HTS):} This algorithm traverses the PG in reverse order: it starts from the leaves and visits nodes using breadth-first search. Since this traversal guarantees that each node is first reached through the shortest possible path in terms of height, the algorithm retains only the first PE that reaches each goal. All other incoming edges to the same goal are discarded, even if other solutions exist with the same height.
+\textbf{Height Trim Strategy (HTS):} This algorithm traverses the PG in reverse order: it starts from the leaves and visits nodes using breadth-first search. Since this traversal guarantees that each node is first reached through the shortest possible path in terms of height, the algorithm retains only the first PE that reaches each goal. All other incoming edges to the same goal are discarded, even if other solutions exist with the same height (see Fig.~\ref{fig:sg-trim-height}).
 
 \begin{figure}[t]
     \centering
@@ -234,7 +234,7 @@ The final stage of our algorithm consists of trimming the PG to keep only the va
     \label{fig:sg-trim-height}
 \end{figure}
 
-\textbf{Size Trim Strategy (STS):} This strategy is similar to HTS, but it tracks the size of each proof, defined as the number of formulas involved. Instead of retaining the first edge to reach a goal, it must explore all incoming edges to identify the one that yields the smallest proof. Consequently, a goal may be visited multiple times, making this strategy more computationally expensive. However, it often results in more concise proofs in terms of rule applications.
+\textbf{Size Trim Strategy (STS):} This strategy is similar to HTS, but it tracks the size of each proof, defined as the number of formulas involved. Instead of retaining the first edge, it must explore all incoming edges to identify the one that yields the smallest proof. Consequently, a goal may be visited multiple times, making this strategy more computationally expensive. However, it often results in more concise proofs in terms of rule applications (see Fig.~\ref{fig:sg-trim-size}).
 
 \begin{figure}[t]
     \centering
@@ -269,6 +269,6 @@ In this second example, a solution cannot be found, as the goal assigned to the 
     \caption{Extracting a solution to produce feedback from an unproved goal.}
     \label{fig:extract-solution2}
 \end{figure}
-These methodologies can also be used to assess exercises. For example, we could compute how far a student’s resolution is from a possible solution, or how far it is from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
+These methodologies can also be used by teachers to assess exercises. For example, we could compute how far a student’s resolution is from a possible solution, or how far it is from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 
 Our algorithm is implemented in a publicly available prototype\footnote{\url{https://github.com/DanielMacau60004/NDAlgorithm}} and has been functionally tested. It is also integrated in a visual online tool focused on ND proofs but still lacks user testing for a proper validation. The figures that include user interaction are captured from the tool that allows students to practice ND proofs.

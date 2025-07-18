@@ -1,8 +1,9 @@
 \section{Conclusion}
-This work introduces an algorithm designed to support the learning and teaching of ND, with the aim of generating high-quality educational feedback. Through the construction of graphs based on labeled directed hypergraphs, the system is able to automatically generate complete, human-readable ND proofs and explore multiple proof paths for a given problem.
-The main contribution of this work is a method for generating multiple valid ND proofs for both PL and FOL, an efficient feedback mechanism that aligns with the student’s reasoning, rather than enforcing a single rigid solution path, and a way to quantify progress, offering metrics such as distance to a valid proof and detection of redundant or more complex steps.
-The algorithm can easily be adapted to generate exercises with specified difficulty levels, which we will explore in future work. 
+This work introduces an algorithm designed to support the learning and teaching of ND, with the aim of generating high-quality educational feedback. Through the construction of graphs based on labeled directed hypergraphs, the system can automatically generate complete, human-readable ND proofs and explore multiple proof paths for a given problem.
+The main contribution of this work is a method for generating multiple valid ND proofs for both PL and FOL, an efficient feedback mechanism aligned with the student’s reasoning, and a way to quantify progress, offering metrics such as distance to a valid proof and detection of redundant or more complex steps. The algorithm can be adapted to generate exercises with specified difficulty levels, which we will explore in future work.
 
 Unlike other methods from the literature, our algorithm not only returns a single best solution but also provides step-by-step feedback that aligns with the student’s problem-solving process, enhancing its educational value. Additionally, we speculate that by storing multiple solutions in advance, we make real-time feedback more efficient and scalable.
 %
 The algorithm is fully implemented and integrated in an online learning platform. We expect it to have immediate impact in classroom and self-study settings, helping students better understand ND and teachers to evaluate student solutions more effectively.
+
+This work is supported by UID/04516/NOVA Laboratory for Computer Science and Informatics (NOVA LINCS) with the financial support of FCT.IP

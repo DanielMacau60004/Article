@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  28 JUN 2025 19:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  18 JUL 2025 19:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/mcmac/Desktop/Article/Article/samplepaper.tex
-(c:/Users/mcmac/Desktop/Article/Article/samplepaper.tex
+**c:/Users/mcmac/Desktop/Thesis/Article/Article/samplepaper.tex
+(c:/Users/mcmac/Desktop/Thesis/Article/Article/samplepaper.tex
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
 (./llncs.cls
@@ -558,6 +558,32 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Cskip=\skip78
 )
 \c@@todonotes@numberoftodonotes=\count348
+) (c:/texlive/2024/texmf-dist/tex/latex/bussproofs/bussproofs.sty
+Proof Tree (bussproofs) style macros. Version 1.1.
+\theLevel=\count349
+\myMaxLevel=\count350
+\myBoxA=\box125
+\myBoxB=\box126
+\myBoxC=\box127
+\myBoxD=\box128
+\myBoxLL=\box129
+\myBoxRL=\box130
+\thisAboveSkip=\dimen300
+\thisBelowSkip=\dimen301
+\newScoreStart=\dimen302
+\newScoreEnd=\dimen303
+\newCenter=\dimen304
+\displace=\dimen305
+\leftLowerAmt=\dimen306
+\rightLowerAmt=\dimen307
+\scoreHeight=\dimen308
+\scoreDepth=\dimen309
+\htLbox=\dimen310
+\htRbox=\dimen311
+\htRRbox=\dimen312
+\htRRRbox=\dimen313
+\htAbox=\dimen314
+\htCbox=\dimen315
 ) (c:/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
  (c:/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
@@ -589,16 +615,16 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (c:/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count349
+\c@section@level=\count351
 ) (c:/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count350
+\etb@tempcnta=\count352
 ) (c:/texlive/2024/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen300
-\Hy@linkcounter=\count351
-\Hy@pagecounter=\count352
+\@linkdim=\dimen316
+\Hy@linkcounter=\count353
+\Hy@pagecounter=\count354
  (c:/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -606,7 +632,7 @@ Now handling font encoding PD1 ...
 ) (c:/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count353
+\Hy@SavedSpaceFactor=\count355
  (c:/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -619,21 +645,21 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count354
+\c@Hy@tempcnt=\count356
  (c:/texlive/2024/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen301
+\XeTeXLinkMargin=\dimen317
  (c:/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (c:/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count355
-\Field@Width=\dimen302
-\Fld@charsize=\dimen303
+\Fld@menulength=\count357
+\Field@Width=\dimen318
+\Fld@charsize=\dimen319
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -645,9 +671,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count356
-\c@Item=\count357
-\c@Hfootnote=\count358
+\Hy@abspage=\count358
+\c@Item=\count359
+\c@Hfootnote=\count360
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (c:/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -656,8 +682,8 @@ File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count359
-\c@bookmark@seq@number=\count360
+\Fld@listcount=\count361
+\c@bookmark@seq@number=\count362
  (c:/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (c:/texlive/2024/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -668,41 +694,41 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip79
 ) (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count361
-\l__pdf_internal_box=\box125
+\l__color_backend_stack_int=\count363
+\l__pdf_internal_box=\box131
 ) (./samplepaper.aux)
 \openout1 = `samplepaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
  (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count362
-\scratchdimen=\dimen304
-\scratchbox=\box126
-\nofMPsegments=\count363
-\nofMParguments=\count364
+\scratchcounter=\count364
+\scratchdimen=\dimen320
+\scratchbox=\box132
+\nofMPsegments=\count365
+\nofMParguments=\count366
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count365
-\MPscratchDim=\dimen305
-\MPnumerator=\count366
-\makeMPintoPDFobject=\count367
+\MPscratchCnt=\count367
+\MPscratchDim=\dimen321
+\MPnumerator=\count368
+\makeMPintoPDFobject=\count369
 \everyMPtoPDFconversion=\toks46
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -713,7 +739,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 33.
+Package hyperref Info: Link coloring OFF on input line 34.
  (./samplepaper.out) (./samplepaper.out)
 \@outlinefile=\write4
 \openout4 = `samplepaper.out'.
@@ -723,23 +749,55 @@ Package hyperref Info: Link coloring OFF on input line 33.
 [1
 
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]) (./chapters/background.tex
-<resources/rules.png, id=38, 955.31906pt x 673.76718pt>
-File: resources/rules.png Graphic file (type png)
-<use resources/rules.png>
-Package pdftex.def Info: resources/rules.png  used on input line 17.
-(pdftex.def)             Requested size: 347.12354pt x 244.81778pt.
+\myBox1=\box133
+\myScoreStart1=\dimen322
+\myCenter1=\dimen323
+\myScoreEnd1=\dimen324
+\myBox2=\box134
+\myScoreStart2=\dimen325
+\myCenter2=\dimen326
+\myScoreEnd2=\dimen327
+
+Overfull \hbox (2.32394pt too wide) in paragraph at lines 41--46
+ [] 
+ []
+
+\myBox3=\box135
+\myScoreStart3=\dimen328
+\myCenter3=\dimen329
+\myScoreEnd3=\dimen330
+
+Overfull \hbox (26.75838pt too wide) in paragraph at lines 73--83
+ [] 
+ []
+
+
+Overfull \hbox (13.19702pt too wide) in paragraph at lines 114--118
+ [] 
+ []
+
+
+Overfull \hbox (12.06853pt too wide) in paragraph at lines 122--126
+ [] 
+ []
+
+
+Overfull \hbox (3.33568pt too wide) in paragraph at lines 130--134
+ [] 
+ []
+
 
 
 [2]) (./chapters/requirements.tex
 
-[3 <./resources/rules.png>]) (./chapters/algorithm.tex
+[3]) (./chapters/algorithm.tex
 
 [4]
-<resources/te-example.jpg, id=76, 452.673pt x 132.714pt>
+<resources/te-example.jpg, id=75, 452.673pt x 132.714pt>
 File: resources/te-example.jpg Graphic file (type jpg)
 <use resources/te-example.jpg>
 Package pdftex.def Info: resources/te-example.jpg  used on input line 52.
-(pdftex.def)             Requested size: 277.69987pt x 81.41713pt.
+(pdftex.def)             Requested size: 242.98541pt x 71.2372pt.
 
 Overfull \hbox (4.57668pt too wide) in paragraph at lines 57--62
 []\T1/cmr/m/n/10 Formally, the above hy-per-edge is rep-re-sented as $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 c; \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a \OMS/cmsy/m/n/10 _ \OML/cmm/m/it/10 b; "\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 c; a\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 c; b\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 _[]\OT1/cmr/m/n/10 )$\T1/cmr/m/n/10 .
@@ -748,7 +806,7 @@ Overfull \hbox (4.57668pt too wide) in paragraph at lines 57--62
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<resources/tg-final.png, id=79, 573.78pt x 464.499pt>
+<resources/tg-final.png, id=78, 573.78pt x 464.499pt>
 File: resources/tg-final.png Graphic file (type png)
 <use resources/tg-final.png>
 Package pdftex.def Info: resources/tg-final.png  used on input line 128.
@@ -761,7 +819,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [5 <./resources/te-example.jpg>]
 
 [6]
-<resources/pe-example.jpg, id=125, 625.683pt x 146.949pt>
+<resources/pe-example.jpg, id=124, 625.683pt x 146.949pt>
 File: resources/pe-example.jpg Graphic file (type jpg)
 <use resources/pe-example.jpg>
 Package pdftex.def Info: resources/pe-example.jpg  used on input line 165.
@@ -773,11 +831,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [7 <./resources/tg-final.png>]
-<resources/sg-gen.jpg, id=139, 503.043pt x 206.736pt>
+<resources/sg-gen.jpg, id=138, 503.043pt x 206.517pt>
 File: resources/sg-gen.jpg Graphic file (type jpg)
 <use resources/sg-gen.jpg>
 Package pdftex.def Info: resources/sg-gen.jpg  used on input line 218.
-(pdftex.def)             Requested size: 277.69987pt x 114.12784pt.
+(pdftex.def)             Requested size: 277.69987pt x 114.00694pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -789,12 +847,12 @@ File: resources/trim-height.jpg Graphic file (type jpg)
 <use resources/trim-height.jpg>
 Package pdftex.def Info: resources/trim-height.jpg  used on input line 232.
 (pdftex.def)             Requested size: 208.27623pt x 92.4923pt.
-<resources/trim-size.jpg, id=166, 411.72pt x 264.552pt>
+<resources/trim-size.jpg, id=167, 411.72pt x 264.552pt>
 File: resources/trim-size.jpg Graphic file (type jpg)
 <use resources/trim-size.jpg>
 Package pdftex.def Info: resources/trim-size.jpg  used on input line 241.
 (pdftex.def)             Requested size: 208.27623pt x 133.82578pt.
-<resources/sg-final.jpg, id=169, 507.861pt x 235.644pt>
+<resources/sg-final.jpg, id=170, 507.861pt x 235.644pt>
 File: resources/sg-final.jpg Graphic file (type jpg)
 <use resources/sg-final.jpg>
 Package pdftex.def Info: resources/sg-final.jpg  used on input line 249.
@@ -804,12 +862,12 @@ Package pdftex.def Info: resources/sg-final.jpg  used on input line 249.
 [9 <./resources/sg-gen.jpg> <./resources/trim-height.jpg>]
 
 [10 <./resources/trim-size.jpg> <./resources/sg-final.jpg>]
-<resources/trim-pos-feed.jpg, id=189, 692.04pt x 155.271pt>
+<resources/trim-pos-feed.jpg, id=190, 692.04pt x 155.271pt>
 File: resources/trim-pos-feed.jpg Graphic file (type jpg)
 <use resources/trim-pos-feed.jpg>
 Package pdftex.def Info: resources/trim-pos-feed.jpg  used on input line 260.
 (pdftex.def)             Requested size: 347.12354pt x 77.8817pt.
-<resources/trim-neg-feed.jpg, id=190, 662.694pt x 152.424pt>
+<resources/trim-neg-feed.jpg, id=191, 662.694pt x 152.424pt>
 File: resources/trim-neg-feed.jpg Graphic file (type jpg)
 <use resources/trim-neg-feed.jpg>
 Package pdftex.def Info: resources/trim-neg-feed.jpg  used on input line 268.
@@ -829,18 +887,18 @@ Package rerunfilecheck Info: File `samplepaper.out' has not changed.
 (rerunfilecheck)             Checksum: 83902FC6756D6717E7CDEC5D4D20B0D6;303.
  ) 
 Here is how much of TeX's memory you used:
- 23977 strings out of 473362
- 441367 string characters out of 5725050
- 838817 words of memory out of 5000000
- 46585 multiletter control sequences out of 15000+600000
+ 24160 strings out of 473362
+ 443755 string characters out of 5725050
+ 849662 words of memory out of 5000000
+ 46764 multiletter control sequences out of 15000+600000
  572064 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,101p,1343b,704s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on samplepaper.pdf (13 pages, 1727025 bytes).
+ 99i,19n,101p,1350b,714s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on samplepaper.pdf (13 pages, 1670603 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
- 265 compressed objects within 3 object streams
+ 350 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
  98 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

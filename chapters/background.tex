@@ -13,10 +13,177 @@ With \(\displaystyle \left[ \varphi \right]^x_{\substack{t}}\) we represent the 
 
 
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{resources/rules.png}
-    \caption{List of rules for both PL and FOL}
-    \label{fig:nd-rules}
+{\footnotesize
+\begin{center}
+  \textbf{Elimination Rules}
+  \vspace{-0.3cm}
+\end{center}
+
+\noindent
+\begin{minipage}{0.18\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}} {\varphi \land \psi}$}
+  \RightLabel{$(\land_{E_r})$}
+  \UnaryInfC{$\varphi$}
+\end{prooftree}
+\end{minipage}\hfill
+\begin{minipage}{0.18\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}} {\varphi \land \psi}$}
+  \RightLabel{$(\land_{E_l})$}
+  \UnaryInfC{$\psi$}
+\end{prooftree}
+\end{minipage}\hfill
+\begin{minipage}{0.26\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}_1 \strut}{\varphi}$}
+  \AxiomC{$\overset{\mathcal{D}_2 \strut}{\varphi \to \psi}$}
+  \RightLabel{$(\to_E)$}
+  \BinaryInfC{$\psi$}
+\end{prooftree}
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}_1}{\exists_x \, \varphi}$}
+  \AxiomC{$([\varphi]^x_{\substack{y}})^m$}
+  \noLine
+  \UnaryInfC{$\overset{\mathcal{D}_2}{\psi}$}
+  \RightLabel{$(\exists_E, m)$}
+  \BinaryInfC{$\psi$}
+\end{prooftree}
+\end{minipage}
+
+\vspace{0.2cm}
+\noindent
+\begin{minipage}{0.32\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}_1 \strut} {\varphi}$}
+  \AxiomC{$\overset{\mathcal{D}_2 \strut} {\neg \varphi}$}
+  \RightLabel{$(\neg_E)$}
+  \BinaryInfC{$\bot$}
+\end{prooftree}
+\end{minipage}\hfill
+\begin{minipage}{0.40\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}_1}{\varphi_1 \vee \varphi_2}$}
+  \AxiomC{$[\varphi_1]^m$}
+  \noLine
+  \UnaryInfC{$\overset{\mathcal{D}_2}{\psi}$}
+  \AxiomC{$[\varphi_2]^n$}
+  \noLine
+  \UnaryInfC{$\overset{\mathcal{D}_3}{\psi}$}
+  \RightLabel{$(\vee_E, m, n)$}
+  \TrinaryInfC{$\psi$}
+\end{prooftree}
+\end{minipage}\hfill
+\begin{minipage}{0.24\linewidth}
+\centering
+\begin{prooftree}
+  \AxiomC{$\overset{\mathcal{D}}{\forall_x \, \varphi}$}
+  \RightLabel{$(\forall_E)$}
+  \UnaryInfC{$\left[ \varphi \right]^x_{\substack{t}}$}
+\end{prooftree}
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent
+\begin{minipage}{0.75\linewidth}
+  \begin{center}
+    \textbf{Introduction Rules}
+    \vspace{-0.3cm}
+  \end{center}
+
+  \noindent
+  \begin{minipage}{0.30\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$\overset{\mathcal{D}_1}{\varphi}$}
+    \AxiomC{$\overset{\mathcal{D}_2}{\psi}$}
+    \RightLabel{$(\land_I)$}
+    \BinaryInfC{$\varphi \land \psi$}
+  \end{prooftree}
+  \end{minipage}\hfill
+  \begin{minipage}{0.16\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$\overset{\mathcal{D}}{\varphi}$}
+    \RightLabel{$(\vee_{I_r})$}
+    \UnaryInfC{$\varphi \vee \psi$}
+  \end{prooftree}
+  \end{minipage}\hfill
+  \begin{minipage}{0.16\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$\overset{\mathcal{D}}{\psi}$}
+    \RightLabel{$(\vee_{I_l})$}
+    \UnaryInfC{$\varphi \vee \psi$}
+  \end{prooftree}
+  \end{minipage}\hfill
+  \begin{minipage}{0.16\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$\overset{\mathcal{D}}{[\varphi]^x_{\substack{t}}}$}
+    \RightLabel{$(\exists_I)$}
+    \UnaryInfC{$\exists_x \, \varphi$}
+  \end{prooftree}
+  \end{minipage}
+
+  \vspace{0.2cm}
+  \noindent
+  \begin{minipage}{0.33\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$[\varphi]^m$}
+    \noLine
+    \UnaryInfC{$\overset{\mathcal{D}}{\psi}$}
+    \RightLabel{$(\to_I, m)$}
+    \UnaryInfC{$\varphi \to \psi$}
+  \end{prooftree}
+  \end{minipage}\hfill
+  \begin{minipage}{0.33\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$[\varphi]^m$}
+    \noLine
+    \UnaryInfC{$\overset{\mathcal{D}}{\bot}$}
+    \RightLabel{$(\neg_I, m)$}
+    \UnaryInfC{$\neg \varphi$}
+  \end{prooftree}
+  \end{minipage}\hfill
+  \begin{minipage}{0.33\linewidth}
+  \centering
+  \begin{prooftree}
+    \AxiomC{$\overset{\mathcal{D}}{[\varphi]^x_{\substack{y}}}$}
+    \RightLabel{$(\forall_I)$}
+    \UnaryInfC{$\forall_x \, \varphi$}
+  \end{prooftree}
+  \end{minipage}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.23\linewidth}
+  \begin{center}
+    \textbf{Absurdity Rule}
+    \vspace{-0.3cm}
+  \end{center}
+  \begin{center}
+  \begin{prooftree}
+    \AxiomC{$[\neg \varphi]^m$}
+    \noLine
+    \UnaryInfC{$\overset{\mathcal{D}}{\bot}$}
+    \RightLabel{$(\bot, m)$}
+    \UnaryInfC{$\varphi$}
+  \end{prooftree}
+  \end{center}
+\end{minipage}
+}
+\caption{List of rules for both PL and FOL}
+\label{fig:nd-rules}
 \end{figure}
 
 %These proofs can be constructed either bottom-up, from the conclusion to the hypotheses, or top-down, from the hypotheses to the conclusion.  --- talvez não valha a pena dizer isto aqui.
@@ -34,6 +201,7 @@ In \autoref{tab:proof-tree} we have an example of a well-formed ND proof of \( \
     \caption{ND tree proving \( \{\neg (\varphi \lor \psi)\} \vdash \neg \psi \).}
     \label{tab:proof-tree}
 \end{figure}
+\vspace{-10px}
 %\begin{definition}[Well-Formed Tree Proof]
 %A tree proof is well-formed if and only if it is finite and applies the inference rules correctly.
 %\end{definition}

@@ -1,9 +1,9 @@
 \begin{thebibliography}{10}
 
 \bibitem{IJCAI13}
-Umair Ahmed, Sumit Gulwani, and Amey Karkare.
+Umair~Z. Ahmed, Sumit Gulwani, and Amey Karkare.
 \newblock Automatically generating problems and solutions for natural deduction.
-\newblock pages 1968--1975, 08 2013.
+\newblock In {\em Proceedings of the Twenty-Third International Joint Conference on Artificial Intelligence}, IJCAI '13, page 1968–1975. AAAI Press, 2013.
 
 \bibitem{bolotov_2005_automated}
 Alexander Bolotov, Vyacheslav Bocharov, Alexander Gorchakov, and Vasilyi Shangin.
