@@ -246,7 +246,7 @@ The final stage of our algorithm consists of trimming the PG to keep only the va
 Another key feature that distinguishes our work from other algorithms is that we do not keep just a single solution, but rather a set of possible solutions. This is important to avoid recomputing the entire algorithm when generating feedback for the same problem. However, it comes at a cost in terms of space, as it stores thousands of goals. The algorithm can be queried to generate a new feedback step if all formulas in the new target goal are contained in the set of formulas in the TG used to generate the final trimmed PG. \autoref{fig:sg-trim} shows the TG from \autoref{fig:st-ex} after being trimmed using STS. The algorithm found a solution \textbf{A} for the target problem and also solutions for each of the subgoals presented in the graph.
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\linewidth]{resources/sg-final.jpg}
+    \includegraphics[width=0.7\linewidth]{resources/sg-final.jpg}
     \caption{Trimmed TG using STS.}
     \label{fig:sg-trim}
 \end{figure}
@@ -257,7 +257,7 @@ In this first example, the student does not know how to proceed after applying t
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{resources/trim-pos-feed.jpg}
+    \includegraphics[width=0.9\linewidth]{resources/trim-pos-feed.jpg}
     \caption{Extracting a solution to produce feedback from a proved goal}
     \label{fig:extract-solution}
 \end{figure}
@@ -265,10 +265,10 @@ In this first example, the student does not know how to proceed after applying t
 In this second example, a solution cannot be found, as the goal assigned to the unresolved part of the proof does not belong to the final graph. In this case, we can inform the student that the path they are taking may be too complex, and we can suggest going back \(X\) rule applications until the algorithm finds the correct path again to guide the student. We cannot affirm that there is no solution, because we may not have explored the whole space of possible solutions. For example, the final graph was only constructed considering the first 9 nodes. In this example, if the student removes the Elimination of Negation rule (one step back), we return to the situation previously presented.
 \begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{resources/trim-neg-feed.jpg}
+    \includegraphics[width=0.9\linewidth]{resources/trim-neg-feed.jpg}
     \caption{Extracting a solution to produce feedback from an unproved goal.}
     \label{fig:extract-solution2}
 \end{figure}
 These methodologies can also be used by teachers to assess exercises. For example, we could compute how far a student’s resolution is from a possible solution, or how far it is from the best solution. In some cases, based on the size of the explored solution space, we can say that the student overcomplicated the resolution.
 
-Our algorithm is implemented in a publicly available prototype\footnote{\url{https://github.com/DanielMacau60004/NDAlgorithm}} and has been functionally tested. It is also integrated in a visual online tool focused on ND proofs but still lacks user testing for a proper validation. The figures that include user interaction are captured from the tool that allows students to practice ND proofs.
+Our algorithm is implemented in a publicly available prototype\footnote{\url{https://github.com/DanielMacau60004/NDAlgorithm}} and has been tested. It is also integrated in a visual online tool focused on ND proofs but still lacks user testing for proper validation. The figures that include user interaction are captured from the tool that allows students to practice ND proofs.
